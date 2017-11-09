@@ -1,0 +1,73 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{37F97001-CA4D-4409-88F4-627771981A0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{08137234-A7BD-4EAD-884C-7198EB6A5AE2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysers", "Analysers", "{E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{880061E8-CDFA-4B05-B28E-AD65A7C58BC4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vsixs", "Vsixs", "{FA0807FE-A981-46E2-A097-B264D3CB3CF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.Foundation", "Capgemini.CodeAnalysis.Foundation\Capgemini.CodeAnalysis.Foundation.csproj", "{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.XrmAnalysers", "Capgemini.CodeAnalysis.XrmAnalysers\Capgemini.CodeAnalysis.XrmAnalysers\Capgemini.CodeAnalysis.XrmAnalysers.csproj", "{501E353B-3080-45C3-9D17-961272E58A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.XrmAnalysers.Test", "Capgemini.CodeAnalysis.XrmAnalysers\Capgemini.CodeAnalysis.XrmAnalysers.Test\Capgemini.CodeAnalysis.XrmAnalysers.Test.csproj", "{290F926C-3DDD-4EC8-83FA-9F73D58C5017}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.XrmAnalysers.Vsix", "Capgemini.CodeAnalysis.XrmAnalysers\Capgemini.CodeAnalysis.XrmAnalysers.Vsix\Capgemini.CodeAnalysis.XrmAnalysers.Vsix.csproj", "{A263D18C-2BEF-4C01-8C9C-4ED31F62018E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37F97001-CA4D-4409-88F4-627771981A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37F97001-CA4D-4409-88F4-627771981A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37F97001-CA4D-4409-88F4-627771981A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37F97001-CA4D-4409-88F4-627771981A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{501E353B-3080-45C3-9D17-961272E58A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{501E353B-3080-45C3-9D17-961272E58A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{501E353B-3080-45C3-9D17-961272E58A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{501E353B-3080-45C3-9D17-961272E58A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{290F926C-3DDD-4EC8-83FA-9F73D58C5017}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{290F926C-3DDD-4EC8-83FA-9F73D58C5017}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{290F926C-3DDD-4EC8-83FA-9F73D58C5017}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{290F926C-3DDD-4EC8-83FA-9F73D58C5017}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A263D18C-2BEF-4C01-8C9C-4ED31F62018E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A263D18C-2BEF-4C01-8C9C-4ED31F62018E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A263D18C-2BEF-4C01-8C9C-4ED31F62018E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A263D18C-2BEF-4C01-8C9C-4ED31F62018E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
+		{37F97001-CA4D-4409-88F4-627771981A0E} = {880061E8-CDFA-4B05-B28E-AD65A7C58BC4}
+		{08137234-A7BD-4EAD-884C-7198EB6A5AE2} = {FA0807FE-A981-46E2-A097-B264D3CB3CF7}
+		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
+		{501E353B-3080-45C3-9D17-961272E58A71} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
+		{290F926C-3DDD-4EC8-83FA-9F73D58C5017} = {880061E8-CDFA-4B05-B28E-AD65A7C58BC4}
+		{A263D18C-2BEF-4C01-8C9C-4ED31F62018E} = {FA0807FE-A981-46E2-A097-B264D3CB3CF7}
+	EndGlobalSection
+EndGlobal
