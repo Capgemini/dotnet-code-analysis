@@ -12,6 +12,9 @@ using TestHelper;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
 {
+    /// <summary>
+    /// Test
+    /// </summary>
     [TestClass]
     public class XmlCommentsAnalyserTest : CodeFixVerifier
     {
