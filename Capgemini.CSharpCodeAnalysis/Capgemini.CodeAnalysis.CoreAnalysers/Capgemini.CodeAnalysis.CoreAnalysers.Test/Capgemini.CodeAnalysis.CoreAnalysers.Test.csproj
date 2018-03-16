@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XmlCommentsAnalyserTest.cs" />
     <Compile Include="ExplicitAccessModifiersAnalyzerTests.cs" />
     <Compile Include="NamingConventionAnalyzerTests.cs" />
     <Compile Include="Verifiers\CodeFixVerifier.cs" />
