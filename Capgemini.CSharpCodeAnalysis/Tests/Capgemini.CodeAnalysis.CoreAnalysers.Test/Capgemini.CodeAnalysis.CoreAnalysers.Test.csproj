@@ -7,11 +7,11 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{290F926C-3DDD-4EC8-83FA-9F73D58C5017}</ProjectGuid>
+    <ProjectGuid>{37F97001-CA4D-4409-88F4-627771981A0E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Capgemini.CodeAnalysis.XrmAnalysers.Test</RootNamespace>
-    <AssemblyName>Capgemini.CodeAnalysis.XrmAnalysers.Test</AssemblyName>
+    <RootNamespace>Capgemini.CodeAnalysis.CoreAnalysers.Test</RootNamespace>
+    <AssemblyName>Capgemini.CodeAnalysis.CoreAnalysers.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -104,7 +104,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SingleConstructornAnalyzerTests.cs" />
+    <Compile Include="Tests\CommentsAnalyzerTests.cs" />
+    <Compile Include="Tests\FileHierarchyAnalyzerTests.cs" />
+    <Compile Include="Tests\GodClassAnalyzerTests.cs" />
+    <Compile Include="Tests\HardCodeAnalyzerTests.cs" />
+    <Compile Include="Tests\IfStatementAnalyzerTests.cs" />
+    <Compile Include="Tests\LargeCommentedCodeAnalyzerTests.cs" />
+    <Compile Include="Tests\LoopStatementAnalyzerTests.cs" />
+    <Compile Include="Tests\MethodComplexityAnalyzerTests.cs" />
+    <Compile Include="Tests\MonsterMethodAnalyzerTests.cs" />
+    <Compile Include="Tests\OneTypePerFileAnalyzerTests.cs" />
+    <Compile Include="Tests\StaticClassAnalyzerTests.cs" />
+    <Compile Include="Tests\XmlCommentsAnalyserTest.cs" />
+    <Compile Include="Tests\ExplicitAccessModifiersAnalyzerTests.cs" />
+    <Compile Include="Tests\NamingConventionAnalyzerTests.cs" />
+    <Compile Include="Tests\XmlCommentsAnalyzerTests.cs" />
     <Compile Include="Verifiers\CodeFixVerifier.cs" />
     <Compile Include="Verifiers\DiagnosticVerifier.cs" />
     <Compile Include="Helpers\CodeFixVerifier.Helper.cs" />
@@ -120,13 +134,14 @@
       <Project>{c12f9485-5bfd-4643-a9fa-9a6567cdaba4}</Project>
       <Name>Capgemini.CodeAnalysis.Foundation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Capgemini.CodeAnalysis.XrmAnalysers\Capgemini.CodeAnalysis.XrmAnalysers.csproj">
-      <Project>{501E353B-3080-45C3-9D17-961272E58A71}</Project>
-      <Name>Capgemini.CodeAnalysis.XrmAnalysers</Name>
+    <ProjectReference Include="..\..\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj">
+      <Project>{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}</Project>
+      <Name>Capgemini.CodeAnalysis.CoreAnalysers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
