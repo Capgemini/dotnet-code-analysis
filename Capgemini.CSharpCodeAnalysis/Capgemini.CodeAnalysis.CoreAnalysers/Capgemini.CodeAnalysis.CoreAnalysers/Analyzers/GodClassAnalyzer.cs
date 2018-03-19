@@ -30,10 +30,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         {
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var methodCount = declaration.Members.OfType<MethodDeclarationSyntax>().Count(a => !IsPrivate(a.Modifiers));
+            var constructorCount = declaration.Members.OfType<ConstructorDeclarationSyntax>().Count(a => !IsPrivate(a.Modifiers));
 
-            if (methodCount > ClassMaxNumberOfPublicMethods)
+            var totalExternallyVisibleMethods = methodCount + constructorCount;
+
+            if (totalExternallyVisibleMethods > ClassMaxNumberOfPublicMethods)
             {
-                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"This class has {methodCount} methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.");
+                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"This class has {totalExternallyVisibleMethods} methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.");
                 context.ReportDiagnostic(diagnostics);
             }
         }
