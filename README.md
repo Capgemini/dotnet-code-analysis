@@ -1,6 +1,6 @@
 # Capgemini Core C# Code Analyzers
 
-##Content
+## Content
  - [Introduction](#introduction)
  - [Installation](#installation)
  - [Implementation](#implementation)
@@ -8,7 +8,7 @@
  - [Usage](#usage)
  
 ----
-Current build status: https://capgeminiuk.visualstudio.com/_apis/public/build/definitions/b8312974-39df-40d0-9240-842966515058/50/badge
+Current build status: <img src="https://capgeminiuk.visualstudio.com/_apis/public/build/definitions/b8312974-39df-40d0-9240-842966515058/50/badge" alt="CI Build status"> 
 
 ----
 ## Introduction
