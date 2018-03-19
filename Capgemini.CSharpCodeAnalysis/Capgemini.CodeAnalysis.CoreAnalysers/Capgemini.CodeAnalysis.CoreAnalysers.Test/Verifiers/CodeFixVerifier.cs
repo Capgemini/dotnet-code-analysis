@@ -6,6 +6,7 @@ using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 
 namespace TestHelper
@@ -123,6 +124,24 @@ namespace TestHelper
             //after applying all of the code fixes, compare the resulting string to the inputted one
             var actual = GetStringFromDocument(document);
             Assert.AreEqual(newSource, actual);
+        }
+
+        protected string GenerateMultipleLinesOfText(int numberOfLines, string text = "SampleText")
+        {
+            var stringBuilder = new StringBuilder();
+            for (int counter = 0; counter < numberOfLines; counter++)
+            {
+                if (counter == numberOfLines - 1)
+                {
+                    stringBuilder.Append(text);
+                }
+                else
+                {
+                    stringBuilder.AppendLine(text);
+                }
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

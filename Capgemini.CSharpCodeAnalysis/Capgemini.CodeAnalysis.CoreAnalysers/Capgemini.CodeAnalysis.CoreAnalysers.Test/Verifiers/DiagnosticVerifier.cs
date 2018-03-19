@@ -14,13 +14,14 @@ namespace TestHelper
     public abstract partial class DiagnosticVerifier
     {
         #region To be implemented by Test classes
+
         /// <summary>
         /// Get the CSharp analyzer being tested - to be implemented in non-abstract class
         /// </summary>
-        protected virtual DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
-        {
-            return null;
-        }
+        protected abstract /*virtual*/ DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer();
+        //{
+        //    return null;
+        //}
 
         /// <summary>
         /// Get the Visual Basic analyzer being tested (C#) - to be implemented in non-abstract class

@@ -3,14 +3,9 @@ using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 {
     [TestClass]
     public class XmlCommentsAnalyserTest : CodeFixVerifier

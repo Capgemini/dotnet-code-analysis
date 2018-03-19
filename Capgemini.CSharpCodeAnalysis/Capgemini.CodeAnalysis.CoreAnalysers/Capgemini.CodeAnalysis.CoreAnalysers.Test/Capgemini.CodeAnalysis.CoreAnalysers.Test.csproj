@@ -104,9 +104,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="XmlCommentsAnalyserTest.cs" />
-    <Compile Include="ExplicitAccessModifiersAnalyzerTests.cs" />
-    <Compile Include="NamingConventionAnalyzerTests.cs" />
+    <Compile Include="Tests\CommentsAnalyzerTests.cs" />
+    <Compile Include="Tests\FileHierarchyAnalyzerTests.cs" />
+    <Compile Include="Tests\GodClassAnalyzerTests.cs" />
+    <Compile Include="Tests\HardCodeAnalyzerTests.cs" />
+    <Compile Include="Tests\IfStatementAnalyzerTests.cs" />
+    <Compile Include="Tests\LargeCommentedCodeAnalyzerTests.cs" />
+    <Compile Include="Tests\LoopStatementAnalyzerTests.cs" />
+    <Compile Include="Tests\MethodComplexityAnalyzerTests.cs" />
+    <Compile Include="Tests\MonsterMethodAnalyzerTests.cs" />
+    <Compile Include="Tests\OneTypePerFileAnalyzerTests.cs" />
+    <Compile Include="Tests\StaticClassAnalyzerTests.cs" />
+    <Compile Include="Tests\XmlCommentsAnalyserTest.cs" />
+    <Compile Include="Tests\ExplicitAccessModifiersAnalyzerTests.cs" />
+    <Compile Include="Tests\NamingConventionAnalyzerTests.cs" />
+    <Compile Include="Tests\XmlCommentsAnalyzerTests.cs" />
     <Compile Include="Verifiers\CodeFixVerifier.cs" />
     <Compile Include="Verifiers\DiagnosticVerifier.cs" />
     <Compile Include="Helpers\CodeFixVerifier.Helper.cs" />
@@ -130,5 +142,6 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,10 +5,10 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 {
     [TestClass]
-    public class ExplicitAccessModifiersAnalyzerTests : CodeFixVerifier
+    public class NamingConventionAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
@@ -17,33 +17,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
 
             VerifyCSharpDiagnostic(test);
         }
-
-        [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithPublicKeyword()
-        {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        public class TypeName
-        {   
-            public TypeName()
-{
-}
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
-        }
         
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithInternalKeyword()
+        public void NamingConventionAnalyzer_Passes_ClassName()
         {
             var test = @"
     using System;
@@ -55,19 +31,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
 
     namespace ConsoleApplication1
     {
-        public class TypeName
+        class TypeName
         {   
-            internal TypeName()
-{
-} 
         }
     }";
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithPrivateKeyword()
+        public void NamingConventionAnalyzer_Fails_ClassNameEnsWithUpperCharacter()
         {
             var test = @"
     using System;
@@ -79,78 +52,81 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test
 
     namespace ConsoleApplication1
     {
-        public class TypeName
-        {    
-            private TypeName()
-{
-}
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
-        }
-
-        [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_PassesForStaticConstructorWithNoAccessModifier()
-        {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        public class TypeName
+        class TypeNameG
         {   
-            static TypeName()
-            {
-            }
         }
     }";
-            VerifyCSharpDiagnostic(test);
-        }
-
-        [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_FailsForNonStaticConstructorWithNoAccessModifier()
-        {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.ExplicitAccessModifiersAnalyzerId,
-                Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: Constructor TypeName must include an access modifier.",
+                Id = AnalyserConstants.NamingConventionAnalyzerId,
+                Message = $"{nameof(NamingConventionAnalyzer)}: TypeNameG does not satisfy naming convention. \nTypeNameG must start with one upper case character, \nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                            new[] {
-                                    new DiagnosticResultLocation("Test0.cs", 13, 13)
-                                }
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 11, 15)
+                        }
             };
 
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        public class TypeName
-        {   
-            TypeName()
-            {
-            }
-        }
-    }";
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        [TestMethod]
+        public void NamingConventionAnalyzer_Passes_PrivateFieldNameMustStartWithUnderscore()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TypeName
+        {   
+            private string _field1;
+        }
+    }";
+            
+            VerifyCSharpDiagnostic(test);
+        }
+        
+        [TestMethod]
+        public void NamingConventionAnalyzer_Fails_PrivateFieldNameMustStartWithUnderscore()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TypeName
+        {   
+            private string Field1;
+        }
+    }";
+            var expected = new DiagnosticResult
+            {
+                Id = AnalyserConstants.NamingConventionAnalyzerId,
+                Message = $"{nameof(NamingConventionAnalyzer)}: Field1 does not satisfy naming convention. \nField1 must start with underscore character followed by atleast two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                    new[] {
+                        new DiagnosticResultLocation("Test0.cs", 13, 28)
+                    }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new ExplicitAccessModifiersAnalyzer();
+            return new NamingConventionAnalyzer();
         }
     }
 }
