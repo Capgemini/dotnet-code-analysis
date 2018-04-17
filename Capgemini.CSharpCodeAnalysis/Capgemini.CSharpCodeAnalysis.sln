@@ -1,19 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Tests\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{37F97001-CA4D-4409-88F4-627771981A0E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{08137234-A7BD-4EAD-884C-7198EB6A5AE2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysers", "Analysers", "{E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{880061E8-CDFA-4B05-B28E-AD65A7C58BC4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vsixs", "Vsixs", "{FA0807FE-A981-46E2-A097-B264D3CB3CF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Tests\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{37F97001-CA4D-4409-88F4-627771981A0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{08137234-A7BD-4EAD-884C-7198EB6A5AE2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.Foundation", "Capgemini.CodeAnalysis.Foundation\Capgemini.CodeAnalysis.Foundation.csproj", "{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}"
 EndProject
@@ -48,5 +48,8 @@ Global
 		{37F97001-CA4D-4409-88F4-627771981A0E} = {880061E8-CDFA-4B05-B28E-AD65A7C58BC4}
 		{08137234-A7BD-4EAD-884C-7198EB6A5AE2} = {FA0807FE-A981-46E2-A097-B264D3CB3CF7}
 		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EBA0711-F262-464D-9DB5-55A14CD26B3A}
 	EndGlobalSection
 EndGlobal
