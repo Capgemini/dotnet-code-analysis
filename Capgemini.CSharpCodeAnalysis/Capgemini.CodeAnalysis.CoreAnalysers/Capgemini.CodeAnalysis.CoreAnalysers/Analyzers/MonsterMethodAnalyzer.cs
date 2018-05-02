@@ -16,7 +16,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MethodMaxLine = 80;
         
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.MonsterMethodAnalyzerId, nameof(MonsterMethodAnalyzer),
-            $"{nameof(MonsterMethodAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+            $"{nameof(MonsterMethodAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -32,7 +32,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             if (numberOfStatements != null && numberOfStatements.Value > MethodMaxLine)
             {
-                var diagnostics = Diagnostic.Create(Rule, declaration.GetLocation(), $"This method is longer than {MethodMaxLine}. Please consider splitting this method into smaller methods.");
+                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"This method is longer than {MethodMaxLine} lines of executable code. Please consider splitting this method into smaller methods.");
                 context.ReportDiagnostic(diagnostics);
             }
         }

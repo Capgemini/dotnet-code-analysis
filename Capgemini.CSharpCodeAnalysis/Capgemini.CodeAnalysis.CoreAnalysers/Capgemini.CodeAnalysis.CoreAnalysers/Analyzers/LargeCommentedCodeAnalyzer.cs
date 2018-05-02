@@ -9,6 +9,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
+    /// <summary>
+    /// Enforces that excessive amounts of comments are added to any part of the code base
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LargeCommentedCodeAnalyzer : AnalyzerBase
     {
@@ -16,7 +19,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const string Message = "These lines of code are redundant. Please delete them.";
 
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LargeCommentedCodeAnalyzerId, nameof(LargeCommentedCodeAnalyzer),
-            $"{nameof(LargeCommentedCodeAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
+            $"{nameof(LargeCommentedCodeAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

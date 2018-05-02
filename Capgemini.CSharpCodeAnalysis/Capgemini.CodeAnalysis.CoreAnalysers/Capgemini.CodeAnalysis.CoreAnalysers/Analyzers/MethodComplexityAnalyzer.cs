@@ -19,7 +19,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     public class MethodComplexityAnalyzer: AnalyzerBase
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.MethodComplexityAnalyzeId, nameof(MethodComplexityAnalyzer),
-            $"{nameof(MethodComplexityAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+            $"{nameof(MethodComplexityAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -47,7 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             if (cyclometricComplexity > 15)
             {
-                var diagnostics = Diagnostic.Create(Rule, declaration.GetLocation(), $"The cyclometric complexity of this method method is {cyclometricComplexity} which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.");
+                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"The cyclometric complexity of this method method is {cyclometricComplexity} which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.");
                 context.ReportDiagnostic(diagnostics);
             }
         }

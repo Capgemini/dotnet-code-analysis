@@ -15,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     public class HardCodeAnalyzer : AnalyzerBase
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.HardCodeAnalyzerId, nameof(HardCodeAnalyzer),
-            $"{nameof(HardCodeAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+            $"{nameof(HardCodeAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
