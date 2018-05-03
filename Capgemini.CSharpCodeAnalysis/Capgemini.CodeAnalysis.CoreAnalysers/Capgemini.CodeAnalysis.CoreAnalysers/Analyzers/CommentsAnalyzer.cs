@@ -18,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MaxNumberOfLinesForDocumentation = 30;
 
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.CommentsAnalyzerId, nameof(CommentsAnalyzer),
-            $"{nameof(CommentsAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
+            $"{nameof(CommentsAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -60,7 +60,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         {
             var declaration = Cast<LocalDeclarationStatementSyntax>(context.Node);
             var identifier = declaration.Declaration.Variables.First().Identifier;
-            AnalyzeComments(context, identifier,$"{identifier.Text} has both leading and trailing comments. Only one type is allowed!");
+            AnalyzeComments(context, identifier,$"{identifier.Text} has both leading and trailing comments. Only one type is allowed.");
         }
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
@@ -116,22 +116,22 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             if (singleLineComments.Count > 0 && multiLineComments.Count > 0)
             {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has both multiline and single line comments. Please use only one type of comments!");
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has both multiline and single line comments. Please use only one type of comments.");
             }
             else if (singleLineComments.Count > maxNumberOfLinesForComments)
             {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments!");
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
             }
             else if (multiLineComments.Count > 1)
             {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has multiple MultiLines comments. Please use no more than 1 MultiLines of comments!");
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has multiple MultiLines comments. Please use no more than 1 MultiLines of comments.");
             }
             else if (multiLineComments.Count == 1)
             {
                 var numberOfLines = RegexManager.NumberOfLines(multiLineComments[0].ToFullString());
                 if (numberOfLines > maxNumberOfLinesForComments)
                 {
-                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments!");
+                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
                 }
             }
         }

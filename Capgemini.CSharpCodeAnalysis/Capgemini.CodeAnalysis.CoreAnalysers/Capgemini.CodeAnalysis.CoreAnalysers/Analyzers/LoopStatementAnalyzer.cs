@@ -6,11 +6,14 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
+    /// <summary>
+    /// Enforces that all loop statements are guarded by curly braces
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LoopStatementAnalyzer : AnalyzerBase
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LoopStatementAnalyzerId, nameof(LoopStatementAnalyzer),
-            $"{nameof(LoopStatementAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+            $"{nameof(LoopStatementAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.

@@ -15,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     public class StaticClassAnalyzer : AnalyzerBase
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.StaticClassAnalyzerId, nameof(StaticClassAnalyzer),
-             $"{nameof(StaticClassAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.StaticAnalyzer, DiagnosticSeverity.Error, true);
+             $"{nameof(StaticClassAnalyzer)}: {{0}}", AnalyserCategoryConstants.StaticAnalyzer, DiagnosticSeverity.Error, true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.

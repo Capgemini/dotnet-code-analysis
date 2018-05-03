@@ -98,7 +98,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'Documentation comments from Method1 exceed the allowed maximum number of lines {_threshold}!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from Method1 exceed the allowed maximum number of lines {_threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -202,7 +202,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'Documentation comments from GetTypeName exceed the allowed maximum number of lines {_threshold}!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from GetTypeName exceed the allowed maximum number of lines {_threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -313,7 +313,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -414,7 +414,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'Documentation comments from ITypeName exceed the allowed maximum number of lines {_threshold}!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from ITypeName exceed the allowed maximum number of lines {_threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -554,7 +554,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has both leading and trailing comments. Only one type is allowed!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has both leading and trailing comments. Only one type is allowed.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -588,7 +588,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has both multiline and single line comments. Please use only one type of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has both multiline and single line comments. Please use only one type of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -622,7 +622,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has multiple MultiLines comments. Please use no more than 1 MultiLines of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has multiple MultiLines comments. Please use no more than 1 MultiLines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -658,7 +658,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has more than {5} lines comments. Please use no more than {5} lines of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -691,7 +691,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has more than {5} lines comments. Please use no more than {5} lines of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -723,7 +723,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has more than {5} lines comments. Please use no more than {5} lines of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -756,7 +756,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'testString has more than {5} lines comments. Please use no more than {5} lines of comments!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -867,7 +867,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             var expected = new DiagnosticResult
             {
                 Id = AnalyserConstants.CommentsAnalyzerId,
-                Message = $"{nameof(CommentsAnalyzer)} \'Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}!\'",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {

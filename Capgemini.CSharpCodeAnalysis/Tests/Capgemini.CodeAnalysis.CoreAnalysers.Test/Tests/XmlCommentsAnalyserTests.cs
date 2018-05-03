@@ -8,7 +8,7 @@ using TestHelper;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 {
     [TestClass]
-    public class XmlCommentsAnalyserTest : CodeFixVerifier
+    public class XmlCommentsAnalyserTests : CodeFixVerifier
     {
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {

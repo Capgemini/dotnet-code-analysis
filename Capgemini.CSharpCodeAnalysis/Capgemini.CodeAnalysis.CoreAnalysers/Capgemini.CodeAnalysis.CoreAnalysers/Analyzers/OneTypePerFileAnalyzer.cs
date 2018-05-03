@@ -8,11 +8,14 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
+    /// <summary>
+    /// Enforces that only one type is defined within a C# file
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class OneTypePerFileAnalyzer : AnalyzerBase
     {
         internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.OneTypePerFileAnalyzerId, nameof(OneTypePerFileAnalyzer),
-            $"{nameof(OneTypePerFileAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+            $"{nameof(OneTypePerFileAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.

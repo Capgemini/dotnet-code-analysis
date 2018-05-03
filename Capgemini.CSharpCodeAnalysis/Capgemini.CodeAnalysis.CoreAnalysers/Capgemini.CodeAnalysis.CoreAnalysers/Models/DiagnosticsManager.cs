@@ -51,12 +51,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 
         public void CreateStaticClassDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule)
         {
-            var diagnostics = Diagnostic.Create(rule, location, "Static classes must be avoided unless there is no better option!");
+            var diagnostics = Diagnostic.Create(rule, location, "Static classes must be avoided unless there is no better option.");
             context.ReportDiagnostic(diagnostics);
         }
         public void CreateCommentsTooLongDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string objectName, int threshold)
         {
-            CreateCommentsTooLongDiagnostic(context, location, rule, $"Documentation comments from {objectName} exceed the allowed maximum number of lines {threshold}!");
+            CreateCommentsTooLongDiagnostic(context, location, rule, $"Documentation comments from {objectName} exceed the allowed maximum number of lines {threshold}.");
         }
 
         public void CreateCommentsTooLongDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string message)
