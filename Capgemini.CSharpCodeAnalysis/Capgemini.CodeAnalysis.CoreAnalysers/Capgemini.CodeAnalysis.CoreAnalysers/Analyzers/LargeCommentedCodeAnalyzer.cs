@@ -15,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MaxNoOfLinesForComments = 20;
         private const string Message = "These lines of code are redundant. Please delete them.";
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LargeCommentedCodeAnalyzerId, nameof(LargeCommentedCodeAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.LargeCommentedCodeAnalyzerId.ToDiagnosticId(), nameof(LargeCommentedCodeAnalyzer),
             $"{nameof(LargeCommentedCodeAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

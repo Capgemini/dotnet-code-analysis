@@ -161,7 +161,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 21 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -190,7 +190,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 21 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -217,7 +217,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 21 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -245,7 +245,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 21 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -294,7 +294,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 24 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -324,7 +324,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.GodClassAnalyzerId,
+                Id = "CAP0008",
                 Message = $"{nameof(GodClassAnalyzer)} \'This class has 21 methods which is more than the recommended {ClassMaxNumberOfPublicMethods} methods. \nPlease consider applying the SOLID principles to the class design. \nIt is recommended to have small focused classes.\'",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

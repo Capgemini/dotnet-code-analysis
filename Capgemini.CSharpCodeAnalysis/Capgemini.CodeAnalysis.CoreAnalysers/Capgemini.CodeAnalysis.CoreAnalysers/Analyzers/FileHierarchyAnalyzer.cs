@@ -13,7 +13,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class FileHierarchyAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.FileHierarchyAnalyzerId, nameof(FileHierarchyAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.FileHierarchyAnalyzerId.ToDiagnosticId(), nameof(FileHierarchyAnalyzer),
             $"{nameof(FileHierarchyAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

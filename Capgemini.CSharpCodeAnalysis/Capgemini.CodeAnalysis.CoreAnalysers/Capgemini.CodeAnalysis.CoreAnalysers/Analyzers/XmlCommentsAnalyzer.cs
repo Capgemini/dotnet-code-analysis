@@ -13,7 +13,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class XmlCommentsAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.XmlCommentsAnalyzerId, nameof(XmlCommentsAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.XmlCommentsAnalyzerId.ToDiagnosticId(), nameof(XmlCommentsAnalyzer),
             $"{nameof(XmlCommentsAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Warning, true);
 
         /// <summary>

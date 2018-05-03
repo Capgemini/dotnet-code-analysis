@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
@@ -14,13 +15,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MaximumNumberOfParametersError = 10;
 
         internal static DiagnosticDescriptor ErrorRule =
-            new DiagnosticDescriptor(AnalyserConstants.ConstructorParameterAnalyzerId,
+            new DiagnosticDescriptor(AnalyzerType.ConstructorParameterAnalyzerId.ToDiagnosticId(),
                 nameof(ConstructorParametersAnalyzer),
                 $"{nameof(ConstructorParametersAnalyzer)}: {{0}}",
                 AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         internal static DiagnosticDescriptor WarningRule =
-            new DiagnosticDescriptor(AnalyserConstants.ConstructorParameterAnalyzerId,
+            new DiagnosticDescriptor(AnalyzerType.ConstructorParameterAnalyzerId.ToDiagnosticId(),
                 nameof(ConstructorParametersAnalyzer),
                 $"{nameof(ConstructorParametersAnalyzer)}: {{0}}",
                 AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Warning, true);

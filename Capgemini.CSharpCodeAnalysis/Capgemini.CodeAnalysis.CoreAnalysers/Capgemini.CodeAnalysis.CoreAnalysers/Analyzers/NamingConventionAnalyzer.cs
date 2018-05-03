@@ -15,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamingConventionAnalyzer : AnalyzerBase
     {
-       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.NamingConventionAnalyzerId, nameof(NamingConventionAnalyzer),
+       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId(), nameof(NamingConventionAnalyzer),
             $"{nameof(NamingConventionAnalyzer)}: {{0}}", AnalyserCategoryConstants.NamingConvention, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

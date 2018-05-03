@@ -14,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class StaticClassAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.StaticClassAnalyzerId, nameof(StaticClassAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.StaticClassAnalyzerId.ToDiagnosticId(), nameof(StaticClassAnalyzer),
              $"{nameof(StaticClassAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.StaticAnalyzer, DiagnosticSeverity.Error, true);
 
         /// <summary>

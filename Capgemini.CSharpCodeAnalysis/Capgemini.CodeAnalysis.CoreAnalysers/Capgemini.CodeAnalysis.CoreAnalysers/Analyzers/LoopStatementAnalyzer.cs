@@ -9,7 +9,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LoopStatementAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LoopStatementAnalyzerId, nameof(LoopStatementAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.LoopStatementAnalyzerId.ToDiagnosticId(), nameof(LoopStatementAnalyzer),
             $"{nameof(LoopStatementAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>

@@ -17,7 +17,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private const int MaxNumberOfLinesForDocumentation = 30;
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.CommentsAnalyzerId, nameof(CommentsAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.CommentsAnalyzerId.ToDiagnosticId(), nameof(CommentsAnalyzer),
             $"{nameof(CommentsAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

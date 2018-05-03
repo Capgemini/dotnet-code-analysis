@@ -18,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class MethodComplexityAnalyzer: AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.MethodComplexityAnalyzeId, nameof(MethodComplexityAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MethodComplexityAnalyzeId.ToDiagnosticId(), nameof(MethodComplexityAnalyzer),
             $"{nameof(MethodComplexityAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

@@ -1,5 +1,4 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -10,9 +9,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     [TestClass]
     public class ConstructorParametersAnalyzerTests : CodeFixVerifier
     {
-        private const int MaximumNumberOfParametersWarning = 5;
-        private const int MaximumNumberOfParametersError = 10;
-
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
@@ -22,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_PassesForNoConstructor()
+        public void AnalysisPassesForNoDefinedConstructor()
         {
             var test = @"
     using System;
@@ -43,7 +39,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_PassesForEmptyConstructor()
+        public void AnalysisPassesForEmptyConstructor()
         {
             var test = @"
     using System;
@@ -67,7 +63,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_PassesForConstructorWithNumberOfParamatersLessThanWarningLevel()
+        public void AnalysisPassesForConstructorWithNumberOfParamatersLessThanWarningLevel()
         {
             var test = @"
     using System;
@@ -91,7 +87,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_PassesForConstructorWithNumberOfParamatersEqualToWarningLevel()
+        public void AnalysisPassesForConstructorWithNumberOfParamatersEqualToWarningLevel()
         {
             var test = @"
     using System;
@@ -110,16 +106,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 }
         }
     }";
-            
+
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_WarnsForConstructorWithNumberOfParamatersGreaterThanWarningLevelButLessThanErrorLevel()
+        public void AnalysisWarnsForConstructorWithNumberOfParamatersGreaterThanWarningLevelButLessThanErrorLevel()
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.ConstructorParameterAnalyzerId,
+                Id = "CAP0016",
                 Message =
                     "ConstructorParametersAnalyzer: Constructor has a total of 6 Parameters which is greater-than the recommended maximum of 5. Please consider refactoring the constructor / class.",
                 Severity = DiagnosticSeverity.Warning,
@@ -152,20 +148,20 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_FailsForConstructorWithNumberOfParamatersEqualToTheErrorLevel()
+        public void AnalysisFailsForConstructorWithNumberOfParamatersEqualToTheErrorLevel()
         {
             var expected = new DiagnosticResult
-                           {
-                               Id = AnalyserConstants.ConstructorParameterAnalyzerId,
-                               Message =
-                                   "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
-                               Severity = DiagnosticSeverity.Error,
-                               Locations =
-                                   new[]
-                                   {
-                                       new DiagnosticResultLocation("Test0.cs", 13, 20)
-                                   }
-                           };
+            {
+                Id = "CAP0016",
+                Message =
+                    "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                    new[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 13, 20)
+                    }
+            };
 
             var test = @"
     using System;
@@ -189,20 +185,20 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void ConstructorParametersAnalyzer_FailsForConstructorWithNumberOfParamatersGreaterThanErrorLevel()
+        public void AnalysisFailsForConstructorWithNumberOfParamatersGreaterThanErrorLevel()
         {
             var expected = new DiagnosticResult
-                           {
-                               Id = AnalyserConstants.ConstructorParameterAnalyzerId,
-                               Message =
-                                   "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
-                               Severity = DiagnosticSeverity.Error,
-                               Locations =
-                                   new[]
-                                   {
-                                       new DiagnosticResultLocation("Test0.cs", 13, 20)
-                                   }
-                           };
+            {
+                Id = "CAP0016",
+                Message =
+                    "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                    new[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 13, 20)
+                    }
+            };
 
             var test = @"
     using System;

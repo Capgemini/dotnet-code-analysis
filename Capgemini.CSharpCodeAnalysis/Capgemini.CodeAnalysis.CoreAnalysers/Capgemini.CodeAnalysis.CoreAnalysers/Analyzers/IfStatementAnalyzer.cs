@@ -10,7 +10,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class IfStatementAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.IfStatementAnalyzerId, nameof(IfStatementAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.IfStatementAnalyzerId.ToDiagnosticId(), nameof(IfStatementAnalyzer),
             $"{nameof(IfStatementAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>

@@ -16,7 +16,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private const int ClassMaxNumberOfPublicMethods = 20;
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.GodClassAnalyzerId, nameof(GodClassAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.GodClassAnalyzerId.ToDiagnosticId(), nameof(GodClassAnalyzer),
             $"{nameof(GodClassAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

@@ -17,8 +17,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <summary>
         /// The rule
         /// </summary>
-        //internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants., Title, MessageFormat, Category, DiagnosticSeverity.Error, true);
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.ExplicitAccessModifiersAnalyzerId, nameof(ExplicitAccessModifiersAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(), nameof(ExplicitAccessModifiersAnalyzer),
             $"{nameof(ExplicitAccessModifiersAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
        
         /// <summary>
