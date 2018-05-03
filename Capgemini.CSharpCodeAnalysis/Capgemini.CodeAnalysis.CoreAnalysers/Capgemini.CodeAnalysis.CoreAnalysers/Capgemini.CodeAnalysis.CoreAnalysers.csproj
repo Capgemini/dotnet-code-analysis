@@ -36,6 +36,7 @@
   <ItemGroup>
     <Compile Include="Analyzers\AnalyzerBase.cs" />
     <Compile Include="Analyzers\CommentsAnalyzer.cs" />
+    <Compile Include="Analyzers\ConstructorParametersAnalyzer.cs" />
     <Compile Include="Analyzers\ExplicitAccessModifiersAnalyzer.cs" />
     <Compile Include="Analyzers\FileHierarchyAnalyzer.cs" />
     <Compile Include="Analyzers\GodClassAnalyzer.cs" />

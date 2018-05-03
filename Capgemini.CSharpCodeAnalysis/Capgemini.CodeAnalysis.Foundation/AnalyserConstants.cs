@@ -21,6 +21,7 @@ namespace Capgemini.CodeAnalysis.Foundation
         public const string IfStatementAnalyzerId = "CAPA012";
         public const string LoopStatementAnalyzerId = "CAPA013";
         public const string MethodComplexityAnalyzeId = "CAPA014";
-        public const string SingleConstructornAnalyzerId = "CAPA015";
+        public const string SingleConstructorAnalyzerId = "CAPA015";
+        public const string ConstructorParameterAnalyzerId = "CAPA015";
     }
 }

@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Tests\CommentsAnalyzerTests.cs" />
+    <Compile Include="Tests\ConstructorParametersAnalyzerTests.cs" />
     <Compile Include="Tests\FileHierarchyAnalyzerTests.cs" />
     <Compile Include="Tests\GodClassAnalyzerTests.cs" />
     <Compile Include="Tests\HardCodeAnalyzerTests.cs" />
