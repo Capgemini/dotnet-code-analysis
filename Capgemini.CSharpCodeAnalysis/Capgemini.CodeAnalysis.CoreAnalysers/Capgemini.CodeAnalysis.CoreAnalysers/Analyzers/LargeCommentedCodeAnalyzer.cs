@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Enforces that excessive amounts of comments are added to any part of the code base
+    /// Enforces that excessive amounts of comments are not added to any part of the code base
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LargeCommentedCodeAnalyzer : AnalyzerBase
