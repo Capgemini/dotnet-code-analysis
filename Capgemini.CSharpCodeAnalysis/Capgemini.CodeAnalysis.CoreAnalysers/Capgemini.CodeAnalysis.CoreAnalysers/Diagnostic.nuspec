@@ -2,13 +2,13 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Capgemini.CodeAnalysis.CoreAnalysers</id>
-    <version>1.0.0.17</version>
+    <version>1.0.0.18</version>
     <title>Capgemini.CodeAnalysis.CoreAnalysers</title>
     <authors>Capgemini</authors>
     <owners>Capgemini</owners>
-    <!--<licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
-    <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl>
-    <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <licenseUrl>https://github.com/Capgemini/dotnet-code-analysis/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/Capgemini/dotnet-code-analysis</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Capgemini.CodeAnalysis.CoreAnalysers</description>
     <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
