@@ -115,7 +115,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0016",
+                Id = "CAP0015",
                 Message =
                     "ConstructorParametersAnalyzer: Constructor has a total of 6 Parameters which is greater-than the recommended maximum of 5. Please consider refactoring the constructor / class.",
                 Severity = DiagnosticSeverity.Warning,
@@ -152,7 +152,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0016",
+                Id = "CAP0015",
                 Message =
                     "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
@@ -189,7 +189,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0016",
+                Id = "CAP0015",
                 Message =
                     "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
