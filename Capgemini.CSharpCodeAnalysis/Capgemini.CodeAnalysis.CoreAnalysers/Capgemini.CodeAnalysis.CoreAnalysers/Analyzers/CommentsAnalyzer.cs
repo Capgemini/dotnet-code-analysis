@@ -11,6 +11,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
     ///  This analyzer implements the following code review rule: Code must not need lots of extra comments
+    /// 
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class CommentsAnalyzer : AnalyzerBase
