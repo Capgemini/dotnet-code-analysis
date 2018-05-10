@@ -64,9 +64,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             var diagnostics = Diagnostic.Create(rule, location, message);
             context.ReportDiagnostic(diagnostics);
         }
+
         public void CreateHardCodedValueDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string literalValue)
         {
             var diagnostics = Diagnostic.Create(rule, location, $"Hard-coded values must be avoided at all costs. Declare {literalValue} as a constants or fields as appropriate.");
+            context.ReportDiagnostic(diagnostics);
+        }
+
+        public void ConstructorParameterDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string message)
+        {
+            var diagnostics = Diagnostic.Create(rule, location, message);
             context.ReportDiagnostic(diagnostics);
         }
     }

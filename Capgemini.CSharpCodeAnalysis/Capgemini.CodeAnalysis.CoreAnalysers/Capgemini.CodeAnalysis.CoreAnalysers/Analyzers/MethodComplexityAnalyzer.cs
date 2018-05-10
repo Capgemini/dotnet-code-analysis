@@ -1,10 +1,10 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using Capgemini.CodeAnalysis.Foundation;
+﻿using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
@@ -18,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class MethodComplexityAnalyzer: AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.MethodComplexityAnalyzeId, nameof(MethodComplexityAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MethodComplexityAnalyzeId.ToDiagnosticId(), nameof(MethodComplexityAnalyzer),
             $"{nameof(MethodComplexityAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
@@ -47,7 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             if (cyclometricComplexity > 15)
             {
-                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"The cyclometric complexity of this method method is {cyclometricComplexity} which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.");
+                var diagnostics = Diagnostic.Create(Rule, declaration.Identifier.GetLocation(), $"The cyclometric complexity of this method is {cyclometricComplexity} which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.");
                 context.ReportDiagnostic(diagnostics);
             }
         }

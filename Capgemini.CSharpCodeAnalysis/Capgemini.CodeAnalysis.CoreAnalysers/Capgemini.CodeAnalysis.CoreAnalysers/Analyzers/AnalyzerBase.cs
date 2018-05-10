@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Capgemini.CodeAnalysis.CoreAnalysers.Models;
+﻿using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Generic;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {

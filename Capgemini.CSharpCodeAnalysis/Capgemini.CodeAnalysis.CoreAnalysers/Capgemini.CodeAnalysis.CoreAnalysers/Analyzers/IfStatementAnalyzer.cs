@@ -1,20 +1,16 @@
-using System.Collections.Immutable;
-using System.Linq;
 using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Immutable;
 using IfStatementSyntax = Microsoft.CodeAnalysis.CSharp.Syntax.IfStatementSyntax;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
-    /// <summary>
-    /// Enforces that all If statements are guarded by curly braces
-    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class IfStatementAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.IfStatementAnalyzerId, nameof(IfStatementAnalyzer),
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.IfStatementAnalyzerId.ToDiagnosticId(), nameof(IfStatementAnalyzer),
             $"{nameof(IfStatementAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>
@@ -28,7 +24,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <param name="context"></param>
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSyntaxNodeAction(AnalyzeIfStatement, SyntaxKind.IfStatement); 
+            context.RegisterSyntaxNodeAction(AnalyzeIfStatement, SyntaxKind.IfStatement);
         }
 
         private void AnalyzeIfStatement(SyntaxNodeAnalysisContext context)
@@ -46,13 +42,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                     context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.IfKeyword.GetLocation(), "Please ensure that If statements have corresponding curly braces."));
                 }
             }
-            
+
             if (declaration.Else != null )
             {
-                if (!declaration.Else.Statement.IsKind(SyntaxKind.IfStatement) && !declaration.Else.Statement.IsKind(SyntaxKind.Block))
+               if (!declaration.Else.Statement.IsKind(SyntaxKind.IfStatement) && !declaration.Else.Statement.IsKind(SyntaxKind.Block))
                 {
                    context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.Else.ElseKeyword.GetLocation(), "Please ensure that Else statements have corresponding curly braces."));
-               }
+               }                
             }
         }
     }
