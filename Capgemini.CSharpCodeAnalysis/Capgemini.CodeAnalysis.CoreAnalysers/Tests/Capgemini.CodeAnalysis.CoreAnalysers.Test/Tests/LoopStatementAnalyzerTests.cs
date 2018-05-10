@@ -1,5 +1,5 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,7 +8,7 @@ using TestHelper;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 {
     [TestClass]
-    public class FileHierarchyAnalyzerTests : CodeFixVerifier
+    public class LoopStatementAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
@@ -18,8 +18,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             VerifyCSharpDiagnostic(test);
         }
 
+
         [TestMethod]
-        public void NamespaceMatchingFilenamePasses()
+        public void ForStatementWithBraces_Passes()
         {
             var test = @"
     using System;
@@ -33,26 +34,32 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public TypeName()
-{
-}
+            public void DoStuff(int input)
+            {
+                var variable1 = 20;
+                var variable2  = ""Hello world"";
+                for(var counter=0; counter < variable1; counter++)
+                {
+                    variable2 += counter;
+                }
+            }
         }
     }";
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void NamespaceDifferentFromFilename_Fails()
+        public void ForStatementWithoutBraces_Fails()
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.FileHierarchyAnalyzerId,
-                Message = $"{nameof(FileHierarchyAnalyzer)}: Namespace should match against file structure.",
+                Id = AnalyserConstants.LoopStatementAnalyzerId,
+                Message = $"{nameof(LoopStatementAnalyzer)}: Please ensure that for statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
-                        new DiagnosticResultLocation("Test0.cs", 9, 15)
+                        new DiagnosticResultLocation("Test0.cs", 17, 17)
                     }
             };
 
@@ -64,23 +71,26 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     using System.Threading.Tasks;
     using System.Diagnostics;
 
-    namespace ConsoleApplication1
+    namespace Test0
     {
         public class TypeName
         {   
-            public TypeName()
-{
-}
+            public void DoStuff(int input)
+            {
+                var variable1 = 20;
+                var variable2  = 5;
+                for(var counter=0; counter < variable1; counter++)
+                    variable2 += counter;
+            }
         }
     }";
 
-            VerifyCSharpDiagnostic(test,expected);
+            VerifyCSharpDiagnostic(test, expected);
         }
-
-
+        
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new FileHierarchyAnalyzer();
+            return new LoopStatementAnalyzer();
         }
     }
-}
+} 

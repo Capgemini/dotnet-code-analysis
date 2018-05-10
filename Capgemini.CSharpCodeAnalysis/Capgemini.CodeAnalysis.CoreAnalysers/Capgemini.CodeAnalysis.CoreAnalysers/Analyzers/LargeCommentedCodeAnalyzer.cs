@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -18,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MaxNoOfLinesForComments = 20;
         private const string Message = "These lines of code are redundant. Please delete them.";
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LargeCommentedCodeAnalyzerId, nameof(LargeCommentedCodeAnalyzer),
+        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LargeCommentedCodeAnalyzerId, nameof(LargeCommentedCodeAnalyzer),
             $"{nameof(LargeCommentedCodeAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

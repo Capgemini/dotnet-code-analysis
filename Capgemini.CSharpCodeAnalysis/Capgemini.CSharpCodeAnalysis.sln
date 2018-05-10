@@ -1,21 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2037
+VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysers", "Analysers", "{E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{880061E8-CDFA-4B05-B28E-AD65A7C58BC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{A8457533-A3F8-4352-914D-386717C3C317}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vsixs", "Vsixs", "{FA0807FE-A981-46E2-A097-B264D3CB3CF7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{16394FFE-6340-4C3A-89DB-6A21FEFCB495}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Tests\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{37F97001-CA4D-4409-88F4-627771981A0E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{08137234-A7BD-4EAD-884C-7198EB6A5AE2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.Foundation", "Capgemini.CodeAnalysis.Foundation\Capgemini.CodeAnalysis.Foundation.csproj", "{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Capgemini.CodeAnalysis.CoreAnalysers\Tests\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{1A185744-167A-489B-B711-EDFB3DE9916E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,33 +17,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{37F97001-CA4D-4409-88F4-627771981A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{37F97001-CA4D-4409-88F4-627771981A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{37F97001-CA4D-4409-88F4-627771981A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{37F97001-CA4D-4409-88F4-627771981A0E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08137234-A7BD-4EAD-884C-7198EB6A5AE2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8457533-A3F8-4352-914D-386717C3C317}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8457533-A3F8-4352-914D-386717C3C317}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8457533-A3F8-4352-914D-386717C3C317}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8457533-A3F8-4352-914D-386717C3C317}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A185744-167A-489B-B711-EDFB3DE9916E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A185744-167A-489B-B711-EDFB3DE9916E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A185744-167A-489B-B711-EDFB3DE9916E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A185744-167A-489B-B711-EDFB3DE9916E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{AA0E1F5E-41A6-4F62-8B0E-2E8241E1C1A0} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
-		{37F97001-CA4D-4409-88F4-627771981A0E} = {880061E8-CDFA-4B05-B28E-AD65A7C58BC4}
-		{08137234-A7BD-4EAD-884C-7198EB6A5AE2} = {FA0807FE-A981-46E2-A097-B264D3CB3CF7}
-		{C12F9485-5BFD-4643-A9FA-9A6567CDABA4} = {E29BBB04-4EB5-47C5-A200-3BE2A8DAE323}
+		{1A185744-167A-489B-B711-EDFB3DE9916E} = {16394FFE-6340-4C3A-89DB-6A21FEFCB495}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2EBA0711-F262-464D-9DB5-55A14CD26B3A}
+		SolutionGuid = {9B311F6E-9268-4647-9BB4-4D8A779C04AC}
 	EndGlobalSection
 EndGlobal
