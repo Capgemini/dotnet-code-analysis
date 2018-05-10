@@ -1,9 +1,9 @@
-﻿using System.Collections.Immutable;
-using Capgemini.CodeAnalysis.Foundation;
+﻿using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Immutable;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
@@ -13,8 +13,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class XmlCommentsAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.XmlCommentsAnalyzerId, nameof(XmlCommentsAnalyzer),
-            $"{nameof(XmlCommentsAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Warning, true);
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.XmlCommentsAnalyzerId.ToDiagnosticId(), nameof(XmlCommentsAnalyzer),
+            $"{nameof(XmlCommentsAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Warning, true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.

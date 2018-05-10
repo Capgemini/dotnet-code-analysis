@@ -1,6 +1,6 @@
-﻿using System.Text.RegularExpressions;
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 {
@@ -64,7 +64,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             var analysed = false;
             if (MatchFound(@"[A-Z]{2,}", name) || !MatchFound(@"^_[a-z]{2,}", name) || MatchFound(@"[A-Z]$", name))
             {
-                _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with underscore character followed by atleast two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.");
+                _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with underscore character followed by at least two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.");
                 analysed = true;
             }
             return analysed;
@@ -94,7 +94,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 
         /// <summary>
         /// This method we will write a diagnostic if name:
-        /// coes not begin with upper case character I, uppercase character and any other lowercase characters
+        /// does not begin with upper case character I, uppercase character and any other lowercase characters
         /// contains two consecutive upper case characters after the first two upper case  characters
         /// ends with an uppercase character
         /// </summary>

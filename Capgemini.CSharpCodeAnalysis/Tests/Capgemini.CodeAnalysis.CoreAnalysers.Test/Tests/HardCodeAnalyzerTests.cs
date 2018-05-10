@@ -15,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new  HardCodeAnalyzer();

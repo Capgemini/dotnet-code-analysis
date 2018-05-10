@@ -1,5 +1,4 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -58,7 +57,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     }";
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.NamingConventionAnalyzerId,
+                Id = "CAP0004",
                 Message = $"{nameof(NamingConventionAnalyzer)}: TypeNameG does not satisfy naming convention. \nTypeNameG must start with one upper case character, \nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -112,8 +111,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     }";
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.NamingConventionAnalyzerId,
-                Message = $"{nameof(NamingConventionAnalyzer)}: Field1 does not satisfy naming convention. \nField1 must start with underscore character followed by atleast two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.",
+                Id = "CAP0004",
+                Message = $"{nameof(NamingConventionAnalyzer)}: Field1 does not satisfy naming convention. \nField1 must start with underscore character followed by at least two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {

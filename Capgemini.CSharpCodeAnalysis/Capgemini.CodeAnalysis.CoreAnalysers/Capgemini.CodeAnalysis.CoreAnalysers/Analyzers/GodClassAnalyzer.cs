@@ -1,10 +1,10 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using Capgemini.CodeAnalysis.Foundation;
+﻿using Capgemini.CodeAnalysis.Foundation;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
+using System.Collections.Immutable;
+using System.Linq;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
@@ -16,8 +16,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private const int ClassMaxNumberOfPublicMethods = 20;
 
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.GodClassAnalyzerId, nameof(GodClassAnalyzer),
-            $"{nameof(GodClassAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.GodClassAnalyzerId.ToDiagnosticId(), nameof(GodClassAnalyzer),
+            $"{nameof(GodClassAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

@@ -17,6 +17,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.Core
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.Foundation", "Capgemini.CodeAnalysis.Foundation\Capgemini.CodeAnalysis.Foundation.csproj", "{C12F9485-5BFD-4643-A9FA-9A6567CDABA4}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E9116BA5-E7B7-4D11-AF4D-7D9FCFA21C60}"
+	ProjectSection(SolutionItems) = preProject
+		Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Diagnostic.nuspec = Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Diagnostic.nuspec
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
