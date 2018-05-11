@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -17,8 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <summary>
         /// The rule
         /// </summary>
-        //internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants., Title, MessageFormat, Category, DiagnosticSeverity.Error, true);
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.ExplicitAccessModifiersAnalyzerId, nameof(ExplicitAccessModifiersAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(), nameof(ExplicitAccessModifiersAnalyzer),
             $"{nameof(ExplicitAccessModifiersAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
        
         /// <summary>

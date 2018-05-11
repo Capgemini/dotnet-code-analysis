@@ -118,7 +118,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.ExplicitAccessModifiersAnalyzerId,
+                Id = "CAP0001",
                 Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: Constructor TypeName must include an access modifier.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

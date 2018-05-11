@@ -47,7 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.OneTypePerFileAnalyzerId,
+                Id = "CAP0011",
                 Message = $"{nameof(OneTypePerFileAnalyzer)}: Each file should contain only one type. Please split the types into multiple files.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -89,7 +89,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.OneTypePerFileAnalyzerId,
+                Id = "CAP0011",
                 Message = $"{nameof(OneTypePerFileAnalyzer)}: Each file should contain only one type. Please split the types into multiple files.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -148,7 +148,7 @@ Value2 = 2
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.OneTypePerFileAnalyzerId,
+                Id = "CAP0011",
                 Message = $"{nameof(OneTypePerFileAnalyzer)}: Each file should contain only one type. Please split the types into multiple files.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
