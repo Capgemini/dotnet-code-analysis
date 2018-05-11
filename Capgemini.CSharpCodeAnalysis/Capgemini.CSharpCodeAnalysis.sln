@@ -3,13 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2000
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Capgemini.CodeAnalysis.CoreAnalysers", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.csproj", "{58272C07-C7A1-4C3C-8D1C-FFC1F34A1578}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Capgemini.CodeAnalysis.CoreAnalysers.Vsix", "Capgemini.CodeAnalysis.CoreAnalysers\Capgemini.CodeAnalysis.CoreAnalysers.Vsix\Capgemini.CodeAnalysis.CoreAnalysers.Vsix.csproj", "{A8457533-A3F8-4352-914D-386717C3C317}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{16394FFE-6340-4C3A-89DB-6A21FEFCB495}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Capgemini.CodeAnalysis.CoreAnalysers.Test", "Capgemini.CodeAnalysis.CoreAnalysers\Tests\Capgemini.CodeAnalysis.CoreAnalysers.Test\Capgemini.CodeAnalysis.CoreAnalysers.Test.csproj", "{1A185744-167A-489B-B711-EDFB3DE9916E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A7974529-DCA6-4D45-96CC-4A6C8D80DEFF}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
