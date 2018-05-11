@@ -37,22 +37,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             context.RegisterSyntaxNodeAction(AnalyzedConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzedClassDeclaration, SyntaxKind.ClassDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzedInterfaceDeclaration, SyntaxKind.InterfaceDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzedFieldDeclaration, SyntaxKind.FieldDeclaration);
-        }
-
-
-        private void AnalyzedFieldDeclaration(SyntaxNodeAnalysisContext context)
-        {
-            var declaration = Cast<FieldDeclarationSyntax>(context.Node);
-
-            if (!(IsExternallyVisible(declaration.Modifiers) || declaration.Modifiers.Any(SyntaxKind.PrivateKeyword))                )
-            {
-                var name = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
-                if (!string.IsNullOrWhiteSpace(name))
-                {
-                    DiagnosticsManager.CreateExplicitAccessDiagnostic(context, name, declaration.Declaration.Variables.FirstOrDefault()?.Identifier.GetLocation(), Rule);
-                }
-            }
         }
 
         private void AnalyzedConstructorDeclaration(SyntaxNodeAnalysisContext context)
