@@ -53,7 +53,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.IfStatementAnalyzerId,
+                Id = "CAP0012",
                 Message = $"{nameof(IfStatementAnalyzer)}: Please ensure that If statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

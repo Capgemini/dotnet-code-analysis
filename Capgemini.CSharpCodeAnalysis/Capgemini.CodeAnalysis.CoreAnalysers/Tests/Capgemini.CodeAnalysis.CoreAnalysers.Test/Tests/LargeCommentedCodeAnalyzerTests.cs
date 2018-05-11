@@ -54,7 +54,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.LargeCommentedCodeAnalyzerId,
+                Id = "CAP0005",
                 Message = $"{nameof(LargeCommentedCodeAnalyzer)}: These lines of code are redundant. Please delete them.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
@@ -159,7 +159,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         private string GenerateRandomText(int noOfLines)
         {
             var sb = new StringBuilder();
-            for (int counter = 0; counter < noOfLines; counter++)
+            for (var counter = 0; counter < noOfLines; counter++)
             {
                 sb.AppendLine($"Some random text {counter}");
             }
@@ -170,7 +170,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var sb = new StringBuilder();
             sb.AppendLine("/// <summary>");
-            for (int counter = 0; counter < noOfLines; counter++)
+            for (var counter = 0; counter < noOfLines; counter++)
             {
                 sb.AppendLine($"/// Some random text {counter}");
             }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -15,7 +16,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private const int MethodMaxLine = 80;
 
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.MonsterMethodAnalyzerId, nameof(MonsterMethodAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MonsterMethodAnalyzerId.ToDiagnosticId(), nameof(MonsterMethodAnalyzer),
             $"{nameof(MonsterMethodAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

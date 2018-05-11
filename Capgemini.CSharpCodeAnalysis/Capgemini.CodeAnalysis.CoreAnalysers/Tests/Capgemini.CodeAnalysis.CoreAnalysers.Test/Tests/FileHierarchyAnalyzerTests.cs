@@ -47,7 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.FileHierarchyAnalyzerId,
+                Id = "CAP0010",
                 Message = $"{nameof(FileHierarchyAnalyzer)}: Namespace should match against file structure.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

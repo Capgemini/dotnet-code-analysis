@@ -78,7 +78,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.MonsterMethodAnalyzerId,
+                Id = "CAP0007",
                 Message = $"{nameof(MonsterMethodAnalyzer)}: This method is longer than 80 lines of executable code. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

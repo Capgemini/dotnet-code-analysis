@@ -1,5 +1,4 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -79,7 +78,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.StaticClassAnalyzerId,
+                Id = "CAP0003",
                 Message = $"{nameof(StaticClassAnalyzer)}: Static classes must be avoided unless there is no better option.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

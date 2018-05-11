@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -17,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private const int MaxNumberOfLinesForDocumentation = 30;
 
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.CommentsAnalyzerId, nameof(CommentsAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.CommentsAnalyzerId.ToDiagnosticId(), nameof(CommentsAnalyzer),
             $"{nameof(CommentsAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

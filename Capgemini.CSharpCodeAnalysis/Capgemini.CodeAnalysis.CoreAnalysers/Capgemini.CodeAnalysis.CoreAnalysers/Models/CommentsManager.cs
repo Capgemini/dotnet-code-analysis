@@ -29,7 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 
         private static bool ProcessComments(List<SyntaxTrivia> comments)
         {
-            bool result = false;
+            var result = false;
             if (comments.Count == 1)
             {
                 var comment = comments[0];

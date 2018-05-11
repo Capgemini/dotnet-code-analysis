@@ -42,8 +42,8 @@ namespace TestHelper
             var oldArray = diagnostics.OrderBy(d => d.Location.SourceSpan.Start).ToArray();
             var newArray = newDiagnostics.OrderBy(d => d.Location.SourceSpan.Start).ToArray();
 
-            int oldIndex = 0;
-            int newIndex = 0;
+            var oldIndex = 0;
+            var newIndex = 0;
 
             while (newIndex < newArray.Length)
             {
@@ -85,7 +85,7 @@ namespace TestHelper
         protected string GenerateMultipleLinesOfText(int numberOfLines, string text = "SampleText")
         {
             var stringBuilder = new StringBuilder();
-            for (int counter = 0; counter < numberOfLines; counter++)
+            for (var counter = 0; counter < numberOfLines; counter++)
             {
                 if (counter == numberOfLines - 1)
                 {
@@ -101,4 +101,3 @@ namespace TestHelper
         }
     }
 }
-

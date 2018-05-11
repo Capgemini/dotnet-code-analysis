@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class StaticClassAnalyzer : AnalyzerBase
     {
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.StaticClassAnalyzerId, nameof(StaticClassAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.StaticClassAnalyzerId.ToDiagnosticId(), nameof(StaticClassAnalyzer),
              $"{nameof(StaticClassAnalyzer)}: {{0}}", AnalyserCategoryConstants.StaticAnalyzer, DiagnosticSeverity.Error, true);
 
         /// <summary>

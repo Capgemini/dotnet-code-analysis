@@ -54,7 +54,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.LoopStatementAnalyzerId,
+                Id = "CAP0013",
                 Message = $"{nameof(LoopStatementAnalyzer)}: Please ensure that for statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =

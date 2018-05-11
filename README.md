@@ -37,7 +37,7 @@ Capgemini IP code analyzer enforces the following rules
 12. OneTypePerFileAnalyzer - Enforces that only one type is defined within a C# file
 13. StaticClassAnalyzer - Enforces that static classes are not used unless absolutely required
 14. XmlCommentsAnalyzer - Identifies public methods which do not have valid comments
-
+15. ConstructorParametersAnalyzer - Identifies constructors with > 5 parameters (Warning) and >= 10 (Error)
 
 ----
 ## Installation

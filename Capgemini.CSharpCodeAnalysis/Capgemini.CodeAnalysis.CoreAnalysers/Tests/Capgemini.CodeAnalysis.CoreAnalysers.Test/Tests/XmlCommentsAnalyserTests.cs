@@ -1,5 +1,4 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -82,7 +81,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.XmlCommentsAnalyzerId,
+                Id = "CAP0002",
                 Message = $"{nameof(XmlCommentsAnalyzer)} 'TypeName does not include valid comments.'",
                 Severity = DiagnosticSeverity.Warning,
                 Locations =

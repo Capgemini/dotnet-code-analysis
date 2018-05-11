@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Linq;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class IfStatementAnalyzer : AnalyzerBase
     {
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.IfStatementAnalyzerId, nameof(IfStatementAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.IfStatementAnalyzerId.ToDiagnosticId(), nameof(IfStatementAnalyzer),
             $"{nameof(IfStatementAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>

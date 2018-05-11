@@ -1,4 +1,5 @@
 ﻿using System.Collections.Immutable;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -15,7 +16,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamingConventionAnalyzer : AnalyzerBase
     {
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.NamingConventionAnalyzerId,
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId(),
             nameof(NamingConventionAnalyzer),
             $"{nameof(NamingConventionAnalyzer)}: {{0}}",
             AnalyserCategoryConstants.NamingConvention,

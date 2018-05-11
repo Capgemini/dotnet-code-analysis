@@ -1,5 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -14,7 +15,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class HardCodeAnalyzer : AnalyzerBase
     {
-        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.HardCodeAnalyzerId, nameof(HardCodeAnalyzer),
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.HardCodeAnalyzerId.ToDiagnosticId(), nameof(HardCodeAnalyzer),
             $"{nameof(HardCodeAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

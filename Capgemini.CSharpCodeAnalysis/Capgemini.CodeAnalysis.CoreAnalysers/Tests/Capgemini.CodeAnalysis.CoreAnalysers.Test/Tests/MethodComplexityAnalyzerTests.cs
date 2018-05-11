@@ -183,7 +183,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         {
             var expected = new DiagnosticResult
             {
-                Id = AnalyserConstants.MethodComplexityAnalyzeId,
+                Id = "CAP0014",
                 Message = $"{nameof(MethodComplexityAnalyzer)}: The cyclometric complexity of this method method is 17 which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
