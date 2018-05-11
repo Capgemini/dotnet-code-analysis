@@ -1,9 +1,10 @@
-﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.Formatting;
 using Microsoft.CodeAnalysis.Simplification;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading;
 
 namespace TestHelper
@@ -79,6 +80,24 @@ namespace TestHelper
             var root = simplifiedDoc.GetSyntaxRootAsync().Result;
             root = Formatter.Format(root, Formatter.Annotation, simplifiedDoc.Project.Solution.Workspace);
             return root.GetText().ToString();
+        }
+
+        protected string GenerateMultipleLinesOfText(int numberOfLines, string text = "SampleText")
+        {
+            var stringBuilder = new StringBuilder();
+            for (int counter = 0; counter < numberOfLines; counter++)
+            {
+                if (counter == numberOfLines - 1)
+                {
+                    stringBuilder.Append(text);
+                }
+                else
+                {
+                    stringBuilder.AppendLine(text);
+                }
+            }
+
+            return stringBuilder.ToString();
         }
     }
 }

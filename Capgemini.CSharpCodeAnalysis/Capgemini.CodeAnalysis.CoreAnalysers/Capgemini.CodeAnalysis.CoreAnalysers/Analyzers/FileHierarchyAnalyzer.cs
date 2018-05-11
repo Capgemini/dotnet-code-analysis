@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -13,7 +13,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class FileHierarchyAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.FileHierarchyAnalyzerId, nameof(FileHierarchyAnalyzer),
+        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.FileHierarchyAnalyzerId, nameof(FileHierarchyAnalyzer),
             $"{nameof(FileHierarchyAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

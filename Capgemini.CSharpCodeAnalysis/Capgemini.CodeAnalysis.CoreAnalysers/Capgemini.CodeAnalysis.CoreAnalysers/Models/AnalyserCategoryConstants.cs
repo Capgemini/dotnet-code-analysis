@@ -1,4 +1,4 @@
-﻿namespace Capgemini.CodeAnalysis.Foundation
+﻿namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 {
     public class AnalyserCategoryConstants
     {

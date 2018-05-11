@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -15,8 +15,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamingConventionAnalyzer : AnalyzerBase
     {
-       internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.NamingConventionAnalyzerId, nameof(NamingConventionAnalyzer),
-            $"{nameof(NamingConventionAnalyzer)}: {{0}}", AnalyserCategoryConstants.NamingConvention, DiagnosticSeverity.Error, true);
+        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.NamingConventionAnalyzerId,
+            nameof(NamingConventionAnalyzer),
+            $"{nameof(NamingConventionAnalyzer)}: {{0}}",
+            AnalyserCategoryConstants.NamingConvention,
+            DiagnosticSeverity.Error, 
+            true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

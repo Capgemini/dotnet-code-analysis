@@ -12,7 +12,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     /// <seealso cref="Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer" />
     public abstract class AnalyzerBase : DiagnosticAnalyzer
     {
-        internal static readonly LocalizableString MessageFormat = "XmlCommentsAnalyzer '{0}'";
+      protected static readonly LocalizableString MessageFormat = "XmlCommentsAnalyzer '{0}'";
 
         protected CommentsManager CommentsManager => new CommentsManager();
         protected DiagnosticsManager DiagnosticsManager => new DiagnosticsManager();

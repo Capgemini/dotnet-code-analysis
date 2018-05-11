@@ -1,5 +1,5 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

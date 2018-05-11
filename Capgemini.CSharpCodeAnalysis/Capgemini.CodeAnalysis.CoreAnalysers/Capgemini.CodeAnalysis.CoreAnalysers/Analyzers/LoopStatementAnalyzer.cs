@@ -1,5 +1,5 @@
 using System.Collections.Immutable;
-using Capgemini.CodeAnalysis.Foundation;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -12,7 +12,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LoopStatementAnalyzer : AnalyzerBase
     {
-        internal static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LoopStatementAnalyzerId, nameof(LoopStatementAnalyzer),
+        private static DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyserConstants.LoopStatementAnalyzerId, nameof(LoopStatementAnalyzer),
             $"{nameof(LoopStatementAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         /// <summary>
