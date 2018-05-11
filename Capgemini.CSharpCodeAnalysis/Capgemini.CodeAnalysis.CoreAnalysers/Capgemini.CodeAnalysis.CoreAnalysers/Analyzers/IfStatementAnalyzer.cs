@@ -1,5 +1,4 @@
 using System.Collections.Immutable;
-using System.Linq;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;

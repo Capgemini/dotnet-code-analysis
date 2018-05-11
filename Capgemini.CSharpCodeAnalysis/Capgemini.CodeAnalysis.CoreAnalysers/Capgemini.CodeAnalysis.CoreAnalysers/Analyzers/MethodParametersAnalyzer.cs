@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
@@ -9,33 +9,33 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class ConstructorParametersAnalyzer : AnalyzerBase
+    public class MethodParametersAnalyzer : AnalyzerBase
     {
         private const int MaximumNumberOfParametersWarning = 5;
         private const int MaximumNumberOfParametersError = 10;
 
         internal static DiagnosticDescriptor ErrorRule =
-            new DiagnosticDescriptor(AnalyzerType.ConstructorParametersAnalyzerId.ToDiagnosticId(),
-                nameof(ConstructorParametersAnalyzer),
-                $"{nameof(ConstructorParametersAnalyzer)}: {{0}}",
+            new DiagnosticDescriptor(AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
+                nameof(MethodParametersAnalyzer),
+                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
                 AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
 
         internal static DiagnosticDescriptor WarningRule =
-            new DiagnosticDescriptor(AnalyzerType.ConstructorParametersAnalyzerId.ToDiagnosticId(),
-                nameof(ConstructorParametersAnalyzer),
-                $"{nameof(ConstructorParametersAnalyzer)}: {{0}}",
+            new DiagnosticDescriptor(AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
+                nameof(MethodParametersAnalyzer),
+                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
                 AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Warning, true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(ErrorRule);
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSyntaxNodeAction(AnalyzeConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
+            context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
         }
 
-        private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
+        private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
+            var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             var parameterCount = declaration.ParameterList.Parameters.Count;
             var declarationLocation = declaration.Identifier.GetLocation();
             var comparisonText = "greater-than";
@@ -60,7 +60,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             }
 
             var warningMessage =
-                $"Constructor has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the constructor / class.";
+                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the method / class.";
             DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, ErrorRule,
                 warningMessage);
         }
@@ -74,7 +74,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             }
 
             var warningMessage =
-                $"Constructor has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the constructor / class.";
+                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the method / class.";
 
             DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation,
                 WarningRule, warningMessage);

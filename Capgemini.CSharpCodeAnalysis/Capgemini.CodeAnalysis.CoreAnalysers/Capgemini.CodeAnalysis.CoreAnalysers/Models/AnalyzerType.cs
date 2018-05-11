@@ -17,7 +17,7 @@
         IfStatementAnalyzerId,
         LoopStatementAnalyzerId,
         MethodComplexityAnalyzeId,
-        SingleConstructorAnalyzerId,
-        ConstructorParameterAnalyzerId
+        ConstructorParametersAnalyzerId,
+        MethodParametersAnalyzerId
     }
 }
