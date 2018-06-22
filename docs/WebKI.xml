@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpKI>
+  <HelpKINode Title="AnalyserCategoryConstants class">
+    <HelpKINode Title="AnalyserCategoryConstants Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AnalyserCategoryConstants.AnalyserCategoryConstants constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants__ctor.htm" />
+  <HelpKINode Title="AnalyserCategoryConstants.CodeStructure field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_CodeStructure.htm" />
+  <HelpKINode Title="AnalyserCategoryConstants.Comments field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_Comments.htm" />
+  <HelpKINode Title="AnalyserCategoryConstants.NamingConvention field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_NamingConvention.htm" />
+  <HelpKINode Title="AnalyserCategoryConstants.StaticAnalyzer field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_StaticAnalyzer.htm" />
+  <HelpKINode Title="AnalyzerBase class">
+    <HelpKINode Title="AnalyzerBase Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm" />
+  </HelpKINode>
+  <HelpKINode Title="AnalyzerBase.AnalyzerBase constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase__ctor.htm" />
+  <HelpKINode Title="AnalyzerBase.Cast(Of T) method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_Cast__1.htm" />
+  <HelpKINode Title="AnalyzerBase.Cast&lt;T&gt; method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_Cast__1.htm" />
+  <HelpKINode Title="AnalyzerBase.CommentsManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_CommentsManager.htm" />
+  <HelpKINode Title="AnalyzerBase.DiagnosticsManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_DiagnosticsManager.htm" />
+  <HelpKINode Title="AnalyzerBase.IsExternallyVisible method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisible.htm" />
+  <HelpKINode Title="AnalyzerBase.IsExternallyVisibleComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisibleComments.htm" />
+  <HelpKINode Title="AnalyzerBase.IsParentAnException method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsParentAnException.htm" />
+  <HelpKINode Title="AnalyzerBase.IsPrivate method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsPrivate.htm" />
+  <HelpKINode Title="AnalyzerBase.MessageFormat field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_MessageFormat.htm" />
+  <HelpKINode Title="AnalyzerBase.ModifierContains method" Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_ModifierContains.htm" />
+  <HelpKINode Title="AnalyzerBase.RegexManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_RegexManager.htm" />
+  <HelpKINode Title="AnalyzerType enumeration" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers namespace" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.AnalyzerBase class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.CommentsAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.ConstructorParametersAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.ExplicitAccessModifiersAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.FileHierarchyAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.GodClassAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.HardCodeAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.IfStatementAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.LargeCommentedCodeAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.LoopStatementAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.MethodComplexityAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.MethodParametersAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.MonsterMethodAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.NamingConventionAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.OneTypePerFileAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.StaticClassAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers.XmlCommentsAnalyzer class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Extensions namespace" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Extensions.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Extensions.DiagnosticIdExtensions class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models namespace" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Models.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models.AnalyserCategoryConstants class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models.AnalyzerType enumeration" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models.CommentsManager class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models.DiagnosticsManager class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager.htm" />
+  <HelpKINode Title="Capgemini.CodeAnalysis.CoreAnalysers.Models.RegexManager class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager.htm" />
+  <HelpKINode Title="Cast(Of T) method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_Cast__1.htm" />
+  <HelpKINode Title="Cast&lt;T&gt; method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_Cast__1.htm" />
+  <HelpKINode Title="CodeStructure field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_CodeStructure.htm" />
+  <HelpKINode Title="Comments field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_Comments.htm" />
+  <HelpKINode Title="CommentsAnalyzer class">
+    <HelpKINode Title="CommentsAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CommentsAnalyzer.CommentsAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer__ctor.htm" />
+  <HelpKINode Title="CommentsAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_Initialize.htm" />
+  <HelpKINode Title="CommentsAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="CommentsAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="CommentsManager class">
+    <HelpKINode Title="CommentsManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager__ctor.htm" />
+    <HelpKINode Title="fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm" />
+  </HelpKINode>
+  <HelpKINode Title="CommentsManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_CommentsManager.htm" />
+  <HelpKINode Title="CommentsManager.CommentsManager constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager__ctor.htm" />
+  <HelpKINode Title="CommentsManager.ExtractComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractComment.htm" />
+  <HelpKINode Title="CommentsManager.ExtractDocumentationComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractDocumentationComment.htm" />
+  <HelpKINode Title="CommentsManager.FieldHasValidComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_FieldHasValidComments.htm" />
+  <HelpKINode Title="CommentsManager.GetSummaryComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_GetSummaryComment.htm" />
+  <HelpKINode Title="CommentsManager.HasValidComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidComments.htm" />
+  <HelpKINode Title="CommentsManager.HasValidSummaryComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidSummaryComments.htm" />
+  <HelpKINode Title="CommentsManager.RetrieveMultiLineComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_RetrieveMultiLineComments.htm" />
+  <HelpKINode Title="CommentsManager.Test field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_Test.htm" />
+  <HelpKINode Title="ConstructorParameterDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_ConstructorParameterDiagnostic.htm" />
+  <HelpKINode Title="ConstructorParametersAnalyzer class">
+    <HelpKINode Title="ConstructorParametersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ConstructorParametersAnalyzer.ConstructorParametersAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer__ctor.htm" />
+  <HelpKINode Title="ConstructorParametersAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_Initialize.htm" />
+  <HelpKINode Title="ConstructorParametersAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="ConstructorParametersAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="CreateCommentsDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsDiagnostic.htm" />
+  <HelpKINode Title="CreateCommentsTooLongDiagnostic method" Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsTooLongDiagnostic.htm" />
+  <HelpKINode Title="CreateExplicitAccessDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateExplicitAccessDiagnostic.htm" />
+  <HelpKINode Title="CreateHardCodedValueDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateHardCodedValueDiagnostic.htm" />
+  <HelpKINode Title="CreateNamingConventionDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateNamingConventionDiagnostic.htm" />
+  <HelpKINode Title="CreateStaticClassDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateStaticClassDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticIdExtensions class">
+    <HelpKINode Title="DiagnosticIdExtensions Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DiagnosticIdExtensions.ToDiagnosticId method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions_ToDiagnosticId.htm" />
+  <HelpKINode Title="DiagnosticsManager class">
+    <HelpKINode Title="DiagnosticsManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager.htm" />
+  </HelpKINode>
+  <HelpKINode Title="DiagnosticsManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_DiagnosticsManager.htm" />
+  <HelpKINode Title="DiagnosticsManager.ConstructorParameterDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_ConstructorParameterDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateCommentsDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateCommentsTooLongDiagnostic method" Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsTooLongDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateExplicitAccessDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateExplicitAccessDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateHardCodedValueDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateHardCodedValueDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateNamingConventionDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateNamingConventionDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.CreateStaticClassDiagnostic method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateStaticClassDiagnostic.htm" />
+  <HelpKINode Title="DiagnosticsManager.DiagnosticsManager constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager__ctor.htm" />
+  <HelpKINode Title="DoesNotSatisfyInterfaceRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyInterfaceRule.htm" />
+  <HelpKINode Title="DoesNotSatisfyLocalVariableNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyLocalVariableNameRule.htm" />
+  <HelpKINode Title="DoesNotSatisfyNonePrivateNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyNonePrivateNameRule.htm" />
+  <HelpKINode Title="DoesNotSatisfyPrivateNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyPrivateNameRule.htm" />
+  <HelpKINode Title="DoNotUse enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="ExplicitAccessModifiersAnalyzer class">
+    <HelpKINode Title="ExplicitAccessModifiersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="ExplicitAccessModifiersAnalyzer.ExplicitAccessModifiersAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer__ctor.htm" />
+  <HelpKINode Title="ExplicitAccessModifiersAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_Initialize.htm" />
+  <HelpKINode Title="ExplicitAccessModifiersAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="ExplicitAccessModifiersAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="ExtractComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractComment.htm" />
+  <HelpKINode Title="ExtractDocumentationComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractDocumentationComment.htm" />
+  <HelpKINode Title="FieldHasValidComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_FieldHasValidComments.htm" />
+  <HelpKINode Title="FileHierarchyAnalyzer class">
+    <HelpKINode Title="FileHierarchyAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="FileHierarchyAnalyzer.FileHierarchyAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer__ctor.htm" />
+  <HelpKINode Title="FileHierarchyAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_Initialize.htm" />
+  <HelpKINode Title="FileHierarchyAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="FileHierarchyAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="GetSummaryComment method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_GetSummaryComment.htm" />
+  <HelpKINode Title="GodClassAnalyzer class">
+    <HelpKINode Title="GodClassAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="GodClassAnalyzer.GodClassAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer__ctor.htm" />
+  <HelpKINode Title="GodClassAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_Initialize.htm" />
+  <HelpKINode Title="GodClassAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="GodClassAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="HardCodeAnalyzer class">
+    <HelpKINode Title="HardCodeAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="HardCodeAnalyzer.HardCodeAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer__ctor.htm" />
+  <HelpKINode Title="HardCodeAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_Initialize.htm" />
+  <HelpKINode Title="HardCodeAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="HardCodeAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="HasValidComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidComments.htm" />
+  <HelpKINode Title="HasValidSummaryComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidSummaryComments.htm" />
+  <HelpKINode Title="IfStatementAnalyzer class">
+    <HelpKINode Title="IfStatementAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IfStatementAnalyzer.IfStatementAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer__ctor.htm" />
+  <HelpKINode Title="IfStatementAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_Initialize.htm" />
+  <HelpKINode Title="IfStatementAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="IfStatementAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="Initialize method">
+    <HelpKINode Title="CommentsAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_Initialize.htm" />
+    <HelpKINode Title="ConstructorParametersAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_Initialize.htm" />
+    <HelpKINode Title="ExplicitAccessModifiersAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_Initialize.htm" />
+    <HelpKINode Title="FileHierarchyAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_Initialize.htm" />
+    <HelpKINode Title="GodClassAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_Initialize.htm" />
+    <HelpKINode Title="HardCodeAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_Initialize.htm" />
+    <HelpKINode Title="IfStatementAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_Initialize.htm" />
+    <HelpKINode Title="LargeCommentedCodeAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_Initialize.htm" />
+    <HelpKINode Title="LoopStatementAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_Initialize.htm" />
+    <HelpKINode Title="MethodComplexityAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_Initialize.htm" />
+    <HelpKINode Title="MethodParametersAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_Initialize.htm" />
+    <HelpKINode Title="MonsterMethodAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_Initialize.htm" />
+    <HelpKINode Title="NamingConventionAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_Initialize.htm" />
+    <HelpKINode Title="OneTypePerFileAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_Initialize.htm" />
+    <HelpKINode Title="StaticClassAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_Initialize.htm" />
+    <HelpKINode Title="XmlCommentsAnalyzer.Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_Initialize.htm" />
+  </HelpKINode>
+  <HelpKINode Title="IsExternallyVisible method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisible.htm" />
+  <HelpKINode Title="IsExternallyVisibleComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisibleComments.htm" />
+  <HelpKINode Title="IsParentAnException method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsParentAnException.htm" />
+  <HelpKINode Title="IsPrivate method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsPrivate.htm" />
+  <HelpKINode Title="LargeCommentedCodeAnalyzer class">
+    <HelpKINode Title="LargeCommentedCodeAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LargeCommentedCodeAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_Initialize.htm" />
+  <HelpKINode Title="LargeCommentedCodeAnalyzer.LargeCommentedCodeAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer__ctor.htm" />
+  <HelpKINode Title="LargeCommentedCodeAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="LargeCommentedCodeAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="LoopStatementAnalyzer class">
+    <HelpKINode Title="LoopStatementAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="LoopStatementAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_Initialize.htm" />
+  <HelpKINode Title="LoopStatementAnalyzer.LoopStatementAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer__ctor.htm" />
+  <HelpKINode Title="LoopStatementAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="LoopStatementAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="MatchFound method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_MatchFound.htm" />
+  <HelpKINode Title="MessageFormat field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_MessageFormat.htm" />
+  <HelpKINode Title="MethodComplexityAnalyzeId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="MethodComplexityAnalyzer class">
+    <HelpKINode Title="MethodComplexityAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MethodComplexityAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_Initialize.htm" />
+  <HelpKINode Title="MethodComplexityAnalyzer.MethodComplexityAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer__ctor.htm" />
+  <HelpKINode Title="MethodComplexityAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="MethodParametersAnalyzer class">
+    <HelpKINode Title="MethodParametersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MethodParametersAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_Initialize.htm" />
+  <HelpKINode Title="MethodParametersAnalyzer.MethodParametersAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer__ctor.htm" />
+  <HelpKINode Title="MethodParametersAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="MethodParametersAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="ModifierContains method" Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_ModifierContains.htm" />
+  <HelpKINode Title="MonsterMethodAnalyzer class">
+    <HelpKINode Title="MonsterMethodAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="MonsterMethodAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_Initialize.htm" />
+  <HelpKINode Title="MonsterMethodAnalyzer.MonsterMethodAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer__ctor.htm" />
+  <HelpKINode Title="MonsterMethodAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="MonsterMethodAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="NamingConvention field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_NamingConvention.htm" />
+  <HelpKINode Title="NamingConventionAnalyzer class">
+    <HelpKINode Title="NamingConventionAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="NamingConventionAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_Initialize.htm" />
+  <HelpKINode Title="NamingConventionAnalyzer.NamingConventionAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer__ctor.htm" />
+  <HelpKINode Title="NamingConventionAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="NamingConventionAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="NumberOfLines method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_NumberOfLines.htm" />
+  <HelpKINode Title="OneTypePerFileAnalyzer class">
+    <HelpKINode Title="OneTypePerFileAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="OneTypePerFileAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_Initialize.htm" />
+  <HelpKINode Title="OneTypePerFileAnalyzer.OneTypePerFileAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer__ctor.htm" />
+  <HelpKINode Title="OneTypePerFileAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="OneTypePerFileAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="RegexManager class">
+    <HelpKINode Title="RegexManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager.htm" />
+  </HelpKINode>
+  <HelpKINode Title="RegexManager property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_RegexManager.htm" />
+  <HelpKINode Title="RegexManager.DoesNotSatisfyInterfaceRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyInterfaceRule.htm" />
+  <HelpKINode Title="RegexManager.DoesNotSatisfyLocalVariableNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyLocalVariableNameRule.htm" />
+  <HelpKINode Title="RegexManager.DoesNotSatisfyNonePrivateNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyNonePrivateNameRule.htm" />
+  <HelpKINode Title="RegexManager.DoesNotSatisfyPrivateNameRule method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyPrivateNameRule.htm" />
+  <HelpKINode Title="RegexManager.MatchFound method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_MatchFound.htm" />
+  <HelpKINode Title="RegexManager.NumberOfLines method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_NumberOfLines.htm" />
+  <HelpKINode Title="RegexManager.RegexManager constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager__ctor.htm" />
+  <HelpKINode Title="RetrieveMultiLineComments method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_RetrieveMultiLineComments.htm" />
+  <HelpKINode Title="StaticAnalyzer field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_StaticAnalyzer.htm" />
+  <HelpKINode Title="StaticClassAnalyzer class">
+    <HelpKINode Title="StaticClassAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="StaticClassAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_Initialize.htm" />
+  <HelpKINode Title="StaticClassAnalyzer.StaticClassAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer__ctor.htm" />
+  <HelpKINode Title="StaticClassAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="StaticClassAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+  <HelpKINode Title="SupportedDiagnostics property">
+    <HelpKINode Title="CommentsAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="ConstructorParametersAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="ExplicitAccessModifiersAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="FileHierarchyAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="GodClassAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="HardCodeAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="IfStatementAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="LargeCommentedCodeAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="LoopStatementAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="MethodComplexityAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="MethodParametersAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="MonsterMethodAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="NamingConventionAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="OneTypePerFileAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="StaticClassAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_SupportedDiagnostics.htm" />
+    <HelpKINode Title="XmlCommentsAnalyzer.SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_SupportedDiagnostics.htm" />
+  </HelpKINode>
+  <HelpKINode Title="Test field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_Test.htm" />
+  <HelpKINode Title="ToDiagnosticId method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions_ToDiagnosticId.htm" />
+  <HelpKINode Title="Welcome" Url="html/12ebad96-2910-4211-82e7-4137bbaf9665.htm" />
+  <HelpKINode Title="XmlCommentsAnalyzer class">
+    <HelpKINode Title="XmlCommentsAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm" />
+    <HelpKINode Title="constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer__ctor.htm" />
+    <HelpKINode Title="methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm" />
+    <HelpKINode Title="properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm" />
+  </HelpKINode>
+  <HelpKINode Title="XmlCommentsAnalyzer.Initialize method" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_Initialize.htm" />
+  <HelpKINode Title="XmlCommentsAnalyzer.SupportedDiagnostics property" Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_SupportedDiagnostics.htm" />
+  <HelpKINode Title="XmlCommentsAnalyzer.XmlCommentsAnalyzer constructor" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer__ctor.htm" />
+  <HelpKINode Title="XmlCommentsAnalyzerId enumeration member" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+</HelpKI>
