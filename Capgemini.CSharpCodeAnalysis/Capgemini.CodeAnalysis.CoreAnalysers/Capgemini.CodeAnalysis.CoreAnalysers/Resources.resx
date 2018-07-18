@@ -126,7 +126,7 @@
     <comment>The format-able message the diagnostic displays.</comment>
   </data>
   <data name="AnalyzerTitle" xml:space="preserve">
-    <value>Type name contains lowercase letters</value>
+    <value>Type name contains lowercase letters - jjb</value>
     <comment>The title of the diagnostic.</comment>
   </data>
 </root>
