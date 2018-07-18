@@ -20,11 +20,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(DemoAnalyzer1CodeFixProvider)), Shared]
     public class DemoAnalyzer1CodeFixProvider : CodeFixProvider
     {
-        private const string title = "Make uppercase - JJB Woz 'ere yet again!";
+        private const string title = "Make UPPERCASE - JJB Woz 'ere yet again!";
 
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create("DemoAnalyzer1_JJB_" + AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()); }
+            get { return ImmutableArray.Create("Demo_JayB_" + AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()

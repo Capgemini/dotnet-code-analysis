@@ -21,10 +21,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFix)), Shared]
     public class NamingConventionCodeFix : CodeFixProvider
     {
-        public sealed override ImmutableArray<string> FixableDiagnosticIds =>
-               ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
+        public sealed override ImmutableArray<string> FixableDiagnosticIds
+        {
+            get
+            {
+                return ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
+            }
+        }
 
-        public sealed override FixAllProvider GetFixAllProvider() => WellKnownFixAllProviders.BatchFixer;
+        public sealed override FixAllProvider GetFixAllProvider()
+        {
+            return WellKnownFixAllProviders.BatchFixer;
+        }
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
