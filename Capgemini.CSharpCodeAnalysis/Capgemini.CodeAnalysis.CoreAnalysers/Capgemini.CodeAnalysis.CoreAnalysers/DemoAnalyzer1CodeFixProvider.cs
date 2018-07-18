@@ -12,17 +12,19 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Rename;
 using Microsoft.CodeAnalysis.Text;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(DemoAnalyzer1CodeFixProvider)), Shared]
     public class DemoAnalyzer1CodeFixProvider : CodeFixProvider
     {
-        private const string title = "Make uppercase JJB Woz 'ere again!";
+        private const string title = "Make uppercase JJB Woz 'ere yet again!";
 
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(DemoAnalyzer1Analyzer.DiagnosticId); }
+            get { return ImmutableArray.Create("DemoAnalyzer1_JJB_" + AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
