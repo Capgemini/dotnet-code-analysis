@@ -15,12 +15,12 @@ using Microsoft.CodeAnalysis.Text;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers
+namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(DemoAnalyzer1CodeFixProvider)), Shared]
     public class DemoAnalyzer1CodeFixProvider : CodeFixProvider
     {
-        private const string title = "Make uppercase JJB Woz 'ere yet again!";
+        private const string title = "Make uppercase - JJB Woz 'ere yet again!";
 
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {

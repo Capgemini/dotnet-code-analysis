@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class DemoAnalyzer1Analyzer : DiagnosticAnalyzer
