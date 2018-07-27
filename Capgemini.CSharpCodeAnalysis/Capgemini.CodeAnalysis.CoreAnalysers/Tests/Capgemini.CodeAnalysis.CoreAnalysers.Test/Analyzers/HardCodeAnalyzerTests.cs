@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
     [TestClass]
     public class HardCodeAnalyzerTests : CodeFixVerifier

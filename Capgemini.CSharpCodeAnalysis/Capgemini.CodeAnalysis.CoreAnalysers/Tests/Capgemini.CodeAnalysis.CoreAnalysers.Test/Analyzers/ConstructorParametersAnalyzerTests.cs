@@ -4,10 +4,10 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
     [TestClass]
-    public class MethodParametersAnalyzerTests : CodeFixVerifier
+    public class ConstructorParametersAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
@@ -53,7 +53,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public void MethodName()
+            public TypeName()
 {
 }
         }
@@ -63,7 +63,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void AnalysisPassesForMethodWithNumberOfParamatersLessThanWarningLevel()
+        public void AnalysisPassesForConstructorWithNumberOfParamatersLessThanWarningLevel()
         {
             var test = @"
     using System;
@@ -77,7 +77,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public void MethodName(string parameter1, string parameter2, string parameter3, string parameter4)
+            public TypeName(string parameter1, string parameter2, string parameter3, string parameter4)
 {
 }
         }
@@ -87,7 +87,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void AnalysisPassesForMethodWithNumberOfParamatersEqualToWarningLevel()
+        public void AnalysisPassesForConstructorWithNumberOfParamatersEqualToWarningLevel()
         {
             var test = @"
     using System;
@@ -101,7 +101,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public void MethodName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5)
+            public TypeName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5)
 {
 }
         }
@@ -111,18 +111,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void AnalysisWarnsForMethodWithNumberOfParamatersGreaterThanWarningLevelButLessThanErrorLevel()
+        public void AnalysisWarnsForConstructorWithNumberOfParamatersGreaterThanWarningLevelButLessThanErrorLevel()
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0016",
+                Id = "CAP0015",
                 Message =
-                    "MethodParametersAnalyzer: Method has a total of 6 Parameters which is greater-than the recommended maximum of 5. Please consider refactoring the method / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 6 Parameters which is greater-than the recommended maximum of 5. Please consider refactoring the constructor / class.",
                 Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]
                     {
-                        new DiagnosticResultLocation("Test0.cs", 13, 25)
+                        new DiagnosticResultLocation("Test0.cs", 13, 20)
                     }
             };
 
@@ -138,7 +138,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public void MethodName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6)
+            public TypeName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6)
 {
 }
         }
@@ -148,55 +148,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void AnalysisFailsForMethodWithNumberOfParamatersEqualToTheErrorLevel()
+        public void AnalysisFailsForConstructorWithNumberOfParamatersEqualToTheErrorLevel()
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0016",
+                Id = "CAP0015",
                 Message =
-                    "MethodParametersAnalyzer: Method has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the method / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[]
                     {
-                        new DiagnosticResultLocation("Test0.cs", 12, 25)
-                    }
-            };
-
-            var test = @"using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace ConsoleApplication1
-    {
-        public class TypeName
-        {   
-            public void MethodName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6, string parameter7, string parameter8, string parameter9, string parameter10)
-{
-}
-        }
-    }
-    ";
-
-            VerifyCSharpDiagnostic(test, expected);
-        }
-
-        [TestMethod]
-        public void AnalysisFailsForMethodWithNumberOfParamatersGreaterThanErrorLevel()
-        {
-            var expected = new DiagnosticResult
-            {
-                Id = "CAP0016",
-                Message =
-                    "MethodParametersAnalyzer: Method has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the method / class.",
-                Severity = DiagnosticSeverity.Error,
-                Locations =
-                    new[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 13, 25)
+                        new DiagnosticResultLocation("Test0.cs", 13, 20)
                     }
             };
 
@@ -212,7 +175,44 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public void MethodName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6, string parameter7, string parameter8, string parameter9, string parameter10, string parameter11)
+            public TypeName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6, string parameter7, string parameter8, string parameter9, string parameter10)
+{
+}
+        }
+    }";
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void AnalysisFailsForConstructorWithNumberOfParamatersGreaterThanErrorLevel()
+        {
+            var expected = new DiagnosticResult
+            {
+                Id = "CAP0015",
+                Message =
+                    "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                    new[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 13, 20)
+                    }
+            };
+
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        public class TypeName
+        {   
+            public TypeName(string parameter1, string parameter2, string parameter3, string parameter4, string parameter5, string parameter6, string parameter7, string parameter8, string parameter9, string parameter10, string parameter11)
 {
 }
         }
@@ -223,7 +223,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new MethodParametersAnalyzer();
+            return new ConstructorParametersAnalyzer();
         }
     }
 }
