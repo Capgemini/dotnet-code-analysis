@@ -33,6 +33,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeIfStatement(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<IfStatementSyntax>(context.Node);
 
             if (!declaration.Statement.IsKind(SyntaxKind.Block))

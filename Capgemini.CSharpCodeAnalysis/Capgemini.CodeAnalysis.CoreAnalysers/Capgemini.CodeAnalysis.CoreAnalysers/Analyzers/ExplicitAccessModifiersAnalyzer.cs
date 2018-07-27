@@ -41,6 +41,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
 
             if (!declaration.Modifiers.Any(SyntaxKind.StaticKeyword))
@@ -56,6 +58,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
 
             if (!(IsExternallyVisible(declaration.Modifiers) || declaration.Modifiers.Any(SyntaxKind.PrivateKeyword)))
@@ -66,6 +70,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedPropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
 
             //if this property is within an interface then we do not need to process with access qualifier check
@@ -79,6 +85,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
 
             if (!(
@@ -91,6 +99,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
 
             //if this method is within an interface then we do not need to process with access qualifier check

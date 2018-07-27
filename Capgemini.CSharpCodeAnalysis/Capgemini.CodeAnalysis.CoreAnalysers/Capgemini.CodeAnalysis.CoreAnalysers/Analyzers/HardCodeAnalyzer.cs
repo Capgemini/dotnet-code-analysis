@@ -28,6 +28,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeStringLiteralsWithinMethods(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             var literals = declaration.Body?.DescendantNodes().OfType<LiteralExpressionSyntax>().Where(x => x.IsKind(SyntaxKind.StringLiteralExpression)).ToList();
             if (literals != null)

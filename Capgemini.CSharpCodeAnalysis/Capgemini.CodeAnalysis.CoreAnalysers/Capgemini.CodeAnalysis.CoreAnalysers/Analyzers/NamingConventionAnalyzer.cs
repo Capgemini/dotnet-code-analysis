@@ -38,6 +38,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeLocalDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<LocalDeclarationStatementSyntax>(context.Node);
 
             var variableDeclarator = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
@@ -46,6 +48,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
             RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
 
@@ -58,12 +62,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
 
@@ -76,12 +84,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
             RegexManager.DoesNotSatisfyInterfaceRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
         }
 
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
 
             var variableDeclarator = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
@@ -99,6 +111,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
             var propertiesString = declaration.Identifier.Text;
             RegexManager.DoesNotSatisfyNonePrivateNameRule(context, propertiesString, declaration.Identifier.GetLocation(), Rule);

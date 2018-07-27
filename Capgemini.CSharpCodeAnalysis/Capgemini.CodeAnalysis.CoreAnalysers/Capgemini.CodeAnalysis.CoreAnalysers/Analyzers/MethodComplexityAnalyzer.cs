@@ -31,6 +31,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         
         private void AnalyzeMethod(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             var cyclometricComplexity = 1;
 

@@ -35,6 +35,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
 
             if (!CommentsManager.HasValidSummaryComments(context.Node))
@@ -46,6 +48,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
        
         private void AnalyzedClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
 
             if (IsExternallyVisibleComments(declaration.Modifiers) && !CommentsManager.HasValidSummaryComments(context.Node))
@@ -56,6 +60,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             //if this method is within an interface then we do not need to process with access qualifier check
             var interfaceDeclaration = Cast<InterfaceDeclarationSyntax>(declaration.Parent);

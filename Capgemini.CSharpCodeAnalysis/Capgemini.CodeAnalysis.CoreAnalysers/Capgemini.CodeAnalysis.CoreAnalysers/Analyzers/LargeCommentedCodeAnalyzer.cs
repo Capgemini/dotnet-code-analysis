@@ -41,6 +41,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
 
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
@@ -52,6 +54,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         }
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
 
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
@@ -64,6 +68,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var comments = declaration.CloseBraceToken.GetAllTrivia()?
                            .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
@@ -82,6 +88,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
             var comments = declaration.CloseBraceToken.GetAllTrivia()?
                            .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
@@ -100,6 +108,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
             var comments = declaration.Body.CloseBraceToken.GetAllTrivia()?
                            .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
@@ -117,6 +127,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            { return; }
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             var comments = declaration.Body?.CloseBraceToken.GetAllTrivia()?
                              .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
