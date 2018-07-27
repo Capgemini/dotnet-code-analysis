@@ -25,12 +25,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         public override void Initialize(AnalysisContext context)
         {
-            context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzeConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzePropertyDeclaration, SyntaxKind.PropertyDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzeClassDeclaration, SyntaxKind.ClassDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzeInterfaceDeclaration, SyntaxKind.InterfaceDeclaration);
-            context.RegisterSyntaxNodeAction(AnalyzeLocalVariableDeclaration, SyntaxKind.LocalDeclarationStatement);
+        //    context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
+        //    context.RegisterSyntaxNodeAction(AnalyzeConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
+        //    context.RegisterSyntaxNodeAction(AnalyzePropertyDeclaration, SyntaxKind.PropertyDeclaration);
+        //    context.RegisterSyntaxNodeAction(AnalyzeClassDeclaration, SyntaxKind.ClassDeclaration);
+        //    context.RegisterSyntaxNodeAction(AnalyzeInterfaceDeclaration, SyntaxKind.InterfaceDeclaration);
+        //    context.RegisterSyntaxNodeAction(AnalyzeLocalVariableDeclaration, SyntaxKind.LocalDeclarationStatement);
         }
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
@@ -79,8 +79,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                 var numberOfLines = RegexManager.NumberOfLines(docummentation.Content.ToFullString());
                 if (numberOfLines > threshold)
                 {
-                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation,
-                        Rule, declarationName, threshold);
+                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation, Rule, declarationName, threshold);
                 }
             }
         }

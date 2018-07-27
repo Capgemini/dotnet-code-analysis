@@ -20,7 +20,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             nameof(NamingConventionAnalyzer),
             $"{nameof(NamingConventionAnalyzer)}: {{0}}",
             AnalyserCategoryConstants.NamingConvention,
-            DiagnosticSeverity.Error, 
+            DiagnosticSeverity.Error,
             true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);

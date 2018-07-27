@@ -16,7 +16,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void NamingConventionAnalyzer_Passes_ClassName()
         {
@@ -87,10 +87,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             private string _field1;
         }
     }";
-            
+
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void NamingConventionAnalyzer_Fails_PrivateFieldNameMustStartWithUnderscore()
         {
@@ -125,7 +125,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new NamingConventionAnalyzer();
+            // return new NamingConventionAnalyzer();
+            return null;
         }
     }
 }
