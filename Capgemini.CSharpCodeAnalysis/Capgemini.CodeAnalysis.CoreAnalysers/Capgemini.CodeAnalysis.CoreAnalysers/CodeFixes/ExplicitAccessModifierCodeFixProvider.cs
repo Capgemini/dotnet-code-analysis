@@ -42,11 +42,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 
             context.RegisterCodeFix(CodeAction.Create("Add public access modifier", x => AddModifier(context.Document, root, statement, Accessibility.Public), "Add public access modifier"), diagnostic);
             context.RegisterCodeFix(CodeAction.Create("Add internal access modifier", x => AddModifier(context.Document, root, statement, Accessibility.Internal), "Add internal access modifier"), diagnostic);
+            context.RegisterCodeFix(CodeAction.Create("Add protected access modifier", x => AddModifier(context.Document, root, statement, Accessibility.Protected), "Add protected access modifier"), diagnostic);
         }
 
         private Task<Solution> AddModifier(Document document, SyntaxNode root, SyntaxNode statement, Accessibility accessibility)
         {
             var generator = SyntaxGenerator.GetGenerator(document);
+            System.Console.WriteLine(accessibility);
+            
             var newStatement = generator.WithAccessibility(statement, accessibility);
 
             var newRoot = root.ReplaceNode(statement, newStatement);

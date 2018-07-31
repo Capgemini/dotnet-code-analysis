@@ -82,47 +82,200 @@ namespace ConsoleApplication1
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiers_ClassDeclaration_ContainsAccessModifier_DoesNotInvokeWarning()
+        public void PrependClassDeclarationWithPublicAccessModifierForStaticClassPreservingLeadingTrivia()
         {
             var original = @"
 namespace ConsoleApplication1
 {
-    public class MyClass
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    static class MyClass
     {
-    }
-}";
-
-            VerifyCSharpDiagnostic(original);
-        }
-
-        [TestMethod]
-        public void ExplicitAccessModifiers_ClassDeclaration_OnlyChangesAccessModifiers_InvokesWarning()
-        {
-            var original = @"
-using System;
-
-namespace ConsoleApplication1
-{
-    [Obsolete]
-    class MyClass
-    {
-        public void Method() { }
     }
 }";
 
             var result = @"
-using System;
-
 namespace ConsoleApplication1
 {
-    [Obsolete]
-    public class MyClass
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    public static class MyClass
     {
-        public void Method() { }
     }
 }";
 
             VerifyCSharpFix(original, result);
+        }
+
+        [TestMethod]
+        public void PrependClassDeclarationWithInternalAccessModifier()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    internal class MyClass
+    {
+    }
+}";
+            VerifyCSharpFix(original, result, 1);
+        }
+
+        [TestMethod]
+
+        public void PrependClassDeclarationWithInternalAccessModifierPreservingLeadingTrivia()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    internal class MyClass
+    {
+    }
+}";
+            VerifyCSharpFix(original, result, 1);
+        }
+
+        [TestMethod]
+        public void PrependClassDeclarationWithInternalAccessModifierForStaticClass()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    static class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    internal static class MyClass
+    {
+    }
+}";
+
+            VerifyCSharpFix(original, result, 1);
+        }
+        [TestMethod]
+        public void PrependClassDeclarationWithProtectedAccessModifier()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    protected class MyClass
+    {
+    }
+}";
+            VerifyCSharpFix(original, result, 2);
+        }
+
+        [TestMethod]
+
+        public void PrependClassDeclarationWithProtectedAccessModifierPreservingLeadingTrivia()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    protected class MyClass
+    {
+    }
+}";
+            VerifyCSharpFix(original, result, 2);
+        }
+
+        [TestMethod]
+        public void PrependClassDeclarationWithProtectedAccessModifierForStaticClass()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    static class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    protected static class MyClass
+    {
+    }
+}";
+
+            VerifyCSharpFix(original, result, 2);
+        }
+
+        [TestMethod]
+        public void PrependClassDeclarationWithProtectedAccessModifierForStaticClassPreservingLeadingTrivia()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    static class MyClass
+    {
+    }
+}";
+
+            var result = @"
+namespace ConsoleApplication1
+{
+    /// <summary>
+    /// Leading Trivia
+    /// </summary>
+    protected static class MyClass
+    {
+    }
+}";
+
+            VerifyCSharpFix(original, result, 2);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
