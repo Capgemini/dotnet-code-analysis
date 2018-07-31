@@ -1,26 +1,24 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Rename;
-using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(UnderscoreForPrivateFieldCodeFixProvider)), Shared]
-    public class UnderscoreForPrivateFieldCodeFixProvider : CodeFixProvider
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider)), Shared]
+    public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProvider
     {
-        // This works
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
-            get { return ImmutableArray.Create(UnderscoreForPrivateFieldAnalyzer.DiagnosticId); }
+            get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
         }
 
         public sealed override FixAllProvider GetFixAllProvider()
@@ -30,12 +28,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
-            var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
-            var diagnostic = context.Diagnostics.First();
-            var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
+            var contextRoot = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
+            var firstDiagnostic = context.Diagnostics.First();
+            var privateField = contextRoot.FindToken(firstDiagnostic.Location.SourceSpan.Start);
             context.RegisterCodeFix(
-                CodeAction.Create("Prepend `_` to field", c => PrependUnderscore(context.Document, token, c), UnderscoreForPrivateFieldAnalyzer.DiagnosticId),
-                diagnostic);
+                CodeAction.Create($"Prepend `_` to field '{privateField}'", 
+                    cancellationToken => PrependUnderscore(context.Document, privateField, cancellationToken), 
+                    AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()), firstDiagnostic);
         }
 
         async Task<Solution> PrependUnderscore(Document document, SyntaxToken declaration, CancellationToken cancellationToken)

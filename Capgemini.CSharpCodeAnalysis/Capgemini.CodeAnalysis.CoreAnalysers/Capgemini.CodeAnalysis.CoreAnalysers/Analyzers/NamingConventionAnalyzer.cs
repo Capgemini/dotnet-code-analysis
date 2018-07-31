@@ -103,10 +103,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             {
                 RegexManager.DoesNotSatisfyPrivateNameRule(context, variableDeclarator, location, Rule);
             }
-            else
-            {
-                RegexManager.DoesNotSatisfyNonePrivateNameRule(context, variableDeclarator, location, Rule);
-            }
+            //else
+            //{
+            //    RegexManager.DoesNotSatisfyNonePrivateNameRule(context, variableDeclarator, location, Rule);
+            //}
         }
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
