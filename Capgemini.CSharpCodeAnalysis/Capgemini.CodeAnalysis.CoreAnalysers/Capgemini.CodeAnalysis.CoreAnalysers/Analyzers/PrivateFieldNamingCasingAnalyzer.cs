@@ -13,7 +13,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     public class PrivateFieldNamingCasingAnalyzer : AnalyzerBase
     {
         static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.PrivateFieldNamingCasingAnalyzerId.ToDiagnosticId(),
-            nameof(PrivateFieldNamingCasingAnalyzer), $"{nameof(PrivateFieldNamingCasingAnalyzer)}: Field '{{0}}' does not start with '_'", "Naming", DiagnosticSeverity.Warning, isEnabledByDefault: true);
+            nameof(PrivateFieldNamingCasingAnalyzer), $"{nameof(PrivateFieldNamingCasingAnalyzer)}: Field '{{0}}' does not satisfy naming convention.\nField '{{0}}' must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.", "Naming", DiagnosticSeverity.Warning, isEnabledByDefault: true);
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
@@ -25,8 +25,15 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
+            if (IsExternallyVisible(declaration.Modifiers))
+            {
+                return;
+            }
 
             var variableName = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
             var location = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.GetLocation();

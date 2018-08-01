@@ -38,7 +38,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 
             var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
             context.RegisterCodeFix(
-                CodeAction.Create("Prepend `_` to field NOT JJB", c => PrependUnderscore(context.Document, token, c), AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()),
+                CodeAction.Create("Pascal-case Field Name", c => PrependUnderscore(context.Document, token, c), AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()),
                 diagnostic);
         }
 

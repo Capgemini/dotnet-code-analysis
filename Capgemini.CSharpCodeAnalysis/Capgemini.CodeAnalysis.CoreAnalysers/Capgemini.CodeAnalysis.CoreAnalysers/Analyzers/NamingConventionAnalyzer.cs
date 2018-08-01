@@ -39,7 +39,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeLocalDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<LocalDeclarationStatementSyntax>(context.Node);
 
             var variableDeclarator = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
@@ -49,9 +52,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
-            RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
+            RegexManager.DoesNotSatisfyNonPrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
 
             foreach (var parameter in declaration.ParameterList.Parameters)
             {
@@ -63,17 +69,23 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
-            RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
+            RegexManager.DoesNotSatisfyNonPrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
-            RegexManager.DoesNotSatisfyNonePrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
+            RegexManager.DoesNotSatisfyNonPrivateNameRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
 
             foreach (var parameter in declaration.ParameterList.Parameters)
             {
@@ -85,7 +97,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
             RegexManager.DoesNotSatisfyInterfaceRule(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
         }
@@ -93,29 +108,32 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
+            if(!IsExternallyVisible(declaration.Modifiers))
+            {
+                return;
+            }
 
             var variableDeclarator = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;
             var location = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.GetLocation();
 
-            if (!string.IsNullOrWhiteSpace(variableDeclarator) && !IsExternallyVisible(declaration.Modifiers))
-            {
-                RegexManager.DoesNotSatisfyPrivateNameRule(context, variableDeclarator, location, Rule);
-            }
-            //else
-            //{
-            //    RegexManager.DoesNotSatisfyNonePrivateNameRule(context, variableDeclarator, location, Rule);
-            //}
+            RegexManager.DoesNotSatisfyNonPrivateNameRule(context, variableDeclarator, location, Rule);
         }
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
             var propertiesString = declaration.Identifier.Text;
-            RegexManager.DoesNotSatisfyNonePrivateNameRule(context, propertiesString, declaration.Identifier.GetLocation(), Rule);
+            RegexManager.DoesNotSatisfyNonPrivateNameRule(context, propertiesString, declaration.Identifier.GetLocation(), Rule);
         }
     }
 }

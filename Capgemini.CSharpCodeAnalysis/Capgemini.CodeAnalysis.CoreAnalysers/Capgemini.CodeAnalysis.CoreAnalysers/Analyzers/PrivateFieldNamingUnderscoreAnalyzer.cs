@@ -25,7 +25,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
 
             var variableName = declaration.Declaration.Variables.FirstOrDefault()?.Identifier.Text;

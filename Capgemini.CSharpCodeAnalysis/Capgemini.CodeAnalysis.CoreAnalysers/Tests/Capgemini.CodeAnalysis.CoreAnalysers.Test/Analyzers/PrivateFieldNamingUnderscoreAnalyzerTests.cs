@@ -6,7 +6,6 @@ using TestHelper;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
-
     [TestClass]
     public class PrivateFieldNamingUnderscoreAnalyzerTests : CodeFixVerifier
     {

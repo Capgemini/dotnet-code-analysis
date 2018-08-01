@@ -10,57 +10,34 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.CodeFixes
     [TestClass]
     public class PrivateFieldNamingCasingCodeFixProviderShould : CodeFixVerifier
     {
-        [TestMethod]
-        public void CorrectCaseOfPrivateFieldName()
+        [DataTestMethod]
+        [DataRow("FieldThatDoesNotMatch", "fieldThatDoesNotMatch")]
+        [DataRow("FIeldThatDoesNotMatch", "fieldThatDoesNotMatch")]
+        [DataRow("FieldThatDoesNotMatcH", "fieldThatDoesNotMatch")]
+        [DataRow("fieldTHatDoesNotMatch", "fieldThatDoesNotMatch")]
+        public void CorrectCaseOfPrivateFieldName(string nonMatchingFieldName, string updatedFieldName)
         {
-            var original = @"
+            var original = $@"
     using System;
 
     namespace ConsoleApplication1
-    {
+    {{
         class TypeName
-        {   
-            private string FieldThatDoesNotMatch;
-        }
-    }";
+        {{   
+            private string {nonMatchingFieldName};
+        }}
+    }}";
 
-            var result = @"
+            var result = $@"
     using System;
 
     namespace ConsoleApplication1
-    {
+    {{
         class TypeName
-        {   
-            private string fieldThatDoesNotMatch;
-        }
-    }";
-            VerifyCSharpFix(original, result);
-        }
-
-        [TestMethod]
-        public void CorrectCaseOfPrivateFieldNameWhenTwoInitialCapitals()
-        {
-            var original = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string FIeldThatDoesNotMatch;
-        }
-    }";
-
-            var result = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string fieldThatDoesNotMatch;
-        }
-    }";
+        {{   
+            private string {updatedFieldName};
+        }}
+    }}";
             VerifyCSharpFix(original, result);
         }
 
@@ -115,60 +92,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.CodeFixes
         class TypeName
         {   
             private string fieldThatDoesNotMatch; // some trailing trivia
-        }
-    }";
-            VerifyCSharpFix(original, result);
-        }
-
-        [TestMethod]
-        public void CorrectCaseOfPrivateFieldNameWhenLastLetterIsCapitalized()
-        {
-            var original = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string FieldThatDoesNotMatcH;
-        }
-    }";
-
-            var result = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string fieldThatDoesNotMatch;
-        }
-    }";
-            VerifyCSharpFix(original, result);
-        }
-
-        [TestMethod]
-        public void CorrectCaseOfPrivateFieldNameWhenMoreThanOneLetterIsCapitalizedInARow()
-        {
-            var original = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string FieldTOrename;
-        }
-    }";
-
-            var result = @"
-    using System;
-
-    namespace ConsoleApplication1
-    {
-        class TypeName
-        {   
-            private string fieldTorename;
         }
     }";
             VerifyCSharpFix(original, result);

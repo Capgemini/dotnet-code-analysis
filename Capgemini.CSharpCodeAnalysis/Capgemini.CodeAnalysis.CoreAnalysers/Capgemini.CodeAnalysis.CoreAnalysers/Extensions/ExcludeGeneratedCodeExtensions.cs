@@ -30,11 +30,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Extensions
             }
             var filePath = declaration.SyntaxTree.FilePath;
 
-            return IsGen(filePath);
+            return IsGeneratedFileName(filePath);
 
         }
 
-        private static bool IsGen(string filePath)
+        private static bool IsGeneratedFileName(string filePath)
         {
             return
                 Regex.IsMatch(filePath,
