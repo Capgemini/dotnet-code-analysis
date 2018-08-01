@@ -19,6 +19,7 @@
         MethodComplexityAnalyzeId,
         ConstructorParametersAnalyzerId,
         MethodParametersAnalyzerId,
-        PrivateFieldNamingUnderscoreAnalyzerId
+        PrivateFieldNamingUnderscoreAnalyzerId,
+        PrivateFieldNamingCasingAnalyzerId
     }
 }

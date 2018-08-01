@@ -1,5 +1,4 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
-using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+﻿using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
