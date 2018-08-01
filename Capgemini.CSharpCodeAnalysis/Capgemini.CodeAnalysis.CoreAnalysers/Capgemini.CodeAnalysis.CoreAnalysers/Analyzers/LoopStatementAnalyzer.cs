@@ -35,7 +35,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeForEachStatement(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.ForEachStatementSyntax>(context.Node);
             
             if (!declaration.Statement.IsKind(SyntaxKind.Block))
@@ -47,7 +50,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeForStatement(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.ForStatementSyntax>(context.Node);
             
             if (!declaration.Statement.IsKind(SyntaxKind.Block))
@@ -58,7 +64,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeWhileStatement(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.WhileStatementSyntax>(context.Node);
             
             if (!declaration.Statement.IsKind(SyntaxKind.Block))

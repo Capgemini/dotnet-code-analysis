@@ -37,12 +37,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
         /// <param name="location">The location.</param>
         /// <param name="rule">The rule.</param>
         /// <returns></returns>
-        public bool DoesNotSatisfyNonePrivateNameRule(SyntaxNodeAnalysisContext context, string name, Location location, DiagnosticDescriptor rule)
+        public bool DoesNotSatisfyNonPrivateNameRule(SyntaxNodeAnalysisContext context, string name, Location location, DiagnosticDescriptor rule)
         {
             var analysed = false;
             if (MatchFound(@"[A-Z]{2,}", name) || !MatchFound(@"^[A-Z]", name) || MatchFound(@"[A-Z]$", name))
             {
-              _diagnostics. CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with one upper case character, \nnot end with uppercase character and not contain two consecutive upper case characters.");
+              _diagnostics. CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.");
                 analysed = true;
             }
             return analysed;

@@ -27,7 +27,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private void AnalyzeNamespace(SyntaxNodeAnalysisContext context)
         {
             if (context.IsGeneratedCode())
-            { return; }
+            {
+                return;
+            }
+
             var declaration = Cast<NamespaceDeclarationSyntax>(context.Node);
             var filePath = declaration.SyntaxTree.FilePath.Replace("\\", ".");
 
