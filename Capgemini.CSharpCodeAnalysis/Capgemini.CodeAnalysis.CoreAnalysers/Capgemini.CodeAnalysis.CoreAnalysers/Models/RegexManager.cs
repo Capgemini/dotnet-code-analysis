@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System;
+using System.Text.RegularExpressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 
@@ -9,7 +10,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
     /// </summary>
     public class RegexManager
     {
-        private readonly DiagnosticsManager _diagnostics=new DiagnosticsManager();
+        private readonly DiagnosticsManager _diagnostics = new DiagnosticsManager();
 
         /// <summary>
         /// Determines in a pattern is found with an input string.
@@ -23,6 +24,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             var regex = new Regex(pattern, options);
             var match = regex.Match(inputString);
             var foundMatch = match.Success;
+
             return foundMatch;
         }
 
@@ -42,9 +44,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             var analysed = false;
             if (MatchFound(@"[A-Z]{2,}", name) || !MatchFound(@"^[A-Z]", name) || MatchFound(@"[A-Z]$", name))
             {
-              _diagnostics. CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.");
+                _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.");
                 analysed = true;
             }
+
             return analysed;
         }
 
@@ -67,6 +70,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
                 _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with underscore character followed by atleast two lower case characters, \nnot end with uppercase character and not contain two consecutive upper case characters.");
                 analysed = true;
             }
+
             return analysed;
         }
 
@@ -89,12 +93,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
                 _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with at least two lower case character, \nnot end with uppercase character and not contain two consecutive upper case characters.");
                 analysed = true;
             }
+
             return analysed;
         }
 
         /// <summary>
         /// This method we will write a diagnostic if name:
-        /// coes not begin with upper case character I, uppercase character and any other lowercase characters
+        /// does not begin with upper case character I, uppercase character and any other lowercase characters
         /// contains two consecutive upper case characters after the first two upper case  characters
         /// ends with an uppercase character
         /// </summary>
@@ -106,25 +111,24 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
         public bool DoesNotSatisfyInterfaceRule(SyntaxNodeAnalysisContext context, string name, Location location, DiagnosticDescriptor rule)
         {
             var analysed = false;
-            if (!MatchFound(@"^I[A-Z][a-z]", name) || MatchFound(@"^I[A-Z](.)*[A-Z]{2,}", name) ||  MatchFound(@"[A-Z]$", name))
+            if (!MatchFound(@"^I[A-Z][a-z]", name) || MatchFound(@"^I[A-Z](.)*[A-Z]{2,}", name) || MatchFound(@"[A-Z]$", name))
             {
                 _diagnostics.CreateNamingConventionDiagnostic(context, location, rule, $"{name} does not satisfy naming convention. \n{name} must start with character I and an upper case character, \nnot end with uppercase character and not contain two consecutive upper case characters apart from the first two characters.");
                 analysed = true;
             }
+
             return analysed;
         }
 
         /// <summary>
-        /// Numbers the of lines.
+        /// Returns the number of lines in the supplied input string - excluding empty lines.
         /// </summary>
         /// <param name="inputString">The input string.</param>
         /// <param name="pattern">The pattern.</param>
-        /// <returns></returns>
-        public int NumberOfLines(string inputString, string pattern= "\\r\\n")
+        /// <returns>Numbers the of lines</returns>
+        public int NumberOfLines(string inputString, string pattern = "\\r\\n")
         {
-            var regex = new Regex(pattern, RegexOptions.None);
-            var matches = regex.Matches(inputString);
-            return matches.Count;
+            return inputString.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries).Length;
         }
     }
 }

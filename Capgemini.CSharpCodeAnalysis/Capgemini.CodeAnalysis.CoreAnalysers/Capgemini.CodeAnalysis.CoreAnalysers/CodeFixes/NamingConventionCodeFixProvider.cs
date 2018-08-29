@@ -14,7 +14,7 @@ using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFixProvider)), Shared]
-    public class NamingConventionCodeFixProvider : CodeFixProvider
+    public class NamingConventionCodeFixProvider : CodeFixProviderBase
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
@@ -24,19 +24,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             }
         }
 
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            // See https://github.com/dotnet/roslyn/blob/master/docs/analyzers/FixAllProvider.md for more information on Fix All Providers
-            return WellKnownFixAllProviders.BatchFixer;
-        }
-
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
 
             var diagnostic = context.Diagnostics.First();
-
+            var x = diagnostic.Properties;
             var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
+            if (!root.ContainsDiagnostics)
+            {
+                // ToDo - add tests to see if this is valid and, more importantly, if the naming 
+                return;
+            }
             context.RegisterCodeFix(
                 CodeAction.Create("Pascal-case Field Name", c => PrependUnderscore(context.Document, token, c), AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()),
                 diagnostic);
@@ -48,6 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
             var symbol = semanticModel.GetDeclaredSymbol(declaration.Parent, cancellationToken);
             var solution = document.Project.Solution;
+
             return await Renamer.RenameSymbolAsync(solution, symbol, newName, solution.Workspace.Options, cancellationToken).ConfigureAwait(false);
         }
     }

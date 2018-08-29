@@ -132,6 +132,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             }
 
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
+            if (!IsExternallyVisible(declaration.Modifiers))
+            {
+                return;
+            }
+
             var propertiesString = declaration.Identifier.Text;
             RegexManager.DoesNotSatisfyNonPrivateNameRule(context, propertiesString, declaration.Identifier.GetLocation(), Rule);
         }

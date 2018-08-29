@@ -90,7 +90,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_WhenPrivateFieldsDoNotMeetNamingConvention()
+        public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_WhenPrivateFieldsMeetsNamingConvention()
         {
             var test = @"
     using System;
@@ -158,6 +158,84 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0004",
                 Message = $"{nameof(NamingConventionAnalyzer)}: {fieldName} does not satisfy naming convention. \n{fieldName} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                    new[] {
+                            new DiagnosticResultLocation("Test0.cs", 13, expectedColumnLocation)
+                        }
+            };
+
+            VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_ForPrivatePropertyName()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        class TypeName
+        {   
+            private string propertyName { get; set; }
+        }
+    }";
+
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [DataTestMethod]
+        [DataRow("fieldName", "public", 27)]
+        [DataRow("fieldNAme", "public", 27)]
+        [DataRow("fieldNAMe", "public", 27)]
+        [DataRow("fieldNamE", "public", 27)]
+        [DataRow("fieldName", "public static", 34)]
+        [DataRow("fieldNAme", "public static", 34)]
+        [DataRow("fieldNAMe", "public static", 34)]
+        [DataRow("fieldNamE", "public static", 34)]
+        [DataRow("fieldName", "public readonly", 36)]
+        [DataRow("fieldNAme", "public readonly", 36)]
+        [DataRow("fieldNAMe", "public readonly", 36)]
+        [DataRow("fieldNamE", "public readonly", 36)]
+        [DataRow("fieldName", "protected", 30)]
+        [DataRow("fieldNAme", "protected", 30)]
+        [DataRow("fieldNAMe", "protected", 30)]
+        [DataRow("fieldNamE", "protected", 30)]
+        [DataRow("fieldName", "protected internal", 39)]
+        [DataRow("fieldNAme", "protected internal", 39)]
+        [DataRow("fieldNAMe", "protected internal", 39)]
+        [DataRow("fieldNamE", "protected internal", 39)]
+        [DataRow("fieldName", "internal", 29)]
+        [DataRow("fieldNAme", "internal", 29)]
+        [DataRow("fieldNAMe", "internal", 29)]
+        [DataRow("fieldNamE", "internal", 29)]
+        public void NamingConventionAnalyzer_RaisesDiagnostic_PublicPropertyNameMustStartWithUpperCaseCharacter(string propertyName, string accessibilityModifier, int expectedColumnLocation)
+        {
+            var test = $@"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {{
+        class TypeName
+        {{   
+            {accessibilityModifier} string {propertyName} {{ get; set; }}
+        }}
+    }}";
+            var expected = new DiagnosticResult
+            {
+                Id = "CAP0004",
+                Message = $"{nameof(NamingConventionAnalyzer)}: {propertyName} does not satisfy naming convention. \n{propertyName} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {

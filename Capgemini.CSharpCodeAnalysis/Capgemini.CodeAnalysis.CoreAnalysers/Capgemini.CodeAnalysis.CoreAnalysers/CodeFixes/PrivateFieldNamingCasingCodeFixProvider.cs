@@ -15,16 +15,11 @@ using System.Threading.Tasks;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingCasingCodeFixProvider)), Shared]
-    public class PrivateFieldNamingCasingCodeFixProvider : CodeFixProvider
+    public class PrivateFieldNamingCasingCodeFixProvider : CodeFixProviderBase
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
             get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
-        }
-
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            return WellKnownFixAllProviders.BatchFixer;
         }
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)

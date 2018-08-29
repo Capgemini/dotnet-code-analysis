@@ -46,6 +46,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                     context.ReportDiagnostic(diagnostic);
                 }
             }
+
+            //RegexManager.DoesNotSatisfyPrivateNameRule(context, variableName, location, Rule);
         }
     }
 }

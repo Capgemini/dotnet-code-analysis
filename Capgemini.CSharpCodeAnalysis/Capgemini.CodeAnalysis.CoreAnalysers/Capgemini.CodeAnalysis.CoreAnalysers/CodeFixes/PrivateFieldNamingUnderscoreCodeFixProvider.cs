@@ -13,16 +13,11 @@ using System.Threading.Tasks;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider)), Shared]
-    public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProvider
+    public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProviderBase
     {
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
             get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
-        }
-
-        public sealed override FixAllProvider GetFixAllProvider()
-        {
-            return WellKnownFixAllProviders.BatchFixer;
         }
 
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
@@ -42,6 +37,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
             var symbol = semanticModel.GetDeclaredSymbol(declaration.Parent, cancellationToken);
             var solution = document.Project.Solution;
+
             return await Renamer.RenameSymbolAsync(solution, symbol, newName, solution.Workspace.Options, cancellationToken).ConfigureAwait(false);
         }
     }
