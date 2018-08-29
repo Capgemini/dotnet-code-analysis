@@ -20,6 +20,6 @@
         ConstructorParametersAnalyzerId,
         MethodParametersAnalyzerId,
         PrivateFieldNamingUnderscoreAnalyzerId,
-        PrivateFieldNamingCasingAnalyzerId
+        PrivateFieldNameCasingAnalyzerId
     }
 }
