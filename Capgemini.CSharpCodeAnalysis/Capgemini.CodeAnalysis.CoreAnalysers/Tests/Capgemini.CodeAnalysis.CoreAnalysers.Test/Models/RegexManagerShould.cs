@@ -25,6 +25,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Models
             var lineCount = regexManager.NumberOfLines(inputString);
 
             lineCount.Should().Be(expectedRowCount);
+
         }
     }
 }
