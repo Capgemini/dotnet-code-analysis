@@ -1,10 +1,12 @@
 ﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
     [TestClass]
     public class ExplicitAccessModifiersAnalyzerTests : CodeFixVerifier
@@ -40,7 +42,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithInternalKeyword()
         {
@@ -64,7 +66,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithPrivateKeyword()
         {
@@ -146,6 +148,83 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             VerifyCSharpDiagnostic(test, expected);
         }
 
+        [TestMethod]
+        public void RaiseErrorForClassWithNoAccessModifierSpecified()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    class MyClass
+    {
+    }
+}";
+
+            VerifyCSharpDiagnostic(original,
+                new DiagnosticResult
+                {
+                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                    Severity = DiagnosticSeverity.Error,
+                    Locations =
+                    new DiagnosticResultLocation[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 4, 11)
+                    }
+                });
+        }
+
+        [TestMethod]
+        public void RaiseErrorForStaticClassWithNoAccessModifierSpecified()
+        {
+            var original = @"
+namespace ConsoleApplication1
+{
+    static class MyClass
+    {
+    }
+}";
+            VerifyCSharpDiagnostic(original,
+                new DiagnosticResult
+                {
+                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                    Severity = DiagnosticSeverity.Error,
+                    Locations =
+                    new DiagnosticResultLocation[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 4, 18)
+                    }
+                });
+        }
+
+        [TestMethod]
+        public void RaiseErrorForObsoleteClassWithNoAccessModifierSpecified()
+        {
+            var original = @"
+using System;
+
+namespace ConsoleApplication1
+{
+    [Obsolete]
+    class MyClass
+    {
+        public void Method() { }
+    }
+}";
+
+            VerifyCSharpDiagnostic(original,
+                new DiagnosticResult
+                {
+                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                    Severity = DiagnosticSeverity.Error,
+                    Locations =
+                    new DiagnosticResultLocation[]
+                    {
+                        new DiagnosticResultLocation("Test0.cs", 7, 11)
+                    }
+                });
+        }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {

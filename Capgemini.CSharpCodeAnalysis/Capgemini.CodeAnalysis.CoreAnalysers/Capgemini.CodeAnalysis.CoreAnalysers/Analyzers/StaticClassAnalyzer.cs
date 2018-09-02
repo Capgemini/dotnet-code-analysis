@@ -34,6 +34,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalysisDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             if (declaration.Modifiers.Any(SyntaxKind.StaticKeyword))
             {

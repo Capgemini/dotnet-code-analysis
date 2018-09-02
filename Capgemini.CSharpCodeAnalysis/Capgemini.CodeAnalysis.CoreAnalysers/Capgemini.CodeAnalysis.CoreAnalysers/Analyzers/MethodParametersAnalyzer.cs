@@ -35,6 +35,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             var parameterCount = declaration.ParameterList.Parameters.Count;
             var declarationLocation = declaration.Identifier.GetLocation();

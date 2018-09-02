@@ -4,10 +4,10 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
     [TestClass]
-    public class IfStatementAnalyzerTests : CodeFixVerifier
+    public class LoopStatementAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
@@ -17,8 +17,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             VerifyCSharpDiagnostic(test);
         }
 
+
         [TestMethod]
-        public void IfStatementWithBraces_Passes()
+        public void ForStatementWithBraces_Passes()
         {
             var test = @"
     using System;
@@ -36,9 +37,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             {
                 var variable1 = 20;
                 var variable2  = ""Hello world"";
-                if(input>variable1)
+                for(var counter=0; counter < variable1; counter++)
                 {
-                    variable2 = ""Maybe not hello world!"";
+                    variable2 += counter;
                 }
             }
         }
@@ -48,12 +49,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void IfStatementWithoutBraces_Fails()
+        public void ForStatementWithoutBraces_Fails()
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0012",
-                Message = $"{nameof(IfStatementAnalyzer)}: Please ensure that If statements have corresponding curly braces.",
+                Id = "CAP0013",
+                Message = $"{nameof(LoopStatementAnalyzer)}: Please ensure that for statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
@@ -76,51 +77,19 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
             public void DoStuff(int input)
             {
                 var variable1 = 20;
-                var variable2  = ""Hello world"";
-                if(input>variable1)
-                    variable2 = ""Maybe not hello world!"";
+                var variable2  = 5;
+                for(var counter=0; counter < variable1; counter++)
+                    variable2 += counter;
             }
         }
     }";
 
             VerifyCSharpDiagnostic(test, expected);
         }
-
-        [TestMethod]
-        public void IfStatementWithBraces_ForIfElseIfAndElseStatements_Passes()
-        {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace Test0
-    {
-        public class TypeName
-        {   
-            public void DoStuff(int input)
-            {
-                var variable1 = 20;
-                var variable2  = ""Hello world"";
-                if(input>variable1)
-                {    variable2 = ""Maybe not hello world!"";}
-                else  if(input<variable1)
-                {    variable2 = ""Hello world (not)!"";}
-                else
-                {    variable2 = ""Hello world!"";}
-            }
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
-        }
-
+        
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new IfStatementAnalyzer();
+            return new LoopStatementAnalyzer();
         }
     }
-}
+} 

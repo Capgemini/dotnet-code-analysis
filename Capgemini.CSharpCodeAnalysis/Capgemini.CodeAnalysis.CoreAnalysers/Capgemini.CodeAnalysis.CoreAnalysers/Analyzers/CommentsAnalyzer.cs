@@ -35,30 +35,55 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
             ProcessDocumentationComments(context, declaration.Identifier.GetLocation(), declaration.Identifier.Text, MaxNumberOfLinesForDocumentation);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
             ProcessDocumentationComments(context, declaration.Identifier.GetLocation(), declaration.Identifier.Text, MaxNumberOfLinesForDocumentation);
         }
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<ConstructorDeclarationSyntax>(context.Node);
             ProcessDocumentationComments(context, declaration.Identifier.GetLocation(), declaration.Identifier.Text, MaxNumberOfLinesForDocumentation);
         }
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
             ProcessDocumentationComments(context, declaration.Identifier.GetLocation(), declaration.Identifier.Text, MaxNumberOfLinesForDocumentation);
         }
 
         private void AnalyzeLocalVariableDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<LocalDeclarationStatementSyntax>(context.Node);
             var identifier = declaration.Declaration.Variables.First().Identifier;
             AnalyzeComments(context, identifier,$"{identifier.Text} has both leading and trailing comments. Only one type is allowed.");
@@ -66,6 +91,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var identifier = declaration.Identifier;
             ProcessDocumentationComments(context, identifier.GetLocation(), identifier.Text, MaxNumberOfLinesForDocumentation);
@@ -79,8 +109,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                 var numberOfLines = RegexManager.NumberOfLines(docummentation.Content.ToFullString());
                 if (numberOfLines > threshold)
                 {
-                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation,
-                        Rule, declarationName, threshold);
+                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation, Rule, declarationName, threshold);
                 }
             }
         }
