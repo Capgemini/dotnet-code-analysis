@@ -1,7 +1,6 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
-using System.Text.RegularExpressions;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Extensions
 {
@@ -30,16 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Extensions
             }
             var filePath = declaration.SyntaxTree.FilePath;
 
-            return IsGeneratedFileName(filePath);
-
-        }
-
-        private static bool IsGeneratedFileName(string filePath)
-        {
-            return
-                Regex.IsMatch(filePath,
-                    @"(\\service|\\TemporaryGeneratedFile_.*|\\assemblyinfo|\\assemblyattributes|\.(g\.i|g|designer|generated|assemblyattributes))\.(cs)$",
-                    RegexOptions.IgnoreCase);
+            return filePath.IsGeneratedFileName();
         }
     }
 }
