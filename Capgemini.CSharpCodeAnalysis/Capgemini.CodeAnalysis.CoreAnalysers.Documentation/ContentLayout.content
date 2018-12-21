@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Topics>
+  <Topic id="12ebad96-2910-4211-82e7-4137bbaf9665" visible="True" isDefault="true" isSelected="true" title="Welcome to the dotnet-code-analysis documentation">
+    <HelpKeywords>
+      <HelpKeyword index="K" term="Welcome" />
+    </HelpKeywords>
+  </Topic>
+</Topics>

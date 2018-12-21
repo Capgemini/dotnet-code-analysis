@@ -18,6 +18,8 @@ It also detects syntax and semantic error and it used to be a black-box operatio
 
 However, the Microsoft .NET compiler platform ("Roslyn") has variety of code analysis API which could be extended into the existing compiler to make own custom code analysis program.
 
+https://Capgemini.github.io/dotnet-code-analysis/
+
 ----
 ## Usage
 

@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HelpTOC>
+
+  <HelpTOCNode Title="Welcome to the dotnet-code-analysis documentation" Url="html/12ebad96-2910-4211-82e7-4137bbaf9665.htm" />
+  <HelpTOCNode Id="77c2e691-99d6-4364-93bc-c5e1d8de1a71" Title="Capgemini.CodeAnalysis.CoreAnalysers.Analyzers" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers.htm">
+    <HelpTOCNode Id="d5ac35db-36a4-43c5-8e01-888d00290053" Title="AnalyzerBase Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm">
+      <HelpTOCNode Title="AnalyzerBase Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase__ctor.htm" />
+      <HelpTOCNode Id="858b7ac8-b2be-4229-b0f3-f0d18bdd001a" Title="AnalyzerBase Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm">
+        <HelpTOCNode Title="CommentsManager Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_CommentsManager.htm" />
+        <HelpTOCNode Title="DiagnosticsManager Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_DiagnosticsManager.htm" />
+        <HelpTOCNode Title="RegexManager Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_RegexManager.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="ecabd4d6-03e4-4ae7-9832-2cceba0e8630" Title="AnalyzerBase Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm">
+        <HelpTOCNode Title="Cast(T) Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_Cast__1.htm" />
+        <HelpTOCNode Title="IsExternallyVisible Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisible.htm" />
+        <HelpTOCNode Title="IsExternallyVisibleComments Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsExternallyVisibleComments.htm" />
+        <HelpTOCNode Title="IsParentAnException Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsParentAnException.htm" />
+        <HelpTOCNode Title="IsPrivate Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_IsPrivate.htm" />
+        <HelpTOCNode Id="b210acd6-9d4f-41b9-9bd6-611e751af740" Title="ModifierContains Method " Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_ModifierContains.htm">
+          <HelpTOCNode Title="ModifierContains Method (SyntaxTokenList, SyntaxKind)" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_ModifierContains.htm" />
+          <HelpTOCNode Title="ModifierContains Method (SyntaxTokenList, List(SyntaxKind))" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_ModifierContains_1.htm" />
+        </HelpTOCNode>
+      </HelpTOCNode>
+      <HelpTOCNode Id="5735ef18-a3d6-43d8-8800-0c38702ec0ae" Title="AnalyzerBase Fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase.htm">
+        <HelpTOCNode Title="MessageFormat Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_AnalyzerBase_MessageFormat.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2b018d7e-56cb-4d49-b970-86e1b7372642" Title="CommentsAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm">
+      <HelpTOCNode Title="CommentsAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="e70a6181-908d-4413-b081-25e0fbda6c92" Title="CommentsAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="a22b1984-2f73-4b1f-a8b5-854e926299be" Title="CommentsAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_CommentsAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="f3d10677-7203-4813-870e-47682d8565c2" Title="ConstructorParametersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm">
+      <HelpTOCNode Title="ConstructorParametersAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="0ab69fd3-6e81-44cf-a43d-05486037bd8b" Title="ConstructorParametersAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="101ac864-4a1b-4dc5-8a94-5a559661821f" Title="ConstructorParametersAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ConstructorParametersAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0e1cc552-d6c4-441b-8605-eb7818af1498" Title="ExplicitAccessModifiersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm">
+      <HelpTOCNode Title="ExplicitAccessModifiersAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="a45340b9-ee78-4b35-a87c-a8150361c382" Title="ExplicitAccessModifiersAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="3edc939d-a607-4e12-a813-bdb5ac54aef7" Title="ExplicitAccessModifiersAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_ExplicitAccessModifiersAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="709ba486-4c66-4143-805b-7984df90f935" Title="FileHierarchyAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm">
+      <HelpTOCNode Title="FileHierarchyAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="98e40a53-d1aa-4fca-9588-f796f69b7c48" Title="FileHierarchyAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="638aafe5-bd55-496b-968c-bd67452ef916" Title="FileHierarchyAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_FileHierarchyAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8857e76c-5959-4e70-9b62-207d2b73cb52" Title="GodClassAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm">
+      <HelpTOCNode Title="GodClassAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="f51e7545-870e-449e-a365-0fa31d734d7c" Title="GodClassAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="42efb445-70ff-4c28-9b6f-ae2db7223593" Title="GodClassAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_GodClassAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9d5332d2-7bc6-4afc-b0fd-3202a588e075" Title="HardCodeAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm">
+      <HelpTOCNode Title="HardCodeAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="2b093cff-18d0-468a-b58d-a1edc01ef0f7" Title="HardCodeAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="95f2d369-a063-4bf0-be88-3d8d790797d5" Title="HardCodeAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_HardCodeAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="6962c1d4-3a06-4a02-920c-30eca0234d04" Title="IfStatementAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm">
+      <HelpTOCNode Title="IfStatementAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="a53e0efd-c828-4565-bcd6-c0b8156d293d" Title="IfStatementAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="48d935a5-fa1d-4457-b12f-7a5d08511a3b" Title="IfStatementAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_IfStatementAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="7854850a-a5dd-4dfc-94f8-193930d70f56" Title="LargeCommentedCodeAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm">
+      <HelpTOCNode Title="LargeCommentedCodeAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="1f51b240-45de-49b0-b704-43b8425342c2" Title="LargeCommentedCodeAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="0aa3af52-42be-4927-a116-aec89804a386" Title="LargeCommentedCodeAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LargeCommentedCodeAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="d6daf8c3-a9fa-4c77-8c0f-3c06b35c6bcb" Title="LoopStatementAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm">
+      <HelpTOCNode Title="LoopStatementAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="b456d7f3-a2f4-4b6f-85f8-9bbf9d3b4647" Title="LoopStatementAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="71c03a6a-dc79-41df-9d19-ff049be5de1e" Title="LoopStatementAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_LoopStatementAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="1d17a4a7-b0a4-4ece-be36-8217c9b0ecf6" Title="MethodComplexityAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm">
+      <HelpTOCNode Title="MethodComplexityAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="c943a76a-c369-449e-aa16-3223a165f08a" Title="MethodComplexityAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d92cb119-40d7-472f-80d6-b345a9058c4a" Title="MethodComplexityAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodComplexityAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="0ce763de-f87f-43be-be97-77c96c6c4366" Title="MethodParametersAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm">
+      <HelpTOCNode Title="MethodParametersAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="ec631119-badf-4add-821c-c654811560c0" Title="MethodParametersAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="14378ce5-4f2e-4fe9-92f0-3aacbbf5aa50" Title="MethodParametersAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MethodParametersAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="2decb118-2826-4231-949a-f65448c804c2" Title="MonsterMethodAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm">
+      <HelpTOCNode Title="MonsterMethodAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="b52daac9-395a-45ff-b77a-f03e9c9da311" Title="MonsterMethodAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="400aaa71-e794-41a0-86eb-849a8e928dd9" Title="MonsterMethodAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_MonsterMethodAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="5395036d-1ee8-4226-9f7a-07ba06b0d2fd" Title="NamingConventionAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm">
+      <HelpTOCNode Title="NamingConventionAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="5a540a8c-4178-4a94-b71b-94c52b3f864c" Title="NamingConventionAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="4d5f7abc-ddfb-4479-92de-51a0fe7c4330" Title="NamingConventionAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_NamingConventionAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="e29b0799-84b3-43df-ba36-383a7698ceec" Title="OneTypePerFileAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm">
+      <HelpTOCNode Title="OneTypePerFileAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="a98bd0d4-3d2a-4f2c-aaac-8b2bf50b3a33" Title="OneTypePerFileAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="bd0b41c9-866e-42ed-b706-4bf812497a1f" Title="OneTypePerFileAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_OneTypePerFileAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9854b065-8439-4199-bad8-2854e0ae51c9" Title="StaticClassAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm">
+      <HelpTOCNode Title="StaticClassAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="3bc9103f-093a-471f-9cca-78402adb6d63" Title="StaticClassAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="0823f8b0-4dfd-4c91-93c8-373aa99a9a43" Title="StaticClassAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_StaticClassAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="9f3e7c86-2006-4973-8fec-0149a2c4fc7d" Title="XmlCommentsAnalyzer Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm">
+      <HelpTOCNode Title="XmlCommentsAnalyzer Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer__ctor.htm" />
+      <HelpTOCNode Id="8a2013f1-d2a5-415a-a3a0-99ab29ad0731" Title="XmlCommentsAnalyzer Properties" Url="html/Properties_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm">
+        <HelpTOCNode Title="SupportedDiagnostics Property " Url="html/P_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_SupportedDiagnostics.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="dc7c332e-4913-4467-9b72-37147e167916" Title="XmlCommentsAnalyzer Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer.htm">
+        <HelpTOCNode Title="Initialize Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Analyzers_XmlCommentsAnalyzer_Initialize.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="1319bb2c-5e73-4c68-8472-a6c410f0180f" Title="Capgemini.CodeAnalysis.CoreAnalysers.Extensions" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Extensions.htm">
+    <HelpTOCNode Id="a20ddac3-984d-4a55-a704-0fabb0ea45ec" Title="DiagnosticIdExtensions Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions.htm">
+      <HelpTOCNode Id="498c5fc4-4323-417d-a3a9-26e3007c6fdc" Title="DiagnosticIdExtensions Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions.htm">
+        <HelpTOCNode Title="ToDiagnosticId Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Extensions_DiagnosticIdExtensions_ToDiagnosticId.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+  <HelpTOCNode Id="1fc6ad0c-474a-4239-b707-a632e29baf87" Title="Capgemini.CodeAnalysis.CoreAnalysers.Models" Url="html/N_Capgemini_CodeAnalysis_CoreAnalysers_Models.htm">
+    <HelpTOCNode Id="d59134e3-5033-4636-8023-089b01c800c5" Title="AnalyserCategoryConstants Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants.htm">
+      <HelpTOCNode Title="AnalyserCategoryConstants Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants__ctor.htm" />
+      <HelpTOCNode Id="81adf0fc-811a-4c9e-a4a5-dc6e5e2007d7" Title="AnalyserCategoryConstants Fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants.htm">
+        <HelpTOCNode Title="CodeStructure Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_CodeStructure.htm" />
+        <HelpTOCNode Title="Comments Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_Comments.htm" />
+        <HelpTOCNode Title="NamingConvention Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_NamingConvention.htm" />
+        <HelpTOCNode Title="StaticAnalyzer Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyserCategoryConstants_StaticAnalyzer.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Title="AnalyzerType Enumeration" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_AnalyzerType.htm" />
+    <HelpTOCNode Id="db18e4a6-4401-4ef1-8252-f597e997cead" Title="CommentsManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm">
+      <HelpTOCNode Title="CommentsManager Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager__ctor.htm" />
+      <HelpTOCNode Id="16f9332c-3763-47ce-8994-948b6e29d627" Title="CommentsManager Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm">
+        <HelpTOCNode Title="ExtractComment Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractComment.htm" />
+        <HelpTOCNode Title="ExtractDocumentationComment Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_ExtractDocumentationComment.htm" />
+        <HelpTOCNode Title="FieldHasValidComments Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_FieldHasValidComments.htm" />
+        <HelpTOCNode Title="GetSummaryComment Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_GetSummaryComment.htm" />
+        <HelpTOCNode Title="HasValidComments Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidComments.htm" />
+        <HelpTOCNode Title="HasValidSummaryComments Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_HasValidSummaryComments.htm" />
+        <HelpTOCNode Title="RetrieveMultiLineComments Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_RetrieveMultiLineComments.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="08cf7a6a-808d-4a84-a829-f5035f68839b" Title="CommentsManager Fields" Url="html/Fields_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager.htm">
+        <HelpTOCNode Title="Test Field" Url="html/F_Capgemini_CodeAnalysis_CoreAnalysers_Models_CommentsManager_Test.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="104e074f-d3fa-420a-9058-f10af27e7bb2" Title="DiagnosticsManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager.htm">
+      <HelpTOCNode Title="DiagnosticsManager Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager__ctor.htm" />
+      <HelpTOCNode Id="bb7350a4-2bd6-4861-9e0c-54efd035f413" Title="DiagnosticsManager Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager.htm">
+        <HelpTOCNode Title="ConstructorParameterDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_ConstructorParameterDiagnostic.htm" />
+        <HelpTOCNode Title="CreateCommentsDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsDiagnostic.htm" />
+        <HelpTOCNode Id="428a3602-3b02-4811-b8a4-b9e45528075d" Title="CreateCommentsTooLongDiagnostic Method " Url="html/Overload_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsTooLongDiagnostic.htm">
+          <HelpTOCNode Title="CreateCommentsTooLongDiagnostic Method (SyntaxNodeAnalysisContext, Location, DiagnosticDescriptor, String)" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsTooLongDiagnostic.htm" />
+          <HelpTOCNode Title="CreateCommentsTooLongDiagnostic Method (SyntaxNodeAnalysisContext, Location, DiagnosticDescriptor, String, Int32)" Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateCommentsTooLongDiagnostic_1.htm" />
+        </HelpTOCNode>
+        <HelpTOCNode Title="CreateExplicitAccessDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateExplicitAccessDiagnostic.htm" />
+        <HelpTOCNode Title="CreateHardCodedValueDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateHardCodedValueDiagnostic.htm" />
+        <HelpTOCNode Title="CreateNamingConventionDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateNamingConventionDiagnostic.htm" />
+        <HelpTOCNode Title="CreateStaticClassDiagnostic Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_DiagnosticsManager_CreateStaticClassDiagnostic.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+    <HelpTOCNode Id="8268ae4b-35a5-4a52-8698-6a45cf6a1aab" Title="RegexManager Class" Url="html/T_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager.htm">
+      <HelpTOCNode Title="RegexManager Constructor " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager__ctor.htm" />
+      <HelpTOCNode Id="5894b4d4-165d-44c5-b403-ea8cb7b8a574" Title="RegexManager Methods" Url="html/Methods_T_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager.htm">
+        <HelpTOCNode Title="DoesNotSatisfyInterfaceRule Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyInterfaceRule.htm" />
+        <HelpTOCNode Title="DoesNotSatisfyLocalVariableNameRule Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyLocalVariableNameRule.htm" />
+        <HelpTOCNode Title="DoesNotSatisfyNonePrivateNameRule Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyNonePrivateNameRule.htm" />
+        <HelpTOCNode Title="DoesNotSatisfyPrivateNameRule Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_DoesNotSatisfyPrivateNameRule.htm" />
+        <HelpTOCNode Title="MatchFound Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_MatchFound.htm" />
+        <HelpTOCNode Title="NumberOfLines Method " Url="html/M_Capgemini_CodeAnalysis_CoreAnalysers_Models_RegexManager_NumberOfLines.htm" />
+      </HelpTOCNode>
+    </HelpTOCNode>
+  </HelpTOCNode>
+</HelpTOC>
