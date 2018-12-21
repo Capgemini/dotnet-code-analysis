@@ -18,6 +18,8 @@
         LoopStatementAnalyzerId,
         MethodComplexityAnalyzeId,
         ConstructorParametersAnalyzerId,
-        MethodParametersAnalyzerId
+        MethodParametersAnalyzerId,
+        PrivateFieldNamingUnderscoreAnalyzerId,
+        PrivateFieldNameCasingAnalyzerId
     }
 }

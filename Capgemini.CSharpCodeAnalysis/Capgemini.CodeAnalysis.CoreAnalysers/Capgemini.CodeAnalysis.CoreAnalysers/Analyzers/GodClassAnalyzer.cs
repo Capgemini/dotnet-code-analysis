@@ -29,6 +29,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeDeclararion(SyntaxNodeAnalysisContext context)
         {
+            if (context.IsGeneratedCode())
+            {
+                return;
+            }
+
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var methodCount = declaration.Members.OfType<MethodDeclarationSyntax>().Count(a => !IsPrivate(a.Modifiers));
             var constructorCount = declaration.Members.OfType<ConstructorDeclarationSyntax>().Count(a => !IsPrivate(a.Modifiers));

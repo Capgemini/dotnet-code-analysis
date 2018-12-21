@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
-  
+
   <PropertyGroup>
     <PackageId>Capgemini.CodeAnalysis.CoreAnalysers</PackageId>
-    <PackageVersion>1.0.0.20</PackageVersion>
+    <PackageVersion>1.0.0.22</PackageVersion>
     <Authors>Capgemini</Authors>
     <PackageLicenseUrl>https://github.com/Capgemini/dotnet-code-analysis/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Capgemini/dotnet-code-analysis</PackageProjectUrl>
@@ -31,7 +31,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard1.3\Capgemini.CodeAnalysis.CoreAnalysers.xml</DocumentationFile>
   </PropertyGroup>
-   
+ 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.4.0" PrivateAssets="all" />
     <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
@@ -49,5 +49,4 @@
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
   </ItemGroup>
-
 </Project>

@@ -4,10 +4,10 @@ using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TestHelper;
 
-namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
+namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
     [TestClass]
-    public class StaticClassAnalyzerTests : CodeFixVerifier
+    public class IfStatementAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
@@ -18,7 +18,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
         }
 
         [TestMethod]
-        public void NonStaticClassPasses()
+        public void IfStatementWithBraces_Passes()
         {
             var test = @"
     using System;
@@ -32,58 +32,32 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     {
         public class TypeName
         {   
-            public TypeName()
-{
-}
-        }
-    }";
-
-            VerifyCSharpDiagnostic(test);
-        }
-        
-        [TestMethod]
-        public void NonStaticClass_WithStaticMethod_Passes()
-        {
-            var test = @"
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Diagnostics;
-
-    namespace Test0
-    {
-        public class TypeName
-        {   
-            public TypeName()
-{
-}
-
-            public void DoStuff()
-{
-}
-            public static void DoStuff2()
-{
-}
+            public void DoStuff(int input)
+            {
+                var variable1 = 20;
+                var variable2  = ""Hello world"";
+                if(input>variable1)
+                {
+                    variable2 = ""Maybe not hello world!"";
+                }
+            }
         }
     }";
 
             VerifyCSharpDiagnostic(test);
         }
 
-
         [TestMethod]
-        public void StaticClass_Fails()
+        public void IfStatementWithoutBraces_Fails()
         {
             var expected = new DiagnosticResult
             {
-                Id = "CAP0003",
-                Message = $"{nameof(StaticClassAnalyzer)}: Static classes must be avoided unless there is no better option.",
+                Id = "CAP0012",
+                Message = $"{nameof(IfStatementAnalyzer)}: Please ensure that If statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[] {
-                        new DiagnosticResultLocation("Test0.cs", 11, 29)
+                        new DiagnosticResultLocation("Test0.cs", 17, 17)
                     }
             };
 
@@ -95,19 +69,25 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     using System.Threading.Tasks;
     using System.Diagnostics;
 
-    namespace ConsoleApplication1
+    namespace Test0
     {
-        public static class TypeName
+        public class TypeName
         {   
-
-        } 
+            public void DoStuff(int input)
+            {
+                var variable1 = 20;
+                var variable2  = ""Hello world"";
+                if(input>variable1)
+                    variable2 = ""Maybe not hello world!"";
+            }
+        }
     }";
 
             VerifyCSharpDiagnostic(test, expected);
         }
 
         [TestMethod]
-        public void StaticClassWithExtensionMethod_Passes()
+        public void IfStatementWithBraces_ForIfElseIfAndElseStatements_Passes()
         {
             var test = @"
     using System;
@@ -117,14 +97,22 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
     using System.Threading.Tasks;
     using System.Diagnostics;
 
-    namespace ConsoleApplication1
+    namespace Test0
     {
-        public static class TypeName
+        public class TypeName
         {   
-            public static void TypeName(this string input)
-{
-}
-        } 
+            public void DoStuff(int input)
+            {
+                var variable1 = 20;
+                var variable2  = ""Hello world"";
+                if(input>variable1)
+                {    variable2 = ""Maybe not hello world!"";}
+                else  if(input<variable1)
+                {    variable2 = ""Hello world (not)!"";}
+                else
+                {    variable2 = ""Hello world!"";}
+            }
+        }
     }";
 
             VerifyCSharpDiagnostic(test);
@@ -132,7 +120,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Tests
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new StaticClassAnalyzer();
+            return new IfStatementAnalyzer();
         }
     }
 }

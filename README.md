@@ -40,7 +40,9 @@ Capgemini IP code analyzer enforces the following rules
 13. StaticClassAnalyzer - Enforces that static classes are not used unless absolutely required
 14. XmlCommentsAnalyzer - Identifies public methods which do not have valid comments
 15. ConstructorParametersAnalyzer - Identifies constructors with > 5 parameters (Warning) and >= 10 (Error)
-16. MethodParametersAnalyzer - Identifies methods with > 5 parameters (Warning) and >= 10 (Error)
+16. MethodParametersAnalyzer - Identifies methods with > 5 parameters (Warning) and >= 10 (Error),
+17. PrivateFieldNamingUnderscoreAnalyzerId - Separate prefix for underscores (previously in NamingConventionAnalyzer). Includes code-fix.
+18. PrivateFieldNameCasingAnalyzerId - Separate private field name casing analyzer (previously in NamingConventionAnalyzer). Includes code-fix.
 
 ----
 ## Installation
