@@ -13,9 +13,16 @@ using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
+    /// <summary>
+    /// Implements the Naming Convention CodeFixProvider
+    /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFixProvider)), Shared]
     public class NamingConventionCodeFixProvider : CodeFixProviderBase
     {
+        
+        /// <summary>
+        /// Ovverrides FixableDiagnosticIds
+        /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
             get
@@ -23,7 +30,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
                 return ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
             }
         }
-
+        
+        /// <summary>
+        /// Ovverrides RegisterCodeFixesAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);

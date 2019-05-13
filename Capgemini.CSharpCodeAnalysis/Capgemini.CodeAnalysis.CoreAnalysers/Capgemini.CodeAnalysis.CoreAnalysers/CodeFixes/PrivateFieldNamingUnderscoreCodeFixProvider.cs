@@ -12,14 +12,25 @@ using System.Threading.Tasks;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
+        /// <summary>
+    /// Implements the Private Field Naming Underscore CodeFixProvider
+    /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider)), Shared]
     public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProviderBase
     {
+        /// <summary>
+        /// Ovverrides FixableDiagnosticIds
+        /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
             get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
         }
 
+        /// <summary>
+        /// Ovverrides RegisterCodeFixesAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var contextRoot = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);

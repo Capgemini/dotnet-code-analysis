@@ -20,9 +20,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.CommentsAnalyzerId.ToDiagnosticId(), nameof(CommentsAnalyzer),
             $"{nameof(CommentsAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
-
+        
+        /// <summary>
+        /// Overrides the Supported Diagnostics property
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-
+        
+        /// <summary>
+        /// Initialises the analyzer
+        /// </summary>
+        /// <param name="context"></param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);

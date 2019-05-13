@@ -4,8 +4,16 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Extensions
 {
+    /// <summary>
+    /// Implements bespoke operations to detect auto generated source code or artefacts
+    /// </summary>
     public static class ExcludeGeneratedCodeExtensions
     {
+        /// <summary>
+        /// Determine if source code or artefact is machine generated
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public static bool IsGeneratedCode(this SyntaxNodeAnalysisContext context)
         {
             var collection = context.Node.Ancestors();

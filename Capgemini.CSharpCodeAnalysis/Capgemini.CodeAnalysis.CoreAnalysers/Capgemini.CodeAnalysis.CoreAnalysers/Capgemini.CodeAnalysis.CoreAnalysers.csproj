@@ -30,7 +30,7 @@
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard1.3\Capgemini.CodeAnalysis.CoreAnalysers.xml</DocumentationFile>
-    <NoWarn>1701;1702;CS1591</NoWarn>
+    <NoWarn>1701;1702;</NoWarn>
   </PropertyGroup>
  
   <ItemGroup>

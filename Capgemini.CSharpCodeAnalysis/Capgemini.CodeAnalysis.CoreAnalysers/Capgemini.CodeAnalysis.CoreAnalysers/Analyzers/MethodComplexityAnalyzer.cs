@@ -12,7 +12,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     /// <summary>
     /// Cyclomatic complexity attempts to determine the number of different paths within a method. To achieve this, 
     /// this analyser first assign a method a score of 1 as the default cyclomatic complexity. Subsequently, the analyser 
-    /// identifiers the following contructs within a method: if ; while ; for ; foreach ; case ; default ; continue ; && ; || ; catch ; ?: ; ??
+    /// identifiers the following contructs within a method: if ; while ; for ; foreach ; case ; default ; continue ; &amp;&amp; ; || ; catch ; ?: ; ??
     /// For each of these contruct found, a score of 1 is added to the method cyclomatic complexity.The total score yields 
     /// the method's cyclomatic complexity. Cyclomatic complexity score greater than 15 results to an error.
     /// </summary>
@@ -21,9 +21,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     {
         private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MethodComplexityAnalyzeId.ToDiagnosticId(), nameof(MethodComplexityAnalyzer),
             $"{nameof(MethodComplexityAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
-
+        
+        /// <summary>
+        /// Overrides the Supported Diagnostics property
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-
+        
+        /// <summary>
+        /// Initialises the analyzer
+        /// </summary>
+        /// <param name="context"></param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeMethod, SyntaxKind.MethodDeclaration);

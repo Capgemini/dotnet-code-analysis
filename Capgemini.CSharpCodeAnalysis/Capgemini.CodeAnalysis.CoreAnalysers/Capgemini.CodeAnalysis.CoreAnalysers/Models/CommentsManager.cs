@@ -11,7 +11,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
     /// </summary>
     public class CommentsManager
     {
-        public string Test;
+        /// <summary>
+        /// Determine if a node has valid comments
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool HasValidComments(SyntaxNode node)
         {
             var result = HasValidSummaryComments(node);
@@ -34,7 +38,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             {
                 var comment = comments[0];
                 var content = comment.ToString().Replace(" ", "").Trim();
-                if (!( content == "//"  || content == "/**/" ))
+                if (!(content == "//" || content == "/**/"))
                 {
                     result = true;
                 }
@@ -42,6 +46,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             return result;
         }
 
+        /// <summary>
+        /// Determine if a field has valid comments
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public bool FieldHasValidComments(SyntaxNode node)
         {
             var result = HasValidSummaryComments(node);
@@ -76,6 +85,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             return documentation;
         }
 
+        /// <summary>
+        /// Extract Comment
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public List<SyntaxTrivia> ExtractComment(SyntaxNode node)
         {
             var result = ExtractLeadingComments(node);
@@ -112,13 +126,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             return ExtractSummaryComment(node);
         }
 
+        /// <summary>
+        /// Retrieve MultiLine Comments
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         public List<SyntaxTrivia> RetrieveMultiLineComments(SyntaxNode node)
         {
             var comments = new List<SyntaxTrivia>();
             if (node != null)
             {
-                comments.AddRange( node.GetLeadingTrivia()
-                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) )
+                comments.AddRange(node.GetLeadingTrivia()
+                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
                        .ToList());
                 comments.AddRange(node.GetTrailingTrivia()
                        .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
@@ -141,7 +160,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             }
             return summary;
         }
-        
+
         private List<SyntaxTrivia> ExtractLeadingComments(SyntaxNode node)
         {
             var comments = new List<SyntaxTrivia>();

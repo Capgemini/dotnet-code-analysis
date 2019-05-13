@@ -9,14 +9,24 @@ using System.Collections.Immutable;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
+    /// <summary>
+    /// Implements the PrivateField Naming Casing Analyzer
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class PrivateFieldNamingCasingAnalyzer : AnalyzerBase
     {
         static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.PrivateFieldNameCasingAnalyzerId.ToDiagnosticId(),
             nameof(PrivateFieldNamingCasingAnalyzer), $"{nameof(PrivateFieldNamingCasingAnalyzer)}: Field '{{0}}' does not satisfy naming convention.\nField '{{0}}' must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.", "Naming", DiagnosticSeverity.Warning, isEnabledByDefault: true);
-
+        
+        /// <summary>
+        /// Overrides the Supported Diagnostics property
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
-
+        
+        /// <summary>
+        /// Initialises the analyzer
+        /// </summary>
+        /// <param name="context"></param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeFieldDeclaration, SyntaxKind.FieldDeclaration);
