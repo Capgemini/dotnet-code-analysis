@@ -12,9 +12,15 @@ using System.Threading.Tasks;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
+        /// <summary>
+    /// Implements the Explicit Access Modifier CodeFixProvider
+    /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(ExplicitAccessModifierCodeFixProvider)), Shared]
     public class ExplicitAccessModifierCodeFixProvider : CodeFixProvider
     {
+        /// <summary>
+        /// Ovverrides FixableDiagnosticIds
+        /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds
         {
             get
@@ -22,7 +28,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
                 return ImmutableArray.Create(AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId());
             }
         }
-
+        
+        /// <summary>
+        /// Ovverrides RegisterCodeFixesAsync
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
         public override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);

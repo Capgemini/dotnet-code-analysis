@@ -49,27 +49,64 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             context.ReportDiagnostic(diagnostics);
         }
 
+        /// <summary>
+        /// Create Static Class Diagnostic
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="location"></param>
+        /// <param name="rule"></param>
         public void CreateStaticClassDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule)
         {
             var diagnostics = Diagnostic.Create(rule, location, "Static classes must be avoided unless there is no better option.");
             context.ReportDiagnostic(diagnostics);
         }
+
+        /// <summary>
+        /// Create Comments TooLong Diagnostic
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="location"></param>
+        /// <param name="rule"></param>
+        /// <param name="objectName"></param>
+        /// <param name="threshold"></param>
         public void CreateCommentsTooLongDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string objectName, int threshold)
         {
             CreateCommentsTooLongDiagnostic(context, location, rule, $"Documentation comments from {objectName} exceed the allowed maximum number of lines {threshold}.");
         }
 
+        /// <summary>
+        /// Create Comments TooLong Diagnostic
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="location"></param>
+        /// <param name="rule"></param>
+        /// <param name="message"></param>
         public void CreateCommentsTooLongDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string message)
         {
             var diagnostics = Diagnostic.Create(rule, location, message);
             context.ReportDiagnostic(diagnostics);
         }
 
+        /// <summary>
+        /// Create HardCoded Value Diagnostic
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="location"></param>
+        /// <param name="rule"></param>
+        /// <param name="literalValue"></param>
         public void CreateHardCodedValueDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string literalValue)
         {
             var diagnostics = Diagnostic.Create(rule, location, $"Hard-coded values must be avoided at all costs. Declare {literalValue} as a constants or fields as appropriate.");
             context.ReportDiagnostic(diagnostics);
         }
+
+        /// <summary>
+        /// Constructor Parameter Diagnostic
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="location"></param>
+        /// <param name="rule"></param>
+        /// <param name="message"></param>
         public void ConstructorParameterDiagnostic(SyntaxNodeAnalysisContext context, Location location, DiagnosticDescriptor rule, string message)
         {
             var diagnostics = Diagnostic.Create(rule, location, message);

@@ -4,6 +4,10 @@
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers
 {
+
+    /// <summary>
+    /// Initialises the analyzer
+    /// </summary> 
     public static class Initialiser
     {
     }

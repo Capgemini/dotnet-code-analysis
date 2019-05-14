@@ -8,7 +8,7 @@
 
   <PropertyGroup>
     <PackageId>Capgemini.CodeAnalysis.CoreAnalysers</PackageId>
-    <PackageVersion>1.0.0.22</PackageVersion>
+    <PackageVersion>1.0.0.23</PackageVersion>
     <Authors>Capgemini</Authors>
     <PackageLicenseUrl>https://github.com/Capgemini/dotnet-code-analysis/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Capgemini/dotnet-code-analysis</PackageProjectUrl>
@@ -30,6 +30,7 @@
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard1.3\Capgemini.CodeAnalysis.CoreAnalysers.xml</DocumentationFile>
+    <NoWarn>1701;1702;</NoWarn>
   </PropertyGroup>
  
   <ItemGroup>

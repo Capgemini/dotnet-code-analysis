@@ -32,20 +32,55 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     /// </example>
     public abstract class AnalyzerBase : DiagnosticAnalyzer
     {
+        /// <summary>
+        /// Analyzer Message Format
+        /// </summary>
         protected static readonly LocalizableString MessageFormat = "XmlCommentsAnalyzer '{0}'";
 
+        /// <summary>
+        /// Analyzer CommentsManager
+        /// </summary>
         protected CommentsManager CommentsManager => new CommentsManager();
+
+        /// <summary>
+        /// Analyzer DiagnosticsManager
+        /// </summary>
         protected DiagnosticsManager DiagnosticsManager => new DiagnosticsManager();
+
+        /// <summary>
+        /// Analyzer RegexManager
+        /// </summary>
         protected RegexManager RegexManager => new RegexManager();
 
+        /// <summary>
+        /// Cast node to specified type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="node"></param>
+        /// <returns></returns>
         protected T Cast<T>(SyntaxNode node) where T : class => node as T;
 
+        /// <summary>
+        /// Determine the visiblity scope of a node
+        /// </summary>
+        /// <param name="tokenList"></param>
+        /// <returns></returns>
         protected bool IsExternallyVisible(SyntaxTokenList tokenList) =>
             tokenList.Any(SyntaxKind.PublicKeyword) || tokenList.Any(SyntaxKind.InternalKeyword) || tokenList.Any(SyntaxKind.ProtectedKeyword);
 
+        /// <summary>
+        /// Determines if Comments are visible externally 
+        /// </summary>
+        /// <param name="tokenList"></param>
+        /// <returns></returns>
         protected bool IsExternallyVisibleComments(SyntaxTokenList tokenList) =>
             tokenList.Any(SyntaxKind.PublicKeyword);
 
+        /// <summary>
+        /// Determines if parent node an Exception
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
         protected bool IsParentAnException(SyntaxNode node)
         {
             var result = false;
@@ -63,12 +98,29 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             return result;
         }
 
+        /// <summary>
+        /// Is Private
+        /// </summary>
+        /// <param name="tokenList"></param>
+        /// <returns></returns>
         protected bool IsPrivate(SyntaxTokenList tokenList) =>
             tokenList.Any(SyntaxKind.PrivateKeyword);
 
+        /// <summary>
+        /// Determines if Modifier Contains
+        /// </summary>
+        /// <param name="tokenList"></param>
+        /// <param name="syntaxKind"></param>
+        /// <returns></returns>
         protected bool ModifierContains(SyntaxTokenList tokenList, SyntaxKind syntaxKind) =>
             ModifierContains(tokenList, new List<SyntaxKind> { syntaxKind });
 
+        /// <summary>
+        /// Determines if Modifier Contains
+        /// </summary>
+        /// <param name="tokenList"></param>
+        /// <param name="syntaxKinds"></param>
+        /// <returns></returns>
         protected bool ModifierContains(SyntaxTokenList tokenList, List<SyntaxKind> syntaxKinds)
         {
             var containsSyntaxKind = false;

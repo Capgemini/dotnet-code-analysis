@@ -8,6 +8,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
+    /// <summary>
+    /// Implements the Constructor Parameter Analyzer
+    /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ConstructorParametersAnalyzer : AnalyzerBase
     {
@@ -25,9 +28,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                 nameof(ConstructorParametersAnalyzer),
                 $"{nameof(ConstructorParametersAnalyzer)}: {{0}}",
                 AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Warning, true);
-
+        
+        /// <summary>
+        /// Overrides the Supported Diagnostics property
+        /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(ErrorRule);
-
+        
+        /// <summary>
+        /// Initialises the analyzer
+        /// </summary>
+        /// <param name="context"></param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
