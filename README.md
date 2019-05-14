@@ -16,9 +16,9 @@ A compiler is a program which translates the source code into the executable cod
 
 It also detects syntax and semantic error and it used to be a black-box operation.
 
-However, the Microsoft .NET compiler platform ("Roslyn") has variety of code analysis API which could be extended into the existing compiler to make own custom code analysis program.
+However, the Microsoft .NET compiler platform ("Roslyn") provides a number of extension points through which bespoke code analysis could be implemented.
 
-https://Capgemini.github.io/dotnet-code-analysis/
+https://capgemini.github.io/.net/roslyn-based-net-code-analyser/
 
 ----
 ## Usage
@@ -46,7 +46,7 @@ Capgemini IP code analyzer enforces the following rules
 
 ----
 ## Installation
-In order to write custom code analyzers, refactoring, and stand-alone .NET applications that utilizes the Roslyn APIs, you need to install the **.NET Compiler Platform SDK.**
+In order to implement a custom code analyzer, refactoring or a stand-alone .NET applications that leverages Roslyn APIs, you would need to install the **.NET Compiler Platform SDK.**
 
 Open Visual Studio 2015 -> Select **Tools** > **Extensions and Updates**. In the Extensions and Updates dialog box,select On-line on the left, and then in the search box, type 
 **.NET Compiler Platform SDK.**
