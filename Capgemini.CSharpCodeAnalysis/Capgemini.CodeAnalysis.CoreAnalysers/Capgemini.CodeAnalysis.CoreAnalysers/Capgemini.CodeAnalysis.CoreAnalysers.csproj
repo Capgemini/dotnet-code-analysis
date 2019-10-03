@@ -8,7 +8,6 @@
 
   <PropertyGroup>
     <PackageId>Capgemini.CodeAnalysis.CoreAnalysers</PackageId>
-    <PackageVersion>1.0.0.23</PackageVersion>
     <Authors>Capgemini</Authors>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Capgemini/dotnet-code-analysis</PackageProjectUrl>
