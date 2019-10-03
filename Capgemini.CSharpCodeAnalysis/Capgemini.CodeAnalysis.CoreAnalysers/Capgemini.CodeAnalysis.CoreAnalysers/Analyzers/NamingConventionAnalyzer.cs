@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
@@ -9,29 +10,31 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Classes, Methods and Variables must be named appropriately 
+    /// Classes, Methods and Variables must be named appropriately
     /// - don't use generic names as class1, test1, use meaningful names reflecting the functionality
-    /// follow MSDN naming conventions https://msdn.microsoft.com/en-us/library/ms229045(v=vs.110).aspx
+    /// follow MSDN naming conventions https://msdn.microsoft.com/en-us/library/ms229045(v=vs.110).aspx.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class NamingConventionAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId(),
-            nameof(NamingConventionAnalyzer),
-            $"{nameof(NamingConventionAnalyzer)}: {{0}}",
-            AnalyserCategoryConstants.NamingConvention,
-            DiagnosticSeverity.Error,
-            true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                    AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId(),
+                                                                    nameof(NamingConventionAnalyzer),
+                                                                    $"{nameof(NamingConventionAnalyzer)}: {{0}}",
+                                                                    AnalyserCategoryConstants.NamingConvention,
+                                                                    DiagnosticSeverity.Error,
+                                                                    true);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Overrides the Supported Diagnostics property.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeFieldDeclaration, SyntaxKind.FieldDeclaration);
@@ -45,7 +48,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeLocalDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -58,7 +61,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -68,14 +71,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             foreach (var parameter in declaration.ParameterList.Parameters)
             {
-                RegexManager.DoesNotSatisfyLocalVariableNameRule(context, parameter.Identifier.Text,
-                    parameter.Identifier.GetLocation(), Rule);
+                RegexManager.DoesNotSatisfyLocalVariableNameRule(context, parameter.Identifier.Text, parameter.Identifier.GetLocation(), Rule);
             }
         }
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -86,7 +88,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -96,14 +98,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             foreach (var parameter in declaration.ParameterList.Parameters)
             {
-                RegexManager.DoesNotSatisfyLocalVariableNameRule(context, parameter.Identifier.Text,
-                    parameter.Identifier.GetLocation(), Rule);
+                RegexManager.DoesNotSatisfyLocalVariableNameRule(context, parameter.Identifier.Text, parameter.Identifier.GetLocation(), Rule);
             }
         }
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -114,13 +115,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
-            if(!IsExternallyVisible(declaration.Modifiers))
+            if (!IsExternallyVisible(declaration.Modifiers))
             {
                 return;
             }
@@ -133,7 +134,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }

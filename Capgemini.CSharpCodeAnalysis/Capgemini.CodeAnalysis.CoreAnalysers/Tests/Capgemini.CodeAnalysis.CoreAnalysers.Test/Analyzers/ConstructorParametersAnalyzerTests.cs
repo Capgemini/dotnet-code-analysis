@@ -148,7 +148,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -180,7 +179,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0015",
                 Message =
-                    "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 10 parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[]
@@ -217,7 +216,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0015",
                 Message =
-                    "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 11 parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[]

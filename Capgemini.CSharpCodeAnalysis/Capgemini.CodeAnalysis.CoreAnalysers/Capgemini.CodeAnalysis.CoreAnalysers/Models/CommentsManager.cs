@@ -7,14 +7,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 {
     /// <summary>
-    /// This class is responsible for manipulating code comments
+    /// This class is responsible for manipulating code comments.
     /// </summary>
     public class CommentsManager
     {
         /// <summary>
-        /// Determine if a node has valid comments
+        /// Determine if a node has valid comments.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">An instance of <see cref="SyntaxNode"/> to determine whether comments exist for.</param>
         /// <returns></returns>
         public bool HasValidComments(SyntaxNode node)
         {
@@ -22,7 +22,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 
             if (!result)
             {
-                //now let's test for other types of comments
+                // now let's test for other types of comments
                 var comments = ExtractLeadingComments(node);
 
                 result = ProcessComments(comments);
@@ -31,23 +31,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             return result;
         }
 
-        private static bool ProcessComments(List<SyntaxTrivia> comments)
-        {
-            var result = false;
-            if (comments.Count == 1)
-            {
-                var comment = comments[0];
-                var content = comment.ToString().Replace(" ", "").Trim();
-                if (!(content == "//" || content == "/**/"))
-                {
-                    result = true;
-                }
-            }
-            return result;
-        }
-
         /// <summary>
-        /// Determine if a field has valid comments
+        /// Determine if a field has valid comments.
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
@@ -57,7 +42,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 
             if (!result)
             {
-                //now let's test for other types of comments
+                // now let's test for other types of comments
                 var comments = ExtractLeadingComments(node);
                 comments.AddRange(ExtractTrailingComments(node));
 
@@ -82,11 +67,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
                                     .OfType<DocumentationCommentTriviaSyntax>()
                                     .FirstOrDefault();
             }
+
             return documentation;
         }
 
         /// <summary>
-        /// Extract Comment
+        /// Extract Comment.
         /// </summary>
         /// <param name="node"></param>
         /// <returns></returns>
@@ -113,6 +99,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
                 var s = summary.Content.ToFullString()?.Replace("///", "");
                 result = !string.IsNullOrWhiteSpace(s);
             }
+
             return result;
         }
 
@@ -127,9 +114,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
         }
 
         /// <summary>
-        /// Retrieve MultiLine Comments
+        /// Retrieve MultiLine Comments.
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="node">An instance of <see cref="SyntaxNode"/> to retrieve the comments from.</param>
         /// <returns></returns>
         public List<SyntaxTrivia> RetrieveMultiLineComments(SyntaxNode node)
         {
@@ -137,14 +124,30 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             if (node != null)
             {
                 comments.AddRange(node.GetLeadingTrivia()
-                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
-                       .ToList());
+                        .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
+                        .ToList());
                 comments.AddRange(node.GetTrailingTrivia()
-                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
-                       .ToList());
+                        .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia))
+                        .ToList());
             }
 
             return comments;
+        }
+
+        private static bool ProcessComments(List<SyntaxTrivia> comments)
+        {
+            var result = false;
+            if (comments.Count == 1)
+            {
+                var comment = comments[0];
+                var content = comment.ToString().Replace(" ", "").Trim();
+                if (!(content == "//" || content == "/**/"))
+                {
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
         private XmlElementSyntax ExtractSummaryComment(SyntaxNode node)
@@ -156,8 +159,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
                 summary = docummentation?.ChildNodes()
                                        .OfType<XmlElementSyntax>()
                                        .FirstOrDefault(i => i.StartTag.Name.ToString().Equals("summary"));
-
             }
+
             return summary;
         }
 
@@ -167,11 +170,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             if (node != null)
             {
                 comments = node.GetLeadingTrivia()
-                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                 a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                       )
+                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
                        .ToList();
             }
+
             return comments;
         }
 
@@ -181,11 +183,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
             if (node != null)
             {
                 comments = node.GetTrailingTrivia()
-                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                 a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                       )
+                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
                        .ToList();
             }
+
             return comments;
         }
     }

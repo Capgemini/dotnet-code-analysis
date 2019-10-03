@@ -10,13 +10,19 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Enforces that only one type is defined within a C# file
+    /// Enforces that only one type is defined within a C# file.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class OneTypePerFileAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.OneTypePerFileAnalyzerId.ToDiagnosticId(), nameof(OneTypePerFileAnalyzer),
-            $"{nameof(OneTypePerFileAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                    AnalyzerType.OneTypePerFileAnalyzerId.ToDiagnosticId(),
+                                                                    nameof(OneTypePerFileAnalyzer),
+                                                                    $"{nameof(OneTypePerFileAnalyzer)}: {{0}}",
+                                                                    AnalyserCategoryConstants.CodeStructure,
+                                                                    DiagnosticSeverity.Error,
+                                                                    true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
@@ -26,7 +32,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <summary>
         /// Called once at session start to register actions in the analysis context.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeNamespace, SyntaxKind.NamespaceDeclaration);
@@ -34,15 +40,15 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeNamespace(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<NamespaceDeclarationSyntax>(context.Node);
 
-            var members = declaration.Members.Count(x => x.IsKind(SyntaxKind.ClassDeclaration) || 
-                                                         x.IsKind(SyntaxKind.InterfaceDeclaration) || 
+            var members = declaration.Members.Count(x => x.IsKind(SyntaxKind.ClassDeclaration) ||
+                                                         x.IsKind(SyntaxKind.InterfaceDeclaration) ||
                                                          x.IsKind(SyntaxKind.EnumDeclaration));
             if (members > 1)
             {

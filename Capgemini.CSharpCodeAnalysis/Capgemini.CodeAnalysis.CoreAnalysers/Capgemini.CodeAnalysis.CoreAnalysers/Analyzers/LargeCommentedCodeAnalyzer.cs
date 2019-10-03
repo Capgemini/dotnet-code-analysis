@@ -11,7 +11,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Enforces that excessive amounts of comments are not added to any part of the code base
+    /// Enforces that excessive amounts of comments are not added to any part of the code base.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LargeCommentedCodeAnalyzer : AnalyzerBase
@@ -19,18 +19,24 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private const int MaxNoOfLinesForComments = 20;
         private const string Message = "These lines of code are redundant. Please delete them.";
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.LargeCommentedCodeAnalyzerId.ToDiagnosticId(), nameof(LargeCommentedCodeAnalyzer),
-            $"{nameof(LargeCommentedCodeAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+            new DiagnosticDescriptor(
+                                    AnalyzerType.LargeCommentedCodeAnalyzerId.ToDiagnosticId(),
+                                    nameof(LargeCommentedCodeAnalyzer),
+                                    $"{nameof(LargeCommentedCodeAnalyzer)}: {{0}}",
+                                    AnalyserCategoryConstants.Comments,
+                                    DiagnosticSeverity.Error,
+                                    true);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the Supported Diagnostics property (which is overridden).
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterCompilationStartAction(CompilationStartAction);
@@ -48,7 +54,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -56,15 +62,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             var declaration = Cast<FieldDeclarationSyntax>(context.Node);
 
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                      a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                 )
+                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
                            .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
+
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -72,62 +77,54 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
 
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                      a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                 )
+                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
                            .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var comments = declaration.CloseBraceToken.GetAllTrivia()?
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
-                           .ToList();
+                                                      .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                      .ToList();
 
             ProcessComments(context, comments, declaration.ToFullString());
 
-
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                      a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                 )
-                           .ToList();
+                                                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                       .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<InterfaceDeclarationSyntax>(context.Node);
             var comments = declaration.CloseBraceToken.GetAllTrivia()?
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
-                           .ToList();
+                                                      .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                      .ToList();
 
             ProcessComments(context, comments, declaration.ToFullString());
 
-
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                      a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                 )
-                           .ToList();
+                                                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                       .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -140,16 +137,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             ProcessComments(context, comments, declaration.Body?.ToFullString());
 
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                           .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                      a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                 )
-                           .ToList();
+                                                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                       .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -161,12 +156,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             ProcessComments(context, comments, declaration.Body?.ToFullString());
 
-
             var commentsBeforeDeclaration = declaration.GetLeadingTrivia()
-                                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) ||
-                                                  a.IsKind(SyntaxKind.SingleLineCommentTrivia)
-                                             )
-                                       .ToList();
+                                                       .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                                                       .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
         }
 
@@ -218,6 +210,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                     }
                 }
             }
+
             return multiLineCommentViolationFound;
         }
     }

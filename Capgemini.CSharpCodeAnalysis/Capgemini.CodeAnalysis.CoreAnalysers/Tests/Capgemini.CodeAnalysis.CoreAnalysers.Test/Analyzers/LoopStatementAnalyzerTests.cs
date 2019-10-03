@@ -18,7 +18,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
-
         [TestMethod]
         public void ForStatementWithBraces_Passes()
         {
@@ -58,7 +57,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(LoopStatementAnalyzer)}: Please ensure that for statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 17, 17)
                     }
             };
@@ -87,8 +87,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test, expected);
         }
-        
-   
+
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -116,9 +115,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-           protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
+
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new LoopStatementAnalyzer();
         }
     }
-} 
+}

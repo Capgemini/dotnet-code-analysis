@@ -1,40 +1,33 @@
-﻿using System.Composition;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
+using System.Composition;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CodeActions;
+using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Rename;
-using Capgemini.CodeAnalysis.CoreAnalysers.Models;
-using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     /// <summary>
-    /// Implements the Naming Convention CodeFixProvider
+    /// Implements the Naming Convention CodeFixProvider.
     /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFixProvider)), Shared]
     public class NamingConventionCodeFixProvider : CodeFixProviderBase
     {
-        
         /// <summary>
-        /// Ovverrides FixableDiagnosticIds
+        /// Overrides FixableDiagnosticIds.
         /// </summary>
-        public sealed override ImmutableArray<string> FixableDiagnosticIds
-        {
-            get
-            {
-                return ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
-            }
-        }
-        
+        public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
+
         /// <summary>
-        /// Ovverrides RegisterCodeFixesAsync
+        /// Overrides RegisterCodeFixesAsync.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
         /// <returns></returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
@@ -45,9 +38,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             var token = root.FindToken(diagnostic.Location.SourceSpan.Start);
             if (!root.ContainsDiagnostics)
             {
-                // ToDo - add tests to see if this is valid and, more importantly, if the naming 
+                // ToDo - add tests to see if this is valid and, more importantly, if the naming
                 return;
             }
+
             context.RegisterCodeFix(
                 CodeAction.Create("Pascal-case Field Name", c => PrependUnderscore(context.Document, token, c), AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId()),
                 diagnostic);

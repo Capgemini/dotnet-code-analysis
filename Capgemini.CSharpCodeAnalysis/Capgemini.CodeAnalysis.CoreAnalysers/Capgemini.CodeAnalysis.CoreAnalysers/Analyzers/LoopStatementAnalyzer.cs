@@ -8,13 +8,19 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Enforces that all loop statements are guarded by curly braces
+    /// Enforces that all loop statements are guarded by curly braces.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class LoopStatementAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.LoopStatementAnalyzerId.ToDiagnosticId(), nameof(LoopStatementAnalyzer),
-            $"{nameof(LoopStatementAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                    AnalyzerType.LoopStatementAnalyzerId.ToDiagnosticId(),
+                                                                    nameof(LoopStatementAnalyzer),
+                                                                    $"{nameof(LoopStatementAnalyzer)}: {{0}}",
+                                                                    AnalyserCategoryConstants.CodeStructure,
+                                                                    DiagnosticSeverity.Error,
+                                                                    true);
 
         /// <summary>
         /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
@@ -24,7 +30,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <summary>
         /// Called once at session start to register actions in the analysis context.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeForEachStatement, SyntaxKind.ForEachStatement);
@@ -34,13 +40,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeForEachStatement(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.ForEachStatementSyntax>(context.Node);
-            
+
             if (!declaration.Statement.IsKind(SyntaxKind.Block))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.ForEachKeyword.GetLocation(), "Please ensure that foreach statements have corresponding curly braces."));
@@ -49,27 +55,28 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeForStatement(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.ForStatementSyntax>(context.Node);
-            
+
             if (!declaration.Statement.IsKind(SyntaxKind.Block))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.ForKeyword.GetLocation(), "Please ensure that for statements have corresponding curly braces."));
             }
         }
+
         private void AnalyzeWhileStatement(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<Microsoft.CodeAnalysis.CSharp.Syntax.WhileStatementSyntax>(context.Node);
-            
+
             if (!declaration.Statement.IsKind(SyntaxKind.Block))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.WhileKeyword.GetLocation(), "Please ensure that while statements have corresponding curly braces."));

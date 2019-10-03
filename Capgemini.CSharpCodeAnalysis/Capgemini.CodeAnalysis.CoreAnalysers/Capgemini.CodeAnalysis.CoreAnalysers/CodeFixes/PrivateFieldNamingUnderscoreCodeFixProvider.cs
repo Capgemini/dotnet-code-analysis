@@ -1,35 +1,33 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+﻿using System.Collections.Immutable;
+using System.Composition;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CodeActions;
 using Microsoft.CodeAnalysis.CodeFixes;
 using Microsoft.CodeAnalysis.Rename;
-using System.Collections.Immutable;
-using System.Composition;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
-        /// <summary>
-    /// Implements the Private Field Naming Underscore CodeFixProvider
+    /// <summary>
+    /// Implements the Private Field Naming Underscore CodeFixProvider.
+    /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
     /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider)), Shared]
     public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProviderBase
     {
         /// <summary>
-        /// Ovverrides FixableDiagnosticIds
+        /// Overrides FixableDiagnosticIds.
         /// </summary>
-        public sealed override ImmutableArray<string> FixableDiagnosticIds
-        {
-            get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
-        }
+        public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId());
 
         /// <summary>
-        /// Ovverrides RegisterCodeFixesAsync
+        /// Overrides RegisterCodeFixesAsync.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
         /// <returns></returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
@@ -37,12 +35,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             var firstDiagnostic = context.Diagnostics.First();
             var privateField = contextRoot.FindToken(firstDiagnostic.Location.SourceSpan.Start);
             context.RegisterCodeFix(
-                CodeAction.Create($"Prepend `_` to field '{privateField}'", 
-                    cancellationToken => PrependUnderscore(context.Document, privateField, cancellationToken), 
-                    AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()), firstDiagnostic);
+                                    CodeAction.Create(
+                                        $"Prepend `_` to field '{privateField}'",
+                                        cancellationToken => PrependUnderscore(context.Document, privateField, cancellationToken),
+                                        AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()),
+                                    firstDiagnostic);
         }
 
-        async Task<Solution> PrependUnderscore(Document document, SyntaxToken declaration, CancellationToken cancellationToken)
+        private async Task<Solution> PrependUnderscore(Document document, SyntaxToken declaration, CancellationToken cancellationToken)
         {
             var newName = $"_{declaration.ValueText}";
             var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);

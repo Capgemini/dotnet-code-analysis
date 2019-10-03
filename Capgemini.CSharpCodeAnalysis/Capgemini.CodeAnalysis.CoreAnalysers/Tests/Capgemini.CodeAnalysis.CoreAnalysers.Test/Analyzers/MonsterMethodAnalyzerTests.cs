@@ -46,7 +46,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
-
         [TestMethod]
         public void MethodWithLess80LinesOfExecutableCode_Passes()
         {
@@ -72,7 +71,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void MethodWithMoreThan80LinesOfExecutableCode_Fails()
         {
@@ -82,7 +81,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(MonsterMethodAnalyzer)}: This method is longer than 80 lines of executable code. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 13, 25)
                     }
             };
@@ -107,11 +107,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }}
     }}";
 
-            VerifyCSharpDiagnostic(test,expected);
+            VerifyCSharpDiagnostic(test, expected);
         }
 
-     
-        
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -137,7 +135,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-   protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
+
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MonsterMethodAnalyzer();
         }
@@ -149,8 +148,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 sb.AppendLine($"var intVarible{counter} = {counter}");
             }
+
             return sb.ToString();
         }
+
         private string GenerateRandomStringVariableString(int numberOfVariables)
         {
             var sb = new StringBuilder();
@@ -158,6 +159,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 sb.AppendLine($"var stringVarible{counter} = \"{DateTime.UtcNow:F}\"");
             }
+
             return sb.ToString();
         }
     }

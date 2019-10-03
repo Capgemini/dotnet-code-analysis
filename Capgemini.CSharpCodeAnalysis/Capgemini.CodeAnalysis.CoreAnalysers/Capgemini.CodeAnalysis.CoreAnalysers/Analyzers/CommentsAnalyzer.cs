@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
@@ -11,25 +12,31 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    ///  This analyzer implements the following code review rule: Code must not need lots of extra comments
+    ///  This analyzer implements the following code review rule: Code must not need lots of extra comments.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class CommentsAnalyzer : AnalyzerBase
     {
         private const int MaxNumberOfLinesForDocumentation = 30;
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.CommentsAnalyzerId.ToDiagnosticId(), nameof(CommentsAnalyzer),
-            $"{nameof(CommentsAnalyzer)}: {{0}}", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Error, true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                AnalyzerType.CommentsAnalyzerId.ToDiagnosticId(),
+                                                                nameof(CommentsAnalyzer),
+                                                                $"{nameof(CommentsAnalyzer)}: {{0}}",
+                                                                AnalyserCategoryConstants.Comments,
+                                                                DiagnosticSeverity.Error,
+                                                                true);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Overrides the Supported Diagnostics property.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
@@ -42,7 +49,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -53,7 +60,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -64,7 +71,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -75,7 +82,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -86,19 +93,19 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeLocalVariableDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<LocalDeclarationStatementSyntax>(context.Node);
             var identifier = declaration.Declaration.Variables.First().Identifier;
-            AnalyzeComments(context, identifier,$"{identifier.Text} has both leading and trailing comments. Only one type is allowed.");
+            AnalyzeComments(context, identifier, $"{identifier.Text} has both leading and trailing comments. Only one type is allowed.");
         }
 
         private void AnalyzeClassDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }

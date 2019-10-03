@@ -1,20 +1,21 @@
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Diagnostics;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace TestHelper
 {
     /// <summary>
-    /// Superclass of all Unit Tests for DiagnosticAnalyzers
+    /// Superclass of all Unit Tests for DiagnosticAnalyzers.
     /// </summary>
     public abstract partial class DiagnosticVerifier
     {
         #region To be implemented by Test classes
+
         /// <summary>
-        /// Get the CSharp analyzer being tested - to be implemented in non-abstract class
+        /// Get the CSharp analyzer being tested - to be implemented in non-abstract class.
         /// </summary>
         protected virtual DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
@@ -22,7 +23,7 @@ namespace TestHelper
         }
 
         /// <summary>
-        /// Get the Visual Basic analyzer being tested (C#) - to be implemented in non-abstract class
+        /// Get the Visual Basic analyzer being tested (C#) - to be implemented in non-abstract class.
         /// </summary>
         protected virtual DiagnosticAnalyzer GetBasicDiagnosticAnalyzer()
         {
@@ -34,10 +35,10 @@ namespace TestHelper
 
         /// <summary>
         /// Called to test a C# DiagnosticAnalyzer when applied on the single inputted string as a source
-        /// Note: input a DiagnosticResult for each Diagnostic expected
+        /// Note: input a DiagnosticResult for each Diagnostic expected.
         /// </summary>
-        /// <param name="source">A class in the form of a string to run the analyzer on</param>
-        /// <param name="expected"> DiagnosticResults that should appear after the analyzer is run on the source</param>
+        /// <param name="source">A class in the form of a string to run the analyzer on.</param>
+        /// <param name="expected"> DiagnosticResults that should appear after the analyzer is run on the source.</param>
         protected void VerifyCSharpDiagnostic(string source, params DiagnosticResult[] expected)
         {
             VerifyDiagnostics(new[] { source }, LanguageNames.CSharp, GetCSharpDiagnosticAnalyzer(), expected);
@@ -45,10 +46,10 @@ namespace TestHelper
 
         /// <summary>
         /// Called to test a VB DiagnosticAnalyzer when applied on the single inputted string as a source
-        /// Note: input a DiagnosticResult for each Diagnostic expected
+        /// Note: input a DiagnosticResult for each Diagnostic expected.
         /// </summary>
-        /// <param name="source">A class in the form of a string to run the analyzer on</param>
-        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the source</param>
+        /// <param name="source">A class in the form of a string to run the analyzer on.</param>
+        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the source.</param>
         protected void VerifyBasicDiagnostic(string source, params DiagnosticResult[] expected)
         {
             VerifyDiagnostics(new[] { source }, LanguageNames.VisualBasic, GetBasicDiagnosticAnalyzer(), expected);
@@ -56,10 +57,10 @@ namespace TestHelper
 
         /// <summary>
         /// Called to test a C# DiagnosticAnalyzer when applied on the inputted strings as a source
-        /// Note: input a DiagnosticResult for each Diagnostic expected
+        /// Note: input a DiagnosticResult for each Diagnostic expected.
         /// </summary>
-        /// <param name="sources">An array of strings to create source documents from to run the analyzers on</param>
-        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources</param>
+        /// <param name="sources">An array of strings to create source documents from to run the analyzers on.</param>
+        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources.</param>
         protected void VerifyCSharpDiagnostic(string[] sources, params DiagnosticResult[] expected)
         {
             VerifyDiagnostics(sources, LanguageNames.CSharp, GetCSharpDiagnosticAnalyzer(), expected);
@@ -67,23 +68,23 @@ namespace TestHelper
 
         /// <summary>
         /// Called to test a VB DiagnosticAnalyzer when applied on the inputted strings as a source
-        /// Note: input a DiagnosticResult for each Diagnostic expected
+        /// Note: input a DiagnosticResult for each Diagnostic expected.
         /// </summary>
-        /// <param name="sources">An array of strings to create source documents from to run the analyzers on</param>
-        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources</param>
+        /// <param name="sources">An array of strings to create source documents from to run the analyzers on.</param>
+        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources.</param>
         protected void VerifyBasicDiagnostic(string[] sources, params DiagnosticResult[] expected)
         {
             VerifyDiagnostics(sources, LanguageNames.VisualBasic, GetBasicDiagnosticAnalyzer(), expected);
         }
 
         /// <summary>
-        /// General method that gets a collection of actual diagnostics found in the source after the analyzer is run, 
+        /// General method that gets a collection of actual diagnostics found in the source after the analyzer is run,
         /// then verifies each of them.
         /// </summary>
-        /// <param name="sources">An array of strings to create source documents from to run the analyzers on</param>
-        /// <param name="language">The language of the classes represented by the source strings</param>
-        /// <param name="analyzer">The analyzer to be run on the source code</param>
-        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources</param>
+        /// <param name="sources">An array of strings to create source documents from to run the analyzers on.</param>
+        /// <param name="language">The language of the classes represented by the source strings.</param>
+        /// <param name="analyzer">The analyzer to be run on the source code.</param>
+        /// <param name="expected">DiagnosticResults that should appear after the analyzer is run on the sources.</param>
         private void VerifyDiagnostics(string[] sources, string language, DiagnosticAnalyzer analyzer, params DiagnosticResult[] expected)
         {
             var diagnostics = GetSortedDiagnostics(sources, language, analyzer);
@@ -93,13 +94,14 @@ namespace TestHelper
         #endregion
 
         #region Actual comparisons and verifications
+
         /// <summary>
         /// Checks each of the actual Diagnostics found and compares them with the corresponding DiagnosticResult in the array of expected results.
         /// Diagnostics are considered equal only if the DiagnosticResultLocation, Id, Severity, and Message of the DiagnosticResult match the actual diagnostic.
         /// </summary>
-        /// <param name="actualResults">The Diagnostics found by the compiler after running the analyzer on the source code</param>
-        /// <param name="analyzer">The analyzer that was being run on the sources</param>
-        /// <param name="expectedResults">Diagnostic Results that should have appeared in the code</param>
+        /// <param name="actualResults">The Diagnostics found by the compiler after running the analyzer on the source code.</param>
+        /// <param name="analyzer">The analyzer that was being run on the sources.</param>
+        /// <param name="expectedResults">Diagnostic Results that should have appeared in the code.</param>
         private static void VerifyDiagnosticResults(IEnumerable<Diagnostic> actualResults, DiagnosticAnalyzer analyzer, params DiagnosticResult[] expectedResults)
         {
             var expectedCount = expectedResults.Count();
@@ -172,10 +174,10 @@ namespace TestHelper
         /// <summary>
         /// Helper method to VerifyDiagnosticResult that checks the location of a diagnostic and compares it with the location in the expected DiagnosticResult.
         /// </summary>
-        /// <param name="analyzer">The analyzer that was being run on the sources</param>
-        /// <param name="diagnostic">The diagnostic that was found in the code</param>
-        /// <param name="actual">The Location of the Diagnostic found in the code</param>
-        /// <param name="expected">The DiagnosticResultLocation that should have been found</param>
+        /// <param name="analyzer">The analyzer that was being run on the sources.</param>
+        /// <param name="diagnostic">The diagnostic that was found in the code.</param>
+        /// <param name="actual">The Location of the Diagnostic found in the code.</param>
+        /// <param name="expected">The DiagnosticResultLocation that should have been found.</param>
         private static void VerifyDiagnosticLocation(DiagnosticAnalyzer analyzer, Diagnostic diagnostic, Location actual, DiagnosticResultLocation expected)
         {
             var actualSpan = actual.GetLineSpan();
@@ -211,12 +213,13 @@ namespace TestHelper
         #endregion
 
         #region Formatting Diagnostics
+
         /// <summary>
-        /// Helper method to format a Diagnostic into an easily readable string
+        /// Helper method to format a Diagnostic into an easily readable string.
         /// </summary>
-        /// <param name="analyzer">The analyzer that this verifier tests</param>
-        /// <param name="diagnostics">The Diagnostics to be formatted</param>
-        /// <returns>The Diagnostics formatted as a string</returns>
+        /// <param name="analyzer">The analyzer that this verifier tests.</param>
+        /// <param name="diagnostics">The Diagnostics to be formatted.</param>
+        /// <returns>The Diagnostics formatted as a string.</returns>
         private static string FormatDiagnostics(DiagnosticAnalyzer analyzer, params Diagnostic[] diagnostics)
         {
             var builder = new StringBuilder();
@@ -262,6 +265,7 @@ namespace TestHelper
                     }
                 }
             }
+
             return builder.ToString();
         }
         #endregion

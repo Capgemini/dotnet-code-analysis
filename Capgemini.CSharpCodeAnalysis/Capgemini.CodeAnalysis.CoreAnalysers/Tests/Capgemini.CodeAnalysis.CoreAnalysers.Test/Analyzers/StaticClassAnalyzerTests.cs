@@ -41,7 +41,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void NonStaticClass_WithStaticMethod_Passes()
         {
@@ -72,7 +72,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void StaticClass_Fails()
         {
@@ -82,7 +82,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(StaticClassAnalyzer)}: Static classes must be avoided unless there is no better option.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 11, 29)
                     }
             };
@@ -106,7 +107,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-    
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -129,7 +129,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
-      [TestMethod]
+        [TestMethod]
         public void StaticClassWithExtensionMethod_Passes()
         {
             var test = @"

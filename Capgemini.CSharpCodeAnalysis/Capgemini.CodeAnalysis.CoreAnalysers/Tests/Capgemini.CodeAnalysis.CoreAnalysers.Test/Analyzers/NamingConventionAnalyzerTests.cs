@@ -82,15 +82,15 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(NamingConventionAnalyzer)}: {className} does not satisfy naming convention. \n{className} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                             new DiagnosticResultLocation("Test0.cs", 11, expectedColumnLocation)
-                        }
+                    }
             };
 
             VerifyCSharpDiagnostic(test, expected);
         }
 
-       
         [DataTestMethod]
         [DataRow("className", "", 16)]
         [DataRow("ClassNameG", "", 16)]
@@ -134,15 +134,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(NamingConventionAnalyzer)}: {className} does not satisfy naming convention. \n{className} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                             new DiagnosticResultLocation("Test0.cs", 11, expectedColumnLocation)
-                        }
+                    }
             };
 
             VerifyCSharpDiagnostic(test);
         }
 
-       [TestMethod]
+        [TestMethod]
         public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_WhenPrivateFieldsMeetsNamingConvention()
         {
             var test = @"
@@ -162,7 +163,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     }";
 
             VerifyCSharpDiagnostic(test);
-
         }
 
         [DataTestMethod]
@@ -213,9 +213,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(NamingConventionAnalyzer)}: {fieldName} does not satisfy naming convention. \n{fieldName} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                             new DiagnosticResultLocation("Test0.cs", 13, expectedColumnLocation)
-                        }
+                    }
             };
 
             VerifyCSharpDiagnostic(test, expected);
@@ -291,9 +292,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(NamingConventionAnalyzer)}: {propertyName} does not satisfy naming convention. \n{propertyName} must start with one upper case character,\nnot end with uppercase character and not contain two consecutive upper case characters.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                             new DiagnosticResultLocation("Test0.cs", 13, expectedColumnLocation)
-                        }
+                    }
             };
 
             VerifyCSharpDiagnostic(test, expected);

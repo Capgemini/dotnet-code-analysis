@@ -42,7 +42,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
         public void MethodWithComplexityLessThan15_Passes()
         {
@@ -109,11 +109,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
                 if (lastDayOfFebruaryForThisYear.Day > 28)
                 {
-
                 }
             }
+
             VerifyCSharpDiagnostic(test);
         }
+
         [TestMethod]
         public void MethodWithComplexityOf15_Passes()
         {
@@ -187,7 +188,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(MethodComplexityAnalyzer)}: The cyclometric complexity of this method method is 17 which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 13, 25)
                     }
             };
@@ -250,10 +252,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
     }
 }";
-            
-            VerifyCSharpDiagnostic(test,expected);
+
+            VerifyCSharpDiagnostic(test, expected);
         }
-     
+
         [TestMethod]
         public void IgnoresGneratedSourceCode()
         {
@@ -315,10 +317,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
     }
 }";
-            
+
             VerifyCSharpDiagnostic(test);
         }
-      
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MethodComplexityAnalyzer();

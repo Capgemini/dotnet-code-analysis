@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
@@ -9,23 +10,31 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    ///Files must be organised neatly in a structured, hierarchical manner within the Visual Studio solution using folders named following the namespace hierarchy.
+    /// Files must be organised neatly in a structured, hierarchical manner within the Visual Studio solution using folders named following the namespace hierarchy.
+    /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
     /// </summary>
+    [Obsolete("Please use StyleCop.Analyzers instead. This analyser will be removed in future versions. This analyser is now disabled by default.")]
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class FileHierarchyAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.FileHierarchyAnalyzerId.ToDiagnosticId(), nameof(FileHierarchyAnalyzer),
-            $"{nameof(FileHierarchyAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                                    AnalyzerType.FileHierarchyAnalyzerId.ToDiagnosticId(),
+                                                                                    nameof(FileHierarchyAnalyzer),
+                                                                                    $"{nameof(FileHierarchyAnalyzer)}: {{0}}",
+                                                                                    AnalyserCategoryConstants.CodeStructure,
+                                                                                    DiagnosticSeverity.Error,
+                                                                                    false);
 
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Overrides the Supported Diagnostics property.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeNamespace, SyntaxKind.NamespaceDeclaration);
@@ -33,7 +42,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzeNamespace(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -41,7 +50,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             var declaration = Cast<NamespaceDeclarationSyntax>(context.Node);
             var filePath = declaration.SyntaxTree.FilePath.Replace("\\", ".");
 
-            if (!filePath.Contains($"{declaration.Name}.")) 
+            if (!filePath.Contains($"{declaration.Name}."))
             {
                 context.ReportDiagnostic(Diagnostic.Create(Rule, declaration.Name.GetLocation(), "Namespace should match against file structure."));
             }

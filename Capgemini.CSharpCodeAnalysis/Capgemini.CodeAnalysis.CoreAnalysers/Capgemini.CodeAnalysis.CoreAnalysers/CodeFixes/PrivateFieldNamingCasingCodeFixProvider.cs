@@ -1,70 +1,47 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
-using Capgemini.CodeAnalysis.CoreAnalysers.Models;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis.CodeFixes;
-using Microsoft.CodeAnalysis.Rename;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+using Capgemini.CodeAnalysis.CoreAnalysers.Models;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeActions;
+using Microsoft.CodeAnalysis.CodeFixes;
+using Microsoft.CodeAnalysis.Rename;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
-{    /// <summary>
-     /// Implements the Private Field Naming CasingCodeFixProvider
-     /// </summary>
+{
+    /// <summary>
+    /// Implements the Private Field Naming CasingCodeFixProvider.
+    /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
+    /// </summary>
     [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingCasingCodeFixProvider)), Shared]
     public class PrivateFieldNamingCasingCodeFixProvider : CodeFixProviderBase
     {
         /// <summary>
-        /// Ovverrides FixableDiagnosticIds
+        /// Overrides FixableDiagnosticIds.
         /// </summary>
-        public sealed override ImmutableArray<string> FixableDiagnosticIds
-        {
-            get { return ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()); }
-        }
-        
+        public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId());
+
         /// <summary>
-        /// Ovverrides RegisterCodeFixesAsync
+        /// Overrides RegisterCodeFixesAsync.
         /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
+        /// <returns>A task which will contain the result.</returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var contextRoot = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
             var firstDiagnostic = context.Diagnostics.First();
             var privateField = contextRoot.FindToken(firstDiagnostic.Location.SourceSpan.Start);
             context.RegisterCodeFix(
-                CodeAction.Create($"Change name of '{privateField}'",
-                    cancellationToken => UpdateFieldNameCasing(context.Document, privateField, cancellationToken),
-                    AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()), firstDiagnostic);
-        }
-
-        private async Task<Solution> UpdateFieldNameCasing(Document document, SyntaxToken declaration, CancellationToken cancellationToken)
-        {
-            var currentName = declaration.ValueText;
-            var newName = ChangeCase(currentName);
-            var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
-            var symbol = semanticModel.GetDeclaredSymbol(declaration.Parent, cancellationToken);
-            var solution = document.Project.Solution;
-
-            return await Renamer.RenameSymbolAsync(solution, symbol, newName, solution.Workspace.Options, cancellationToken).ConfigureAwait(false);
-        }
-
-        private string ChangeCase(string currentName)
-        {
-            var initialUpdateForCurrentName = UpdateInitialPartsOfTheName(currentName);
-            var namePostAcronymUpdates = UpdateForKnownAcronyms(initialUpdateForCurrentName);
-            System.Console.WriteLine(namePostAcronymUpdates);
-            if (!NameHasConsecutiveCapitalLetters(namePostAcronymUpdates))
-            {
-                return namePostAcronymUpdates;
-            }
-
-            return RemoveConsecutiveCapitals(namePostAcronymUpdates);
+                                    CodeAction.Create(
+                                        $"Change name of '{privateField}'",
+                                        cancellationToken => UpdateFieldNameCasing(context.Document, privateField, cancellationToken),
+                                        AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId()),
+                                    firstDiagnostic);
         }
 
         private static string RemoveConsecutiveCapitals(string namePostAcronymUpdates)
@@ -76,7 +53,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             {
                 if (char.IsUpper(namePostAcronymUpdates[i]) && previousLetterWasCapitalized)
                 {
+#pragma warning disable CA1308 // Normalize strings to uppercase - lowercase is required here
                     stringBuilder.Append(namePostAcronymUpdates[i].ToString().ToLowerInvariant());
+#pragma warning restore CA1308 // Normalize strings to uppercase
                     previousLetterWasCapitalized = false;
                 }
                 else if (char.IsUpper(namePostAcronymUpdates[i]))
@@ -90,18 +69,19 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
                     previousLetterWasCapitalized = false;
                 }
             }
+
             stringBuilder.Append(namePostAcronymUpdates.Substring(namePostAcronymUpdates.Length - 1));
 
             return stringBuilder.ToString();
         }
 
-        private bool NameHasConsecutiveCapitalLetters(string namePostAcronymUpdates)
+        private static bool NameHasConsecutiveCapitalLetters(string namePostAcronymUpdates)
         {
             return System.Text.RegularExpressions.Regex.IsMatch(namePostAcronymUpdates, "([A-Z]){2}");
         }
 
         // ToDo - when we reach the appropriate point, this needs to be extracted to enable sharing between renaming analyzers
-        private string UpdateForKnownAcronyms(string currentName)
+        private static string UpdateForKnownAcronyms(string currentName)
         {
             var acronyms = new Dictionary<string, string>
             {
@@ -183,6 +163,30 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
         private static string UpdateInitialPartsOfTheName(string initialUpdates)
         {
             return initialUpdates.Substring(0, 2).ToLowerInvariant() + initialUpdates.Substring(2, initialUpdates.Length - 3) + initialUpdates.Substring(initialUpdates.Length - 1).ToLowerInvariant();
+        }
+
+        private async Task<Solution> UpdateFieldNameCasing(Document document, SyntaxToken declaration, CancellationToken cancellationToken)
+        {
+            var currentName = declaration.ValueText;
+            var newName = ChangeCase(currentName);
+            var semanticModel = await document.GetSemanticModelAsync(cancellationToken).ConfigureAwait(false);
+            var symbol = semanticModel.GetDeclaredSymbol(declaration.Parent, cancellationToken);
+            var solution = document.Project.Solution;
+
+            return await Renamer.RenameSymbolAsync(solution, symbol, newName, solution.Workspace.Options, cancellationToken).ConfigureAwait(false);
+        }
+
+        private string ChangeCase(string currentName)
+        {
+            var initialUpdateForCurrentName = UpdateInitialPartsOfTheName(currentName);
+            var namePostAcronymUpdates = UpdateForKnownAcronyms(initialUpdateForCurrentName);
+            System.Console.WriteLine(namePostAcronymUpdates);
+            if (!NameHasConsecutiveCapitalLetters(namePostAcronymUpdates))
+            {
+                return namePostAcronymUpdates;
+            }
+
+            return RemoveConsecutiveCapitals(namePostAcronymUpdates);
         }
     }
 }
