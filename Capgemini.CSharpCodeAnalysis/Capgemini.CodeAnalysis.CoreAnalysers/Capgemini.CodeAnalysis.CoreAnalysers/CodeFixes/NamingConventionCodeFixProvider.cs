@@ -16,11 +16,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
     /// <summary>
     /// Implements the Naming Convention CodeFixProvider.
     /// </summary>
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFixProvider)), Shared]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(NamingConventionCodeFixProvider))]
+    [Shared]
     public class NamingConventionCodeFixProvider : CodeFixProviderBase
     {
         /// <summary>
-        /// Overrides FixableDiagnosticIds.
+        /// Gets the overridden FixableDiagnosticIds.
         /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.NamingConventionAnalyzerId.ToDiagnosticId());
 
@@ -28,7 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
         /// Overrides RegisterCodeFixesAsync.
         /// </summary>
         /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
-        /// <returns></returns>
+        /// <returns>A task that, when completed, will contain the result of the Code Fix registration.</returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var root = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);

@@ -7,14 +7,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Models
     [TestClass]
     public class RegexManagerShould
     {
-        private RegexManager regexManager;
-
-        [TestInitialize]
-        public void Initialize()
-        {
-            regexManager = new RegexManager();
-        }
-
         [DataTestMethod]
         [DataRow("", 0)]
         [DataRow("a\r\n", 1)]
@@ -22,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Models
         [DataRow("a\r\na\r\na", 3)]
         public void ReturnTheCorrectNumberOfLinesForTheInputString(string inputString, int expectedRowCount)
         {
-            var lineCount = regexManager.NumberOfLines(inputString);
+            var lineCount = RegexManager.NumberOfLines(inputString);
 
             lineCount.Should().Be(expectedRowCount);
         }

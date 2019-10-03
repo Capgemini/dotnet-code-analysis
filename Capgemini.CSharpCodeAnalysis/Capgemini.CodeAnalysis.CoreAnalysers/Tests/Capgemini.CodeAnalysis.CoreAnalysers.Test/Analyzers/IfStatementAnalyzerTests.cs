@@ -13,13 +13,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void IfStatementWithBraces_Passes()
+        public void IfStatementWithBracesPasses()
         {
             var test = @"
     using System;
@@ -49,7 +49,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void IfStatementWithoutBraces_Fails()
+        public void IfStatementWithoutBracesFails()
         {
             var expected = new DiagnosticResult
             {
@@ -117,7 +117,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void IfStatementWithBraces_ForIfElseIfAndElseStatements_Passes()
+        public void IfStatementWithBracesForIfElseIfAndElseStatementsPasses()
         {
             var test = @"
     using System;

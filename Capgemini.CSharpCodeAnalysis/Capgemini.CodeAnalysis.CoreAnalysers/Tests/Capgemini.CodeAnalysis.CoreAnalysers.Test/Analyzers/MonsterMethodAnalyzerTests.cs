@@ -15,13 +15,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void MethodWithLessThan80LinesOfExecutableCode_Passes()
+        public void MethodWithLessThan80LinesOfExecutableCodePasses()
         {
             var test = $@"
     using System;
@@ -47,7 +47,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithLess80LinesOfExecutableCode_Passes()
+        public void MethodWithLess80LinesOfExecutableCodePasses()
         {
             var test = $@"
     using System;
@@ -73,7 +73,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithMoreThan80LinesOfExecutableCode_Fails()
+        public void MethodWithMoreThan80LinesOfExecutableCodeFails()
         {
             var expected = new DiagnosticResult
             {

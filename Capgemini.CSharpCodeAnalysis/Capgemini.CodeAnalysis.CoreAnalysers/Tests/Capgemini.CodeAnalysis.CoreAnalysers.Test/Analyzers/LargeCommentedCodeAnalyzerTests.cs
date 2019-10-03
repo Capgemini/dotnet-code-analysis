@@ -14,13 +14,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void NoCommentsInCode_Passes()
+        public void NoCommentsInCodePasses()
         {
             var test = @"
     using System;
@@ -50,7 +50,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithCommentsMoreThan20Lines_Fails()
+        public void MethodWithCommentsMoreThan20LinesFails()
         {
             var expected = new DiagnosticResult
             {
@@ -128,7 +128,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassWithCommentsLessThan20Lines_Passes()
+        public void ClassWithCommentsLessThan20LinesPasses()
         {
             var test = $@"
     using System;
@@ -159,7 +159,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassWithComments20Lines_Passes()
+        public void ClassWithComments20LinesPasses()
         {
             var test = $@"
     using System;

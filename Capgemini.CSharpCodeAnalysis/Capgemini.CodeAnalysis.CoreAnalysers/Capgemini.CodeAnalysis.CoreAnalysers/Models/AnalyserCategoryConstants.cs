@@ -1,8 +1,8 @@
 ﻿namespace Capgemini.CodeAnalysis.CoreAnalysers.Models
 {
     /// <summary>
-     /// Implements Analyser Category Constants.
-     /// </summary>
+    /// Implements Analyser Category Constants.
+    /// </summary>
     public class AnalyserCategoryConstants
     {
         /// <summary>

@@ -10,14 +10,14 @@ using Microsoft.CodeAnalysis.Simplification;
 namespace TestHelper
 {
     /// <summary>
-    /// Diagnostic Producer class with extra methods dealing with applying codefixes
+    /// Diagnostic Producer class with extra methods dealing with applying code fixes
     /// All methods are static.
     /// </summary>
     public abstract partial class CodeFixVerifier : DiagnosticVerifier
     {
         /// <summary>
         /// Apply the inputted CodeAction to the inputted document.
-        /// Meant to be used to apply codefixes.
+        /// Meant to be used to apply code fixes.
         /// </summary>
         /// <param name="document">The Document to apply the fix on.</param>
         /// <param name="codeAction">A CodeAction that will be applied to the Document.</param>
@@ -82,7 +82,7 @@ namespace TestHelper
             return root.GetText().ToString();
         }
 
-        protected string GenerateMultipleLinesOfText(int numberOfLines, string text = "SampleText")
+        protected static string GenerateMultipleLinesOfText(int numberOfLines, string text = "SampleText")
         {
             var stringBuilder = new StringBuilder();
             for (var counter = 0; counter < numberOfLines; counter++)

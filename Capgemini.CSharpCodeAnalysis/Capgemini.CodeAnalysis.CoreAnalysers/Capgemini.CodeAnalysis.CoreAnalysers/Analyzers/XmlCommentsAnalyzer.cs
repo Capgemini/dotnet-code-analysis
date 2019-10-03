@@ -20,11 +20,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class XmlCommentsAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.XmlCommentsAnalyzerId.ToDiagnosticId(), nameof(XmlCommentsAnalyzer),
-            $"{nameof(XmlCommentsAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.Comments, DiagnosticSeverity.Warning, false);
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+                                                                                    AnalyzerType.XmlCommentsAnalyzerId.ToDiagnosticId(),
+                                                                                    nameof(XmlCommentsAnalyzer),
+                                                                                    $"{nameof(XmlCommentsAnalyzer)} \'{{0}}\'",
+                                                                                    AnalyserCategoryConstants.Comments,
+                                                                                    DiagnosticSeverity.Warning,
+                                                                                    false);
 
         /// <summary>
-        /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

@@ -35,7 +35,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                                         true);
 
         /// <summary>
-        /// Overrides the Supported Diagnostics property.
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(ErrorRule);
 
@@ -51,6 +51,31 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         private static bool ParameterCountIsBetweenWarningAndErrorThreshold(int parameterCount)
         {
             return parameterCount > MaximumNumberOfParametersWarning && parameterCount < MaximumNumberOfParametersError;
+        }
+
+        private static void RaiseErrorDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
+        {
+            if (parameterCount == MaximumNumberOfParametersError)
+            {
+                comparisonText = "equal to";
+            }
+
+            var warningMessage =
+                $"Constructor has a total of {parameterCount} parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the constructor / class.";
+            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, ErrorRule, warningMessage);
+        }
+
+        private static void RaiseWarningDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
+        {
+            if (parameterCount == MaximumNumberOfParametersWarning)
+            {
+                comparisonText = "equal to";
+            }
+
+            var warningMessage =
+                $"Constructor has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the constructor / class.";
+
+            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, WarningRule, warningMessage);
         }
 
         private void AnalyzeConstructorDeclaration(SyntaxNodeAnalysisContext context)
@@ -73,31 +98,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             {
                 RaiseWarningDiagnostic(context, parameterCount, comparisonText, declarationLocation);
             }
-        }
-
-        private void RaiseErrorDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
-        {
-            if (parameterCount == MaximumNumberOfParametersError)
-            {
-                comparisonText = "equal to";
-            }
-
-            var warningMessage =
-                $"Constructor has a total of {parameterCount} parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the constructor / class.";
-            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, ErrorRule, warningMessage);
-        }
-
-        private void RaiseWarningDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
-        {
-            if (parameterCount == MaximumNumberOfParametersWarning)
-            {
-                comparisonText = "equal to";
-            }
-
-            var warningMessage =
-                $"Constructor has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the constructor / class.";
-
-            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, WarningRule, warningMessage);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                                 true);
 
         /// <summary>
-        /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
+        /// Gets the set of descriptors for the diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -118,8 +118,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             // if this method is within an interface then we do not need to process with access qualifier check
             var interfaceDeclaration = declaration.Parent as InterfaceDeclarationSyntax;
-            if (interfaceDeclaration == null && !
-                ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
+            if (interfaceDeclaration == null && !ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
             {
                 DiagnosticsManager.CreateExplicitAccessDiagnostic(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
             }

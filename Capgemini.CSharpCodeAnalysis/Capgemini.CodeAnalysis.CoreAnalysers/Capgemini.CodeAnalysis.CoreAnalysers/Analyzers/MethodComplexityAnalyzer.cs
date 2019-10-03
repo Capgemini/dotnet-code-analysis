@@ -29,7 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                     true);
 
         /// <summary>
-        /// Overrides the Supported Diagnostics property.
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 

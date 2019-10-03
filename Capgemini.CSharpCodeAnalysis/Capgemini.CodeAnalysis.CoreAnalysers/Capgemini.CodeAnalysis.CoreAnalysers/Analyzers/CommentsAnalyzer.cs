@@ -29,7 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                 true);
 
         /// <summary>
-        /// Overrides the Supported Diagnostics property.
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -45,6 +45,71 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             context.RegisterSyntaxNodeAction(AnalyzeClassDeclaration, SyntaxKind.ClassDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzeInterfaceDeclaration, SyntaxKind.InterfaceDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzeLocalVariableDeclaration, SyntaxKind.LocalDeclarationStatement);
+        }
+
+        private static void ProcessDocumentationComments(SyntaxNodeAnalysisContext context, Location declarationLocation, string declarationName, int threshold)
+        {
+            var docummentation = CommentsManager.ExtractDocumentationComment(context.Node);
+            if (docummentation != null)
+            {
+                var numberOfLines = RegexManager.NumberOfLines(docummentation.Content.ToFullString());
+                if (numberOfLines > threshold)
+                {
+                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation, Rule, declarationName, threshold);
+                }
+            }
+        }
+
+        private static void ProcessComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> comments, Location objectLocation, string objectName)
+        {
+            const int maxNumberOfLinesForComments = 5;
+            var singleLineComments = comments.Where(a => a.IsKind(SyntaxKind.SingleLineCommentTrivia)).ToList();
+            var multiLineComments = comments.Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia)).ToList();
+
+            if (singleLineComments.Count > 0 && multiLineComments.Count > 0)
+            {
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has both multiline and single line comments. Please use only one type of comments.");
+            }
+            else if (singleLineComments.Count > maxNumberOfLinesForComments)
+            {
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
+            }
+            else if (multiLineComments.Count > 1)
+            {
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has multiple MultiLines comments. Please use no more than 1 MultiLines of comments.");
+            }
+            else if (multiLineComments.Count == 1)
+            {
+                var numberOfLines = RegexManager.NumberOfLines(multiLineComments[0].ToFullString());
+                if (numberOfLines > maxNumberOfLinesForComments)
+                {
+                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
+                }
+            }
+        }
+
+        private static void AnalyzeComments(SyntaxNodeAnalysisContext context, SyntaxToken syntaxToken, string message)
+        {
+            var leadingComments = context.Node.GetLeadingTrivia()
+                .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                .ToList();
+            var trailingComments = context.Node.GetTrailingTrivia()
+                .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
+                .ToList();
+
+            if (leadingComments.Count > 0 && trailingComments.Count > 0)
+            {
+                // we don't want a variable to have both leading and trailing comments
+                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, syntaxToken.GetLocation(), Rule, message);
+            }
+            else if (leadingComments.Count > 0)
+            {
+                ProcessComments(context, leadingComments, syntaxToken.GetLocation(), syntaxToken.Text);
+            }
+            else if (trailingComments.Count > 0)
+            {
+                ProcessComments(context, trailingComments, syntaxToken.GetLocation(), syntaxToken.Text);
+            }
         }
 
         private void AnalyzePropertyDeclaration(SyntaxNodeAnalysisContext context)
@@ -113,71 +178,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
             var identifier = declaration.Identifier;
             ProcessDocumentationComments(context, identifier.GetLocation(), identifier.Text, MaxNumberOfLinesForDocumentation);
-        }
-
-        private void ProcessDocumentationComments(SyntaxNodeAnalysisContext context, Location declarationLocation, string declarationName, int threshold)
-        {
-            var docummentation = CommentsManager.ExtractDocumentationComment(context.Node);
-            if (docummentation != null)
-            {
-                var numberOfLines = RegexManager.NumberOfLines(docummentation.Content.ToFullString());
-                if (numberOfLines > threshold)
-                {
-                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, declarationLocation, Rule, declarationName, threshold);
-                }
-            }
-        }
-
-        private void AnalyzeComments(SyntaxNodeAnalysisContext context, SyntaxToken syntaxToken, string message)
-        {
-            var leadingComments = context.Node.GetLeadingTrivia()
-                .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
-                .ToList();
-            var trailingComments = context.Node.GetTrailingTrivia()
-                .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
-                .ToList();
-
-            if (leadingComments.Count > 0 && trailingComments.Count > 0)
-            {
-                //we don't want a variable to have both leading and trailing comments
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, syntaxToken.GetLocation(), Rule, message);
-            }
-            else if (leadingComments.Count > 0)
-            {
-                ProcessComments(context, leadingComments, syntaxToken.GetLocation(), syntaxToken.Text);
-            }
-            else if (trailingComments.Count > 0)
-            {
-                ProcessComments(context, trailingComments, syntaxToken.GetLocation(), syntaxToken.Text);
-            }
-        }
-
-        private void ProcessComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> comments, Location objectLocation, string objectName)
-        {
-            const int maxNumberOfLinesForComments = 5;
-            var singleLineComments = comments.Where(a => a.IsKind(SyntaxKind.SingleLineCommentTrivia)).ToList();
-            var multiLineComments = comments.Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia)).ToList();
-
-            if (singleLineComments.Count > 0 && multiLineComments.Count > 0)
-            {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has both multiline and single line comments. Please use only one type of comments.");
-            }
-            else if (singleLineComments.Count > maxNumberOfLinesForComments)
-            {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
-            }
-            else if (multiLineComments.Count > 1)
-            {
-                DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has multiple MultiLines comments. Please use no more than 1 MultiLines of comments.");
-            }
-            else if (multiLineComments.Count == 1)
-            {
-                var numberOfLines = RegexManager.NumberOfLines(multiLineComments[0].ToFullString());
-                if (numberOfLines > maxNumberOfLinesForComments)
-                {
-                    DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, objectLocation, Rule, $"{objectName} has more than {maxNumberOfLinesForComments} lines comments. Please use no more than {maxNumberOfLinesForComments} lines of comments.");
-                }
-            }
         }
     }
 }

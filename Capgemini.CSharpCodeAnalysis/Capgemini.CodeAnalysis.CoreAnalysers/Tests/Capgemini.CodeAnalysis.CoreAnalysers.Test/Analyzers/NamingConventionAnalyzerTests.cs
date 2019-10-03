@@ -13,13 +13,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void NamingConventionAnalyzer_Passes_ClassName()
+        public void NamingConventionAnalyzerPassesClassName()
         {
             var test = @"
     using System;
@@ -60,7 +60,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [DataRow("ClassNameG", "internal", 24)]
         [DataRow("ClassNAme", "internal", 24)]
         [DataRow("ClassNAMe", "internal", 24)]
-        public void NamingConventionAnalyzer_RaisesDiagnostic_WhenClassNameBreaksNamingConventionRulesIgnoringAccessModifier(string className, string accessibilityModifier, int expectedColumnLocation)
+        public void NamingConventionAnalyzerRaisesDiagnosticWhenClassNameBreaksNamingConventionRulesIgnoringAccessModifier(string className, string accessibilityModifier, int expectedColumnLocation)
         {
             var test = $@"
     using System;
@@ -144,7 +144,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_WhenPrivateFieldsMeetsNamingConvention()
+        public void NamingConventionAnalyzerDoesNotRaiseDiagnosticWhenPrivateFieldsMeetsNamingConvention()
         {
             var test = @"
     using System;
@@ -190,7 +190,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [DataRow("fieldNAme", "internal", 29)]
         [DataRow("fieldNAMe", "internal", 29)]
         [DataRow("fieldNamE", "internal", 29)]
-        public void NamingConventionAnalyzer_RaisesDiagnostic_PublicFieldNameMustStartWithUpperCaseCharacter(string fieldName, string accessibilityModifier, int expectedColumnLocation)
+        public void NamingConventionAnalyzerRaisesDiagnosticPublicFieldNameMustStartWithUpperCaseCharacter(string fieldName, string accessibilityModifier, int expectedColumnLocation)
         {
             var test = $@"
     using System;
@@ -223,7 +223,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void NamingConventionAnalyzer_DoesNotRaiseDiagnostic_ForPrivatePropertyName()
+        public void NamingConventionAnalyzerDoesNotRaiseDiagnosticForPrivatePropertyName()
         {
             var test = @"
     using System;
@@ -269,7 +269,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [DataRow("fieldNAme", "internal", 29)]
         [DataRow("fieldNAMe", "internal", 29)]
         [DataRow("fieldNamE", "internal", 29)]
-        public void NamingConventionAnalyzer_RaisesDiagnostic_PublicPropertyNameMustStartWithUpperCaseCharacter(string propertyName, string accessibilityModifier, int expectedColumnLocation)
+        public void NamingConventionAnalyzerRaisesDiagnosticPublicPropertyNameMustStartWithUpperCaseCharacter(string propertyName, string accessibilityModifier, int expectedColumnLocation)
         {
             var test = $@"
     using System;

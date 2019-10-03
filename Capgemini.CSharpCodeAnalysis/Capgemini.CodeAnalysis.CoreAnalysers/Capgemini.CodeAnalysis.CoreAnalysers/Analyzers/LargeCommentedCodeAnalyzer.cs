@@ -42,6 +42,58 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             context.RegisterCompilationStartAction(CompilationStartAction);
         }
 
+        private static void ProcessSingleLineComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> singleLineComments, string declarationBodyText = null)
+        {
+            if (singleLineComments?.Count > 0)
+            {
+                if (!string.IsNullOrWhiteSpace(declarationBodyText) && RegexManager.MatchFound($@"((\s)*\/\/(.)*(\n)*){{{MaxNoOfLinesForComments},}}", declarationBodyText))
+                {
+                    foreach (var singleLineComment in singleLineComments)
+                    {
+                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, singleLineComment.GetLocation(), Rule, Message);
+                    }
+                }
+                else if (singleLineComments.Count > MaxNoOfLinesForComments)
+                {
+                    foreach (var singleLineComment in singleLineComments)
+                    {
+                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, singleLineComment.GetLocation(), Rule, Message);
+                    }
+                }
+            }
+        }
+
+        private static bool ProcessMultiLineComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> multiLineComments)
+        {
+            var multiLineCommentViolationFound = false;
+            if (multiLineComments?.Count > 0)
+            {
+                foreach (var multiLineComment in multiLineComments)
+                {
+                    var content = multiLineComment.ToFullString();
+                    if (RegexManager.MatchFound($@"\/[*]((.)*\n){{{MaxNoOfLinesForComments},}}", content))
+                    {
+                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, multiLineComment.GetLocation(), Rule, Message);
+                        multiLineCommentViolationFound = true;
+                        break;
+                    }
+                }
+            }
+
+            return multiLineCommentViolationFound;
+        }
+
+        private static void ProcessComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> comments, string declarationBodyText = null)
+        {
+            if (comments?.Count > 0)
+            {
+                if (!ProcessMultiLineComments(context, comments.Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia)).ToList()))
+                {
+                    ProcessSingleLineComments(context, comments.Where(a => a.IsKind(SyntaxKind.SingleLineCommentTrivia)).ToList(), declarationBodyText);
+                }
+            }
+        }
+
         private void CompilationStartAction(CompilationStartAnalysisContext context)
         {
             context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
@@ -160,58 +212,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                        .Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia) || a.IsKind(SyntaxKind.SingleLineCommentTrivia))
                                                        .ToList();
             ProcessComments(context, commentsBeforeDeclaration);
-        }
-
-        private void ProcessComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> comments, string declarationBodyText = null)
-        {
-            if (comments?.Count > 0)
-            {
-                if (!ProcessMultiLineComments(context, comments.Where(a => a.IsKind(SyntaxKind.MultiLineCommentTrivia)).ToList()))
-                {
-                    ProcessSingleLineComments(context, comments.Where(a => a.IsKind(SyntaxKind.SingleLineCommentTrivia)).ToList(), declarationBodyText);
-                }
-            }
-        }
-
-        private void ProcessSingleLineComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> singleLineComments, string declarationBodyText = null)
-        {
-            if (singleLineComments?.Count > 0)
-            {
-                if (!string.IsNullOrWhiteSpace(declarationBodyText) && RegexManager.MatchFound($@"((\s)*\/\/(.)*(\n)*){{{MaxNoOfLinesForComments},}}", declarationBodyText))
-                {
-                    foreach (var singleLineComment in singleLineComments)
-                    {
-                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, singleLineComment.GetLocation(), Rule, Message);
-                    }
-                }
-                else if (singleLineComments.Count > MaxNoOfLinesForComments)
-                {
-                    foreach (var singleLineComment in singleLineComments)
-                    {
-                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, singleLineComment.GetLocation(), Rule, Message);
-                    }
-                }
-            }
-        }
-
-        private bool ProcessMultiLineComments(SyntaxNodeAnalysisContext context, List<SyntaxTrivia> multiLineComments)
-        {
-            var multiLineCommentViolationFound = false;
-            if (multiLineComments?.Count > 0)
-            {
-                foreach (var multiLineComment in multiLineComments)
-                {
-                    var content = multiLineComment.ToFullString();
-                    if (RegexManager.MatchFound($@"\/[*]((.)*\n){{{MaxNoOfLinesForComments},}}", content))
-                    {
-                        DiagnosticsManager.CreateCommentsTooLongDiagnostic(context, multiLineComment.GetLocation(), Rule, Message);
-                        multiLineCommentViolationFound = true;
-                        break;
-                    }
-                }
-            }
-
-            return multiLineCommentViolationFound;
         }
     }
 }

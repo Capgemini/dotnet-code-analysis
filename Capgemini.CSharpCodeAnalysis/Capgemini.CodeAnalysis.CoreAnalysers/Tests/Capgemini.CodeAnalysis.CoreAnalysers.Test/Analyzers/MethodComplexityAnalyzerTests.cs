@@ -14,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
@@ -44,7 +44,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithComplexityLessThan15_Passes()
+        public void MethodWithComplexityLessThan15Passes()
         {
             var test = @"
     using System;
@@ -74,7 +74,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithReturnValueAndComplexityLessThan15_Passes()
+        public void MethodWithReturnValueAndComplexityLessThan15Passes()
         {
             var test = @"
     using System;
@@ -116,7 +116,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithComplexityOf15_Passes()
+        public void MethodWithComplexityOf15Passes()
         {
             var test = @"
     using System;
@@ -180,7 +180,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithComplexityGreaterThan15_Fails()
+        public void MethodWithComplexityGreaterThan15Fails()
         {
             var expected = new DiagnosticResult
             {

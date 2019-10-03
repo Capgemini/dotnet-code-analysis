@@ -16,11 +16,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
     /// Implements the Private Field Naming Underscore CodeFixProvider.
     /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
     /// </summary>
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider)), Shared]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingUnderscoreCodeFixProvider))]
+    [Shared]
     public class PrivateFieldNamingUnderscoreCodeFixProvider : CodeFixProviderBase
     {
         /// <summary>
-        /// Overrides FixableDiagnosticIds.
+        /// Gets the overridden FixableDiagnosticIds.
         /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId());
 
@@ -28,7 +29,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
         /// Overrides RegisterCodeFixesAsync.
         /// </summary>
         /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
-        /// <returns></returns>
+        /// <returns>A task that, when completed, will contain the result of the Code Fix registration.</returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var contextRoot = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);

@@ -18,11 +18,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
     /// Implements the Private Field Naming CasingCodeFixProvider.
     /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
     /// </summary>
-    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingCasingCodeFixProvider)), Shared]
+    [ExportCodeFixProvider(LanguageNames.CSharp, Name = nameof(PrivateFieldNamingCasingCodeFixProvider))]
+    [Shared]
     public class PrivateFieldNamingCasingCodeFixProvider : CodeFixProviderBase
     {
         /// <summary>
-        /// Overrides FixableDiagnosticIds.
+        /// Gets the overridden FixableDiagnosticIds.
         /// </summary>
         public sealed override ImmutableArray<string> FixableDiagnosticIds => ImmutableArray.Create(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId());
 
@@ -30,7 +31,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
         /// Overrides RegisterCodeFixesAsync.
         /// </summary>
         /// <param name="context">An instance of <see cref="CodeFixContext"/> to support the analysis.</param>
-        /// <returns>A task which will contain the result.</returns>
+        /// <returns>A task that, when completed, will contain the result of the Code Fix registration.</returns>
         public sealed override async Task RegisterCodeFixesAsync(CodeFixContext context)
         {
             var contextRoot = await context.Document.GetSyntaxRootAsync(context.CancellationToken).ConfigureAwait(false);
@@ -162,7 +163,22 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 
         private static string UpdateInitialPartsOfTheName(string initialUpdates)
         {
+#pragma warning disable CA1308 // Normalize strings to uppercase
             return initialUpdates.Substring(0, 2).ToLowerInvariant() + initialUpdates.Substring(2, initialUpdates.Length - 3) + initialUpdates.Substring(initialUpdates.Length - 1).ToLowerInvariant();
+#pragma warning restore CA1308 // Normalize strings to uppercase
+        }
+
+        private static string ChangeCase(string currentName)
+        {
+            var initialUpdateForCurrentName = UpdateInitialPartsOfTheName(currentName);
+            var namePostAcronymUpdates = UpdateForKnownAcronyms(initialUpdateForCurrentName);
+            System.Console.WriteLine(namePostAcronymUpdates);
+            if (!NameHasConsecutiveCapitalLetters(namePostAcronymUpdates))
+            {
+                return namePostAcronymUpdates;
+            }
+
+            return RemoveConsecutiveCapitals(namePostAcronymUpdates);
         }
 
         private async Task<Solution> UpdateFieldNameCasing(Document document, SyntaxToken declaration, CancellationToken cancellationToken)
@@ -174,19 +190,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
             var solution = document.Project.Solution;
 
             return await Renamer.RenameSymbolAsync(solution, symbol, newName, solution.Workspace.Options, cancellationToken).ConfigureAwait(false);
-        }
-
-        private string ChangeCase(string currentName)
-        {
-            var initialUpdateForCurrentName = UpdateInitialPartsOfTheName(currentName);
-            var namePostAcronymUpdates = UpdateForKnownAcronyms(initialUpdateForCurrentName);
-            System.Console.WriteLine(namePostAcronymUpdates);
-            if (!NameHasConsecutiveCapitalLetters(namePostAcronymUpdates))
-            {
-                return namePostAcronymUpdates;
-            }
-
-            return RemoveConsecutiveCapitals(namePostAcronymUpdates);
         }
     }
 }

@@ -8,14 +8,14 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
 {
     /// <summary>
-     /// Implements the CodeFix ProviderBase.
-     /// </summary>
+    /// Implements the CodeFix ProviderBase.
+    /// </summary>
     public class CodeFixProviderBase : CodeFixProvider
     {
         /// <summary>
-        /// Overrides FixableDiagnosticIds.
+        /// Gets the overridden FixableDiagnosticIds.
         /// </summary>
-        public override ImmutableArray<string> FixableDiagnosticIds => throw new NotImplementedException();
+        public override ImmutableArray<string> FixableDiagnosticIds => Array.Empty<string>().ToImmutableArray();
 
         /// <summary>
         /// Overrides RegisterCodeFixesAsync.
@@ -42,7 +42,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.CodeFixes
         /// </summary>
         /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
         /// <returns><c>true</c> if the list contains an externally visible token, otherwise <c>false</c>.</returns>
-        protected bool IsExternallyVisible(SyntaxTokenList tokenList)
+        protected static bool IsExternallyVisible(SyntaxTokenList tokenList)
         {
             return tokenList.Any(SyntaxKind.PublicKeyword) || tokenList.Any(SyntaxKind.InternalKeyword) || tokenList.Any(SyntaxKind.ProtectedKeyword);
         }

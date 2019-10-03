@@ -9,19 +9,20 @@ using TestHelper;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 {
+#pragma warning disable CA1030 // Use events where appropriate
     [TestClass]
     public class ExplicitAccessModifiersAnalyzerTests : CodeFixVerifier
     {
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithPublicKeyword()
+        public void ExplicitAccessModifiersAnalyzerPassesClassWithPublicKeyword()
         {
             var test = @"
     using System;
@@ -45,7 +46,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithInternalKeyword()
+        public void ExplicitAccessModifiersAnalyzerPassesClassWithInternalKeyword()
         {
             var test = @"
     using System;
@@ -69,7 +70,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_Passes_Class_WithPrivateKeyword()
+        public void ExplicitAccessModifiersAnalyzerPassesClassWithPrivateKeyword()
         {
             var test = @"
     using System;
@@ -93,7 +94,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_PassesForStaticConstructorWithNoAccessModifier()
+        public void ExplicitAccessModifiersAnalyzerPassesForStaticConstructorWithNoAccessModifier()
         {
             var test = @"
     using System;
@@ -116,7 +117,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ExplicitAccessModifiersAnalyzer_FailsForNonStaticConstructorWithNoAccessModifier()
+        public void ExplicitAccessModifiersAnalyzerFailsForNonStaticConstructorWithNoAccessModifier()
         {
             var expected = new DiagnosticResult
             {
@@ -183,19 +184,17 @@ namespace ConsoleApplication1
     {
     }
 }";
-
-            VerifyCSharpDiagnostic(original,
-                new DiagnosticResult
-                {
-                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                    Severity = DiagnosticSeverity.Error,
-                    Locations =
-                    new DiagnosticResultLocation[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 4, 11)
-                    }
-                });
+            VerifyCSharpDiagnostic(original, new DiagnosticResult
+                                                                {
+                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                                                                    Severity = DiagnosticSeverity.Error,
+                                                                    Locations =
+                                                                                                    new DiagnosticResultLocation[]
+                                                                                                    {
+                                                                                                        new DiagnosticResultLocation("Test0.cs", 4, 11)
+                                                                                                    }
+                                                                });
         }
 
         [TestMethod]
@@ -208,18 +207,17 @@ namespace ConsoleApplication1
     {
     }
 }";
-            VerifyCSharpDiagnostic(original,
-                new DiagnosticResult
-                {
-                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                    Severity = DiagnosticSeverity.Error,
-                    Locations =
-                    new DiagnosticResultLocation[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 4, 18)
-                    }
-                });
+            VerifyCSharpDiagnostic(original, new DiagnosticResult
+                                                                {
+                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                                                                    Severity = DiagnosticSeverity.Error,
+                                                                    Locations =
+                                                                    new DiagnosticResultLocation[]
+                                                                    {
+                                                                        new DiagnosticResultLocation("Test0.cs", 4, 18)
+                                                                    }
+                                                                });
         }
 
         [TestMethod]
@@ -237,18 +235,17 @@ namespace ConsoleApplication1
     }
 }";
 
-            VerifyCSharpDiagnostic(original,
-                new DiagnosticResult
-                {
-                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                    Severity = DiagnosticSeverity.Error,
-                    Locations =
-                    new DiagnosticResultLocation[]
-                    {
-                        new DiagnosticResultLocation("Test0.cs", 7, 11)
-                    }
-                });
+            VerifyCSharpDiagnostic(original, new DiagnosticResult
+                                                                {
+                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                                                                    Severity = DiagnosticSeverity.Error,
+                                                                    Locations =
+                                                                    new DiagnosticResultLocation[]
+                                                                    {
+                                                                        new DiagnosticResultLocation("Test0.cs", 7, 11)
+                                                                    }
+                                                                });
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
@@ -256,4 +253,5 @@ namespace ConsoleApplication1
             return new ExplicitAccessModifiersAnalyzer();
         }
     }
+#pragma warning restore CA1030 // Use events where appropriate
 }

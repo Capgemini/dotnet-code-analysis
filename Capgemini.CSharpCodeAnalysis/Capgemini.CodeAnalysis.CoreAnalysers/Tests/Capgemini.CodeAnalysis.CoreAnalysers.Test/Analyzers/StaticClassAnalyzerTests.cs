@@ -13,7 +13,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
@@ -43,7 +43,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void NonStaticClass_WithStaticMethod_Passes()
+        public void NonStaticClassWithStaticMethodPasses()
         {
             var test = @"
     using System;
@@ -74,7 +74,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void StaticClass_Fails()
+        public void StaticClassFails()
         {
             var expected = new DiagnosticResult
             {
@@ -130,7 +130,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void StaticClassWithExtensionMethod_Passes()
+        public void StaticClassWithExtensionMethodPasses()
         {
             var test = @"
     using System;

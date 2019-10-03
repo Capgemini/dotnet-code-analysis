@@ -26,7 +26,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                 true);
 
         /// <summary>
-        /// Overrides the Supported Diagnostics property.
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
@@ -36,8 +36,26 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
-            // todo:will reintroduce in later release
+            // ToDo: will reintroduce in later release
             // context.RegisterSyntaxNodeAction(AnalyzeStringLiteralsWithinMethods, SyntaxKind.MethodDeclaration);
+        }
+
+        private static bool ParentDeclarationIsNotConstant(LiteralExpressionSyntax syntax)
+        {
+            LocalDeclarationStatementSyntax localDeclaration = null;
+
+            var fieldDeclaration = syntax.Ancestors()
+                                          .OfType<FieldDeclarationSyntax>()
+                                          .FirstOrDefault(x => x.Modifiers.Any(SyntaxKind.ConstKeyword));
+
+            if (fieldDeclaration == null)
+            {
+                localDeclaration = syntax.Ancestors()
+                                        .OfType<LocalDeclarationStatementSyntax>()
+                                        .FirstOrDefault(x => x.Modifiers.Any(SyntaxKind.ConstKeyword));
+            }
+
+            return fieldDeclaration == null && localDeclaration == null;
         }
 
         private void AnalyzeStringLiteralsWithinMethods(SyntaxNodeAnalysisContext context)
@@ -60,30 +78,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                     {
                         if (ParentDeclarationIsNotConstant(literal))
                         {
-                            DiagnosticsManager.CreateHardCodedValueDiagnostic(context, literal.GetLocation(), Rule,
-                                literal.GetText().ToString());
+                            DiagnosticsManager.CreateHardCodedValueDiagnostic(context, literal.GetLocation(), Rule, literal.GetText().ToString());
                         }
                     }
                 }
             }
-        }
-
-        private static bool ParentDeclarationIsNotConstant(LiteralExpressionSyntax syntax)
-        {
-            LocalDeclarationStatementSyntax localDeclaration = null;
-
-            var fieldDeclaration = syntax.Ancestors()
-                                          .OfType<FieldDeclarationSyntax>()
-                                          .FirstOrDefault(x => x.Modifiers.Any(SyntaxKind.ConstKeyword));
-
-            if (fieldDeclaration == null)
-            {
-                localDeclaration = syntax.Ancestors()
-                                        .OfType<LocalDeclarationStatementSyntax>()
-                                        .FirstOrDefault(x => x.Modifiers.Any(SyntaxKind.ConstKeyword));
-            }
-
-            return fieldDeclaration == null && localDeclaration == null;
         }
     }
 }

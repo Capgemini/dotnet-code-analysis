@@ -16,13 +16,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void Class_With_NoPublicMethod_Passes()
+        public void ClassWithNoPublicMethodPasses()
         {
             var test = @"
 
@@ -37,7 +37,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_Single_PublicMethod_And19ProtectedMethods_Passes()
+        public void ClassWithSinglePublicMethodAnd19ProtectedMethodsPasses()
         {
             var test = $@"
 
@@ -55,7 +55,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_Single_PublicMethod_Passes()
+        public void ClassWithSinglePublicMethodPasses()
         {
             var test = $@"
 
@@ -72,7 +72,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_Single_ProtectedMethod_Passes()
+        public void ClassWithSingleProtectedMethodPasses()
         {
             var test = $@"
 
@@ -89,7 +89,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20_PublicMethods_Passes()
+        public void ClassWith20PublicMethodsPasses()
         {
             var test = $@"
 
@@ -105,7 +105,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_19_PublicMethods_Passes()
+        public void ClassWith19PublicMethodsPasses()
         {
             var test = $@"
 
@@ -121,7 +121,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20PublicMethods_AndOtherOtherPrivateMethods_Passes()
+        public void ClassWith20PublicMethodsAndOtherOtherPrivateMethodsPasses()
         {
             var test = $@"
 
@@ -138,7 +138,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20ProtectedMethods_AndOtherOtherPrivateMethods_Passes()
+        public void ClassWith20ProtectedMethodsAndOtherOtherPrivateMethodsPasses()
         {
             var test = $@"
 
@@ -155,7 +155,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20PublicMethods_And_ProtectedMethods_Methods_Fails()
+        public void ClassWith20PublicMethodsAndProtectedMethodsMethodsFails()
         {
             var expected = new DiagnosticResult
             {
@@ -202,7 +202,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_MoreThan20ProtectedMethods_Methods_Fails()
+        public void ClassWithMoreThan20ProtectedMethodsMethodsFails()
         {
             var expected = new DiagnosticResult
             {
@@ -230,7 +230,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20_PublicMethods_And_1_PublicContructor_Fails()
+        public void ClassWith20PublicMethodsAnd1PublicContructorFails()
         {
             var expected = new DiagnosticResult
             {
@@ -259,7 +259,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20_PublicAndProtectedMethods_And_1_PublicContructor_Fails()
+        public void ClassWith20PublicAndProtectedMethodsAnd1PublicContructorFails()
         {
             var expected = new DiagnosticResult
             {
@@ -289,7 +289,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_20_Public_And_Protected_Methods_With_1_PrivateContructor_Passes()
+        public void ClassWith20PublicAndProtectedMethodsWith1PrivateContructorPasses()
         {
             var test = $@"
 
@@ -308,7 +308,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_With_MoredThan20_PublicAndProtectedMethods_Fails()
+        public void ClassWithMoredThan20PublicAndProtectedMethodsFails()
         {
             var expected = new DiagnosticResult
             {
@@ -339,7 +339,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void Class_WithMoreThan20PublicMethods_Fails()
+        public void ClassWithMoreThan20PublicMethodsFails()
         {
             var expected = new DiagnosticResult
             {
