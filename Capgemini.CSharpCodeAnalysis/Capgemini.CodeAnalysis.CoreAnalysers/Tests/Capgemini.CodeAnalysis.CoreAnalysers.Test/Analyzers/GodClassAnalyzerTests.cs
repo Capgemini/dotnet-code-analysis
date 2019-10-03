@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
@@ -363,6 +364,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     }}";
 
             VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new GodClassAnalyzer().Initialize(null)).Message.Equals("An instance of GodClassAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

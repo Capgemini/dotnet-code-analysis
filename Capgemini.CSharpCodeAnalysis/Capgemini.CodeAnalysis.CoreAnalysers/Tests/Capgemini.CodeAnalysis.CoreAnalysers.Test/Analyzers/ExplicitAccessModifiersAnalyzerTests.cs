@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
@@ -246,6 +247,12 @@ namespace ConsoleApplication1
                                                                         new DiagnosticResultLocation("Test0.cs", 7, 11)
                                                                     }
                                                                 });
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new ExplicitAccessModifiersAnalyzer().Initialize(null)).Message.Equals("An instance of ExplicitAccessModifiersAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

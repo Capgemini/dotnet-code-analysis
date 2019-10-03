@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -244,6 +245,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     }";
 
             VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new ConstructorParametersAnalyzer().Initialize(null)).Message.Equals("An instance of ConstructorParametersAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

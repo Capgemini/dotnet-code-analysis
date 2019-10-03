@@ -136,6 +136,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new MonsterMethodAnalyzer().Initialize(null)).Message.Equals("An instance of MonsterMethodAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MonsterMethodAnalyzer();

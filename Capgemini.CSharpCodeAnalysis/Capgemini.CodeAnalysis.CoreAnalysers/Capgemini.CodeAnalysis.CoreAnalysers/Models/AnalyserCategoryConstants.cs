@@ -3,7 +3,7 @@
     /// <summary>
     /// Implements Analyser Category Constants.
     /// </summary>
-    public class AnalyserCategoryConstants
+    public static class AnalyserCategoryConstants
     {
         /// <summary>
         /// Comments.

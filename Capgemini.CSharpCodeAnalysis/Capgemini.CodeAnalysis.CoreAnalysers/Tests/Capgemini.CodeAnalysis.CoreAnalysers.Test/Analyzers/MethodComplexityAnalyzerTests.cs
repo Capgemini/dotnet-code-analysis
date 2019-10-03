@@ -321,6 +321,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new MethodComplexityAnalyzer().Initialize(null)).Message.Equals("An instance of MethodComplexityAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MethodComplexityAnalyzer();

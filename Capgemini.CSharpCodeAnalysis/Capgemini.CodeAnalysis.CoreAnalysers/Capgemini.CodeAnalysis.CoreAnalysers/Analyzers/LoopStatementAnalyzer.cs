@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
@@ -33,6 +34,11 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeForEachStatement, SyntaxKind.ForEachStatement);
             context.RegisterSyntaxNodeAction(AnalyzeForStatement, SyntaxKind.ForStatement);
             context.RegisterSyntaxNodeAction(AnalyzeWhileStatement, SyntaxKind.WhileStatement);

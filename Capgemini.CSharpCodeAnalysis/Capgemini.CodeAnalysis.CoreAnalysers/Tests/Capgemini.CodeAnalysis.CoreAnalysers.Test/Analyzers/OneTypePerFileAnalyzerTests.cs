@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -43,7 +44,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void TwoClassesInOneFile_Fails()
+        public void TwoClassesInOneFileFails()
         {
             var expected = new DiagnosticResult
             {
@@ -117,7 +118,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MultipleClassesAndEnumsInOneFile_Fails()
+        public void MultipleClassesAndEnumsInOneFileFails()
         {
             var expected = new DiagnosticResult
             {
@@ -173,7 +174,7 @@ Value2 = 2
         }
 
         [TestMethod]
-        public void MultipleClassesInterfacesAndEnumsInOneFile_Fails()
+        public void MultipleClassesInterfacesAndEnumsInOneFileFails()
         {
             var expected = new DiagnosticResult
             {
@@ -235,6 +236,12 @@ public interface ITest2
     }";
 
             VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new OneTypePerFileAnalyzer().Initialize(null)).Message.Equals("An instance of OneTypePerFileAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

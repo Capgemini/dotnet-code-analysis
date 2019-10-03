@@ -141,6 +141,7 @@ namespace TestHelper
 
             var projectId = ProjectId.CreateNewId(debugName: TestProjectName);
 
+#pragma warning disable CA2000 // Dispose objects before losing scope
             var solution = new AdhocWorkspace()
                 .CurrentSolution
                 .AddProject(projectId, TestProjectName, TestProjectName, language)
@@ -148,6 +149,7 @@ namespace TestHelper
                 .AddMetadataReference(projectId, SystemCoreReference)
                 .AddMetadataReference(projectId, CSharpSymbolsReference)
                 .AddMetadataReference(projectId, CodeAnalysisReference);
+#pragma warning restore CA2000 // Dispose objects before losing scope
 
             var count = 0;
             foreach (var source in sources)

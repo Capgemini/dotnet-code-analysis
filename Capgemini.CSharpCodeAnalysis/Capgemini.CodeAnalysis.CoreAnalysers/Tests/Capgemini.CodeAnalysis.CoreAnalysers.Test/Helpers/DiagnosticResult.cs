@@ -6,11 +6,15 @@ namespace TestHelper
     /// <summary>
     /// Struct that stores information about a Diagnostic appearing in a source.
     /// </summary>
+#pragma warning disable CA1815 // Override equals and operator equals on value types
     public struct DiagnosticResult
+#pragma warning restore CA1815 // Override equals and operator equals on value types
     {
         private DiagnosticResultLocation[] locations;
 
+#pragma warning disable CA1819 // Properties should not return arrays
         public DiagnosticResultLocation[] Locations
+#pragma warning restore CA1819 // Properties should not return arrays
         {
             get
             {
