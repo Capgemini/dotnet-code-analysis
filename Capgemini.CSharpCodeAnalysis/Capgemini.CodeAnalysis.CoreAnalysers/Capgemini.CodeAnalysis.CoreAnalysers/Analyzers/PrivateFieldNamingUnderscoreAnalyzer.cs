@@ -1,39 +1,53 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
+﻿using System;
+using System.Collections.Immutable;
+using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
-using System;
-using System.Collections.Immutable;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
-{    /// <summary>
-    /// Implements the PrivateField Naming Underscore Analyzer
+{
+    /// <summary>
+    /// Implements the PrivateField Naming Underscore Analyzer.
+    /// All tests have been removed as, now this is deprecated, they fail and changes are not supported - deprecated ;-).
     /// </summary>
+    [Obsolete("Please use StyleCop.Analyzers instead. This analyser will be removed in future versions. This analyser is now disabled by default.")]
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class PrivateFieldNamingUnderscoreAnalyzer : AnalyzerBase
     {
-        static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId(),
-            nameof(PrivateFieldNamingUnderscoreAnalyzer), $"{nameof(PrivateFieldNamingUnderscoreAnalyzer)}: Field '{{0}}' does not start with '_'", "Naming", DiagnosticSeverity.Warning, isEnabledByDefault: true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+                                                        new DiagnosticDescriptor(
+                                                            AnalyzerType.PrivateFieldNamingUnderscoreAnalyzerId.ToDiagnosticId(),
+                                                            nameof(PrivateFieldNamingUnderscoreAnalyzer),
+                                                            $"{nameof(PrivateFieldNamingUnderscoreAnalyzer)}: Field '{{0}}' does not start with '_'",
+                                                            "Naming",
+                                                            DiagnosticSeverity.Warning,
+                                                            isEnabledByDefault: false);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
-        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
-        
+        public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeFieldDeclaration, SyntaxKind.FieldDeclaration);
         }
 
         private void AnalyzeFieldDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }

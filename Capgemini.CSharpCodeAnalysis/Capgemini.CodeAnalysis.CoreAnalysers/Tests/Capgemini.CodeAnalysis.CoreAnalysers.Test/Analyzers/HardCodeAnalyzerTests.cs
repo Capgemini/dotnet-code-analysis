@@ -11,14 +11,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
-            return new  HardCodeAnalyzer();
+            return new HardCodeAnalyzer();
         }
     }
 }

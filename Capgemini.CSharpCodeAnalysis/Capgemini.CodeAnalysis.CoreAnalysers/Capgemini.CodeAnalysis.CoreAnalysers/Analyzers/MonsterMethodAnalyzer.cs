@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
 using Microsoft.CodeAnalysis;
@@ -9,33 +10,44 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// This analyzer implements the following code review rule: No big/monster methods - break down big methods into a few smaller methods with meaningful names, so the code is self-descriptive and does not require excessive comments
+    /// This analyzer implements the following code review rule: No big/monster methods - break down big methods into a few smaller methods with meaningful names, so the code is self-descriptive and does not require excessive comments.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class MonsterMethodAnalyzer : AnalyzerBase
     {
         private const int MethodMaxLine = 80;
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MonsterMethodAnalyzerId.ToDiagnosticId(), nameof(MonsterMethodAnalyzer),
-            $"{nameof(MonsterMethodAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                    AnalyzerType.MonsterMethodAnalyzerId.ToDiagnosticId(),
+                                                                    nameof(MonsterMethodAnalyzer),
+                                                                    $"{nameof(MonsterMethodAnalyzer)}: {{0}}",
+                                                                    AnalyserCategoryConstants.CodeStructure,
+                                                                    DiagnosticSeverity.Error,
+                                                                    true);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -49,6 +61,5 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                 context.ReportDiagnostic(diagnostics);
             }
         }
-
     }
 }

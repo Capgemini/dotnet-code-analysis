@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -13,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
@@ -148,7 +149,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -180,7 +180,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0015",
                 Message =
-                    "ConstructorParametersAnalyzer: Constructor has a total of 10 Parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 10 parameters which is equal to the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[]
@@ -217,7 +217,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0015",
                 Message =
-                    "ConstructorParametersAnalyzer: Constructor has a total of 11 Parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
+                    "ConstructorParametersAnalyzer: Constructor has a total of 11 parameters which is greater-than the recommended maximum of 10. Please refactor the constructor / class.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
                     new[]
@@ -245,6 +245,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     }";
 
             VerifyCSharpDiagnostic(test, expected);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new ConstructorParametersAnalyzer().Initialize(null)).Message.Equals("An instance of ConstructorParametersAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()

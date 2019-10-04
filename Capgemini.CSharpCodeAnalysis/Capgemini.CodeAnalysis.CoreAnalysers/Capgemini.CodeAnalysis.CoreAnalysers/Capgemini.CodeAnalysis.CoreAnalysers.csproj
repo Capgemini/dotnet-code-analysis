@@ -8,20 +8,23 @@
 
   <PropertyGroup>
     <PackageId>Capgemini.CodeAnalysis.CoreAnalysers</PackageId>
-    <PackageVersion>1.0.0.23</PackageVersion>
     <Authors>Capgemini</Authors>
-    <PackageLicenseUrl>https://github.com/Capgemini/dotnet-code-analysis/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Capgemini/dotnet-code-analysis</PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
     <RepositoryUrl>https://github.com/Capgemini/dotnet-code-analysis</RepositoryUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Capgemini.CodeAnalysis.CoreAnalysers</Description>
-    <PackageReleaseNotes>Updated package to support .NET Standard</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated based on StyleCop.Analyzers changes
+Deprecated analysers covered by StyleCop.Analyzers
+Fix issues in Explicit Access Modifier Analyzer so explicity interface implementation detected correctly</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>Capgemini.CodeAnalysis.CoreAnalysers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <Product>Capgemini.CodeAnalysis.CoreAnalysers</Product>
-    <Version>1.0.0.0</Version>
+    <Version>1.1.0</Version>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
   
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -35,6 +38,14 @@
  
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="2.4.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Update="NETStandard.Library" PrivateAssets="all" />
   </ItemGroup>
 
@@ -49,5 +60,9 @@
   <ItemGroup>
     <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
     <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+    <None Include="..\..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

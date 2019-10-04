@@ -15,13 +15,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
         [TestMethod]
-        public void MethodWithLessThan80LinesOfExecutableCode_Passes()
+        public void MethodWithLessThan80LinesOfExecutableCodePasses()
         {
             var test = $@"
     using System;
@@ -46,9 +46,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
-
         [TestMethod]
-        public void MethodWithLess80LinesOfExecutableCode_Passes()
+        public void MethodWithLess80LinesOfExecutableCodePasses()
         {
             var test = $@"
     using System;
@@ -72,9 +71,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void MethodWithMoreThan80LinesOfExecutableCode_Fails()
+        public void MethodWithMoreThan80LinesOfExecutableCodeFails()
         {
             var expected = new DiagnosticResult
             {
@@ -82,7 +81,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(MonsterMethodAnalyzer)}: This method is longer than 80 lines of executable code. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 13, 25)
                     }
             };
@@ -107,11 +107,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }}
     }}";
 
-            VerifyCSharpDiagnostic(test,expected);
+            VerifyCSharpDiagnostic(test, expected);
         }
 
-     
-        
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -137,7 +135,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-   protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new MonsterMethodAnalyzer().Initialize(null)).Message.Equals("An instance of MonsterMethodAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MonsterMethodAnalyzer();
         }
@@ -149,8 +154,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 sb.AppendLine($"var intVarible{counter} = {counter}");
             }
+
             return sb.ToString();
         }
+
         private string GenerateRandomStringVariableString(int numberOfVariables)
         {
             var sb = new StringBuilder();
@@ -158,6 +165,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 sb.AppendLine($"var stringVarible{counter} = \"{DateTime.UtcNow:F}\"");
             }
+
             return sb.ToString();
         }
     }

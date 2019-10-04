@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -10,10 +11,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     [TestClass]
     public class CommentsAnalyzerTests : CodeFixVerifier
     {
-        private readonly int _threshold = 30;
+        private readonly int threshold = 30;
 
         [TestMethod]
-        public void MethodDeclaration_NoComments_Passes()
+        public void MethodDeclarationNoCommentsPasses()
         {
             var test = @"
 
@@ -31,7 +32,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodDeclaration_SummaryTagsComments_Passes()
+        public void MethodDeclarationSummaryTagsCommentsPasses()
         {
             var test = @"
 
@@ -51,7 +52,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodDeclaration_LessThan30LinesComments_Passes()
+        public void MethodDeclarationLessThan30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -72,7 +73,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodDeclaration_30LinesComments_Passes()
+        public void MethodDeclaration30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -93,15 +94,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodDeclaration_More30LinesComments_Fails()
+        public void MethodDeclarationMore30LinesCommentsFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0006",
-                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from Method1 exceed the allowed maximum number of lines {_threshold}.",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from Method1 exceed the allowed maximum number of lines {threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 38, 25)
                     }
             };
@@ -125,7 +127,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void PropertyDeclaration_NoComments_Passes()
+        public void PropertyDeclarationNoCommentsPasses()
         {
             var test = @"
 
@@ -141,7 +143,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void PropertyDeclaration_SummaryTagsComments_Passes()
+        public void PropertyDeclarationSummaryTagsCommentsPasses()
         {
             var test = @"
 
@@ -159,7 +161,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void PropertyDeclaration_LessThan30LinesComments_Passes()
+        public void PropertyDeclarationLessThan30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -178,7 +180,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void PropertyDeclaration_30LinesComments_Passes()
+        public void PropertyDeclaration30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -197,15 +199,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void PropertyDeclaration_More30LinesComments_Fails()
+        public void PropertyDeclarationMore30LinesCommentsFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0006",
-                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from GetTypeName exceed the allowed maximum number of lines {_threshold}.",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from GetTypeName exceed the allowed maximum number of lines {threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 38, 27)
                     }
             };
@@ -226,9 +229,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-
         [TestMethod]
-        public void ClassDeclaration_NoComments_Passes()
+        public void ClassDeclarationNoCommentsPasses()
         {
             var test = @"
 
@@ -246,7 +248,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassDeclaration_SummaryTagsComments_Passes()
+        public void ClassDeclarationSummaryTagsCommentsPasses()
         {
             var test = @"
 
@@ -266,7 +268,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassDeclaration_LessThan30LinesComments_Passes()
+        public void ClassDeclarationLessThan30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -287,7 +289,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassDeclaration_30LinesComments_Passes()
+        public void ClassDeclaration30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -308,15 +310,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ClassDeclaration_More30LinesComments_Fails()
+        public void ClassDeclarationMore30LinesCommentsFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0006",
-                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}.",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 36, 22)
                     }
             };
@@ -340,7 +343,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void InterfaceDeclaration_NoComments_Passes()
+        public void InterfaceDeclarationNoCommentsPasses()
         {
             var test = @"
 
@@ -356,7 +359,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void InterfaceDeclaration_SummaryTagsComments_Passes()
+        public void InterfaceDeclarationSummaryTagsCommentsPasses()
         {
             var test = @"
 
@@ -373,7 +376,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void InterfaceDeclaration_LessThan30LinesComments_Passes()
+        public void InterfaceDeclarationLessThan30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -391,7 +394,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void InterfaceDeclaration_30LinesComments_Passes()
+        public void InterfaceDeclaration30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -409,15 +412,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void InterfaceDeclaration_More30LinesComments_Fails()
+        public void InterfaceDeclarationMore30LinesCommentsFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0006",
-                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from ITypeName exceed the allowed maximum number of lines {_threshold}.",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from ITypeName exceed the allowed maximum number of lines {threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 36, 26)
                     }
             };
@@ -438,7 +442,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_NoComments_Passes()
+        public void VariableDeclarationNoCommentsPasses()
         {
             var test = @"
 
@@ -457,7 +461,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_LessThan5LinesCommentsBeforeVariable_Passes()
+        public void VariableDeclarationLessThan5LinesCommentsBeforeVariablePasses()
         {
             var test = $@"
 
@@ -480,7 +484,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_5LinesCommentsBeforeVariable_Passes()
+        public void VariableDeclaration5LinesCommentsBeforeVariablePasses()
         {
             var test = $@"
 
@@ -503,7 +507,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_LessThan5LinesCommentsAfterVariable_Passes()
+        public void VariableDeclarationLessThan5LinesCommentsAfterVariablePasses()
         {
             var test = $@"
 
@@ -526,7 +530,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_5LinesCommentsAfterVariable_Passes()
+        public void VariableDeclaration5LinesCommentsAfterVariablePasses()
         {
             var test = $@"
 
@@ -549,7 +553,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_CommentsBeforeAndAfterVariable_Fails()
+        public void VariableDeclarationCommentsBeforeAndAfterVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -557,7 +561,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has both leading and trailing comments. Only one type is allowed.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 31, 24)
                     }
             };
@@ -583,7 +588,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_MultiLineAndSingleLineCommentsBeforeVariable_Fails()
+        public void VariableDeclarationMultiLineAndSingleLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -591,7 +596,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has both multiline and single line comments. Please use only one type of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 13, 24)
                     }
             };
@@ -617,7 +623,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_MultipleMultiLineCommentsBeforeVariable_Fails()
+        public void VariableDeclarationMultipleMultiLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -625,7 +631,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has multiple MultiLines comments. Please use no more than 1 MultiLines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 15, 24)
                     }
             };
@@ -653,7 +660,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_MoreThan5LinesOfMultiLineCommentsBeforeVariable_Fails()
+        public void VariableDeclarationMoreThan5LinesOfMultiLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -661,7 +668,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 17, 24)
                     }
             };
@@ -686,7 +694,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_MoreThan5SingleLineCommentsBeforeVariable_Fails()
+        public void VariableDeclarationMoreThan5SingleLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -694,7 +702,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 15, 24)
                     }
             };
@@ -716,9 +725,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-
         [TestMethod]
-        public void VariableDeclaration_6LinesOfMultiLineCommentsBeforeVariable_Fails()
+        public void VariableDeclaration6LinesOfMultiLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -726,7 +734,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 16, 24)
                     }
             };
@@ -751,7 +760,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void VariableDeclaration_6SingleLineCommentsBeforeVariable_Fails()
+        public void VariableDeclaration6SingleLineCommentsBeforeVariableFails()
         {
             var expected = new DiagnosticResult
             {
@@ -759,7 +768,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(CommentsAnalyzer)}: testString has more than {5} lines comments. Please use no more than {5} lines of comments.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 15, 24)
                     }
             };
@@ -782,7 +792,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ConstructorDeclaration_NoMethodComments_Passes()
+        public void ConstructorDeclarationNoMethodCommentsPasses()
         {
             var test = @"
 
@@ -800,7 +810,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ConstructorDeclaration_WithSummaryMethodComments_SummaryTagsComments_Passes()
+        public void ConstructorDeclarationWithSummaryMethodCommentsSummaryTagsCommentsPasses()
         {
             var test = @"
 
@@ -820,7 +830,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ConstructorDeclaration_WithSummaryMethodComments_LessThan30LinesComments_Passes()
+        public void ConstructorDeclarationWithSummaryMethodCommentsLessThan30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -841,7 +851,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ConstructorDeclaration_WithSummaryMethodComments_30LinesComments_Passes()
+        public void ConstructorDeclarationWithSummaryMethodComments30LinesCommentsPasses()
         {
             var test = $@"
 
@@ -862,15 +872,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ConstructorDeclaration_WithSummaryMethodComments_More30LinesComments_Fails()
+        public void ConstructorDeclarationWithSummaryMethodCommentsMore30LinesCommentsFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0006",
-                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {_threshold}.",
+                Message = $"{nameof(CommentsAnalyzer)}: Documentation comments from TypeName exceed the allowed maximum number of lines {threshold}.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 38, 20)
                     }
             };
@@ -914,10 +925,15 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new CommentsAnalyzer().Initialize(null)).Message.Equals("An instance of CommentsAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new CommentsAnalyzer();
         }
-
     }
 }

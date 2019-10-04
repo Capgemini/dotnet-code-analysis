@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
@@ -10,35 +11,46 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// Cyclomatic complexity attempts to determine the number of different paths within a method. To achieve this, 
-    /// this analyser first assign a method a score of 1 as the default cyclomatic complexity. Subsequently, the analyser 
-    /// identifiers the following contructs within a method: if ; while ; for ; foreach ; case ; default ; continue ; &amp;&amp; ; || ; catch ; ?: ; ??
-    /// For each of these contruct found, a score of 1 is added to the method cyclomatic complexity.The total score yields 
-    /// the method's cyclomatic complexity. Cyclomatic complexity score greater than 15 results to an error.
+    /// Cyclomatic complexity attempts to determine the number of different paths within a method. To achieve this,
+    /// this analyser first assigns a method a score of 1 as the default cyclomatic complexity. Subsequently, the analyser
+    /// identifiers the following constructs within a method: if ; while ; for ; foreach ; case ; default ; continue ; &amp;&amp; ; || ; catch ; ?: ; ??
+    /// For each of these construct found, a score of 1 is added to the method cyclomatic complexity.The total score yields
+    /// the method's cyclomatic complexity. Cyclomatic complexity scores greater than 15 result in an error being raised.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class MethodComplexityAnalyzer: AnalyzerBase
+    public class MethodComplexityAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.MethodComplexityAnalyzeId.ToDiagnosticId(), nameof(MethodComplexityAnalyzer),
-            $"{nameof(MethodComplexityAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
-        
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                    AnalyzerType.MethodComplexityAnalyzeId.ToDiagnosticId(),
+                                                                    nameof(MethodComplexityAnalyzer),
+                                                                    $"{nameof(MethodComplexityAnalyzer)}: {{0}}",
+                                                                    AnalyserCategoryConstants.CodeStructure,
+                                                                    DiagnosticSeverity.Error,
+                                                                    true);
+
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeMethod, SyntaxKind.MethodDeclaration);
         }
-        
+
         private void AnalyzeMethod(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -55,7 +67,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             cyclometricComplexity += declaration.DescendantNodes().OfType<ContinueStatementSyntax>().ToList().Count;
             cyclometricComplexity += declaration.DescendantNodes().OfType<CatchClauseSyntax>().ToList().Count;
             cyclometricComplexity += declaration.DescendantNodes().OfType<ConditionalExpressionSyntax>().ToList().Count;
-            cyclometricComplexity += declaration.DescendantNodes().OfType<BinaryExpressionSyntax>().Where(a=>a.IsKind(SyntaxKind.CoalesceExpression)).ToList().Count;
+            cyclometricComplexity += declaration.DescendantNodes().OfType<BinaryExpressionSyntax>().Where(a => a.IsKind(SyntaxKind.CoalesceExpression)).ToList().Count;
             cyclometricComplexity += declaration.DescendantTokens().Where(a => a.IsKind(SyntaxKind.AmpersandAmpersandToken) || a.IsKind(SyntaxKind.BarBarToken)).ToList().Count;
 
             if (cyclometricComplexity > 15)

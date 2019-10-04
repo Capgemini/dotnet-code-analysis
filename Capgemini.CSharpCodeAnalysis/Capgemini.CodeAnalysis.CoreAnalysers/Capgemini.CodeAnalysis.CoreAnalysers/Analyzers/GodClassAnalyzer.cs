@@ -1,4 +1,5 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
 using System.Linq;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
@@ -10,33 +11,43 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// "God" classes are not allowed - each class should be small, self-contained and do only one thing well (follow single responsibility pattern from SOLID principles). Anybody reading the code must be able to read a complete method from start to end without scrolling in the window
+    /// "God" classes are not allowed - each class should be small, self-contained and do only one thing well (follow single responsibility pattern from SOLID principles). Anybody reading the code must be able to read a complete method from start to end without scrolling in the window.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class GodClassAnalyzer : AnalyzerBase
     {
         private const int ClassMaxNumberOfPublicMethods = 20;
+        private static readonly DiagnosticDescriptor Rule =
+                                                            new DiagnosticDescriptor(
+                                                                AnalyzerType.GodClassAnalyzerId.ToDiagnosticId(),
+                                                                nameof(GodClassAnalyzer),
+                                                                $"{nameof(GodClassAnalyzer)} \'{{0}}\'",
+                                                                AnalyserCategoryConstants.CodeStructure,
+                                                                DiagnosticSeverity.Error,
+                                                                true);
 
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.GodClassAnalyzerId.ToDiagnosticId(), nameof(GodClassAnalyzer),
-            $"{nameof(GodClassAnalyzer)} \'{{0}}\'", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
-        
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeDeclararion, SyntaxKind.ClassDeclaration);
         }
 
         private void AnalyzeDeclararion(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }

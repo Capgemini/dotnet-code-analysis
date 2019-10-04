@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
@@ -10,28 +11,36 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// This analyzer implements the following code review rule: Explicit access modifiers must be used for all members (eg. Private fields should use the 'private' keyword)
+    /// This analyzer implements the following code review rule: Explicit access modifiers must be used for all members (eg. Private fields should use the 'private' keyword).
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class ExplicitAccessModifiersAnalyzer : AnalyzerBase
     {
+        private static readonly DiagnosticDescriptor Rule =
+                                                        new DiagnosticDescriptor(
+                                                                                AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                                                                                nameof(ExplicitAccessModifiersAnalyzer),
+                                                                                $"{nameof(ExplicitAccessModifiersAnalyzer)}: {{0}}",
+                                                                                AnalyserCategoryConstants.CodeStructure,
+                                                                                DiagnosticSeverity.Error,
+                                                                                true);
+
         /// <summary>
-        /// The rule
-        /// </summary>
-        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(), nameof(ExplicitAccessModifiersAnalyzer),
-            $"{nameof(ExplicitAccessModifiersAnalyzer)}: {{0}}", AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
-       
-        /// <summary>
-        /// Returns a set of descriptors for the diagnostics that this analyzer is capable of producing.
+        /// Gets the set of descriptors for the diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(Rule);
 
         /// <summary>
         /// Called once at session start to register actions in the analysis context.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzedMethodDeclaration, SyntaxKind.MethodDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzedPropertyDeclaration, SyntaxKind.PropertyDeclaration);
             context.RegisterSyntaxNodeAction(AnalyzedConstructorDeclaration, SyntaxKind.ConstructorDeclaration);
@@ -41,7 +50,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedConstructorDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -50,18 +59,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             if (!declaration.Modifiers.Any(SyntaxKind.StaticKeyword))
             {
-                if (!(IsExternallyVisible(declaration.Modifiers) || ModifierContains(declaration.Modifiers,
-                          new List<SyntaxKind> {SyntaxKind.PrivateKeyword})))
+                if (!(IsExternallyVisible(declaration.Modifiers) || ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PrivateKeyword })))
                 {
-                    DiagnosticsManager.CreateExplicitAccessDiagnostic(context,
-                        $"Constructor {declaration.Identifier.Text}", declaration.Identifier.GetLocation(), Rule);
+                    DiagnosticsManager.CreateExplicitAccessDiagnostic(context, $"Constructor {declaration.Identifier.Text}", declaration.Identifier.GetLocation(), Rule);
                 }
             }
         }
 
         private void AnalyzedInterfaceDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -76,17 +83,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedPropertyDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<PropertyDeclarationSyntax>(context.Node);
 
-            //if this property is within an interface then we do not need to process with access qualifier check
+            // if this property is within an interface then we do not need to process with access qualifier check
             var interfaceDeclaration = declaration.Parent as InterfaceDeclarationSyntax;
-            if (interfaceDeclaration == null && !(
-                                                    ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }) ))
+            if (interfaceDeclaration == null && !ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
             {
                 DiagnosticsManager.CreateExplicitAccessDiagnostic(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
             }
@@ -94,16 +100,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedClassDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<ClassDeclarationSyntax>(context.Node);
 
-            if (!(
-                 ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
-                )
+            if (!ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
             {
                 DiagnosticsManager.CreateExplicitAccessDiagnostic(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
             }
@@ -111,17 +115,21 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
         private void AnalyzedMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
 
             var declaration = Cast<MethodDeclarationSyntax>(context.Node);
 
-            //if this method is within an interface then we do not need to process with access qualifier check
+            // if this method is within an interface then we do not need to process with access qualifier check
             var interfaceDeclaration = declaration.Parent as InterfaceDeclarationSyntax;
-            if (interfaceDeclaration == null && !(
-                ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword })))
+            if (null != interfaceDeclaration)
+            {
+                return;
+            }
+
+            if (null == declaration.ExplicitInterfaceSpecifier && !ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
             {
                 DiagnosticsManager.CreateExplicitAccessDiagnostic(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
             }

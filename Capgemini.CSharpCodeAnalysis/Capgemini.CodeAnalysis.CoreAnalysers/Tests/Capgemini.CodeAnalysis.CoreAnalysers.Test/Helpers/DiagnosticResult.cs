@@ -1,57 +1,32 @@
+﻿using System;
 using Microsoft.CodeAnalysis;
-using System;
 
 namespace TestHelper
 {
     /// <summary>
-    /// Location where the diagnostic appears, as determined by path, line number, and column number.
+    /// Struct that stores information about a Diagnostic appearing in a source.
     /// </summary>
-    public struct DiagnosticResultLocation
-    {
-        public DiagnosticResultLocation(string path, int line, int column)
-        {
-            if (line < -1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(line), "line must be >= -1");
-            }
-
-            if (column < -1)
-            {
-                throw new ArgumentOutOfRangeException(nameof(column), "column must be >= -1");
-            }
-
-            this.Path = path;
-            this.Line = line;
-            this.Column = column;
-        }
-
-        public string Path { get; }
-        public int Line { get; }
-        public int Column { get; }
-    }
-
-    /// <summary>
-    /// Struct that stores information about a Diagnostic appearing in a source
-    /// </summary>
+#pragma warning disable CA1815 // Override equals and operator equals on value types
     public struct DiagnosticResult
+#pragma warning restore CA1815 // Override equals and operator equals on value types
     {
         private DiagnosticResultLocation[] locations;
 
+#pragma warning disable CA1819 // Properties should not return arrays
         public DiagnosticResultLocation[] Locations
+#pragma warning restore CA1819 // Properties should not return arrays
         {
             get
             {
-                if (this.locations == null)
+                if (locations == null)
                 {
-                    this.locations = new DiagnosticResultLocation[] { };
+                    locations = Array.Empty<DiagnosticResultLocation>();
                 }
-                return this.locations;
+
+                return locations;
             }
 
-            set
-            {
-                this.locations = value;
-            }
+            set => locations = value;
         }
 
         public DiagnosticSeverity Severity { get; set; }
@@ -60,28 +35,10 @@ namespace TestHelper
 
         public string Message { get; set; }
 
-        public string Path
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Path : "";
-            }
-        }
+        public string Path => Locations.Length > 0 ? Locations[0].Path : string.Empty;
 
-        public int Line
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Line : -1;
-            }
-        }
+        public int Line => Locations.Length > 0 ? Locations[0].Line : -1;
 
-        public int Column
-        {
-            get
-            {
-                return this.Locations.Length > 0 ? this.Locations[0].Column : -1;
-            }
-        }
+        public int Column => Locations.Length > 0 ? Locations[0].Column : -1;
     }
 }

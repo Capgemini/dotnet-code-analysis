@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Immutable;
 using Capgemini.CodeAnalysis.CoreAnalysers.Extensions;
 using Capgemini.CodeAnalysis.CoreAnalysers.Models;
@@ -7,45 +8,85 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.Diagnostics;
 
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
-{ 
+{
     /// <summary>
-    /// Implements the Method Parameters Analyzer
+    /// Implements the Method Parameters Analyzer.
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class MethodParametersAnalyzer : AnalyzerBase
     {
         private const int MaximumNumberOfParametersWarning = 5;
         private const int MaximumNumberOfParametersError = 10;
+        private static readonly DiagnosticDescriptor ErrorRule =
+                                                        new DiagnosticDescriptor(
+                                                                                AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
+                                                                                nameof(MethodParametersAnalyzer),
+                                                                                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
+                                                                                AnalyserCategoryConstants.CodeStructure,
+                                                                                DiagnosticSeverity.Error,
+                                                                                true);
 
-        internal static DiagnosticDescriptor ErrorRule =
-            new DiagnosticDescriptor(AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
-                nameof(MethodParametersAnalyzer),
-                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
-                AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Error, true);
+        private static readonly DiagnosticDescriptor WarningRule =
+                                                        new DiagnosticDescriptor(
+                                                                                AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
+                                                                                nameof(MethodParametersAnalyzer),
+                                                                                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
+                                                                                AnalyserCategoryConstants.CodeStructure,
+                                                                                DiagnosticSeverity.Warning,
+                                                                                true);
 
-        internal static DiagnosticDescriptor WarningRule =
-            new DiagnosticDescriptor(AnalyzerType.MethodParametersAnalyzerId.ToDiagnosticId(),
-                nameof(MethodParametersAnalyzer),
-                $"{nameof(MethodParametersAnalyzer)}: {{0}}",
-                AnalyserCategoryConstants.CodeStructure, DiagnosticSeverity.Warning, true);
-        
         /// <summary>
-        /// Overrides the Supported Diagnostics property
+        /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.
         /// </summary>
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics => ImmutableArray.Create(ErrorRule);
-        
+
         /// <summary>
-        /// Initialises the analyzer
+        /// Initialises the analyzer.
         /// </summary>
-        /// <param name="context"></param>
+        /// <param name="context">An instance of <see cref="AnalysisContext"/> to support the analysis.</param>
         public override void Initialize(AnalysisContext context)
         {
+            if (null == context)
+            {
+                throw new ArgumentNullException(nameof(context), $"An instance of {nameof(context)} was not supplied.");
+            }
+
             context.RegisterSyntaxNodeAction(AnalyzeMethodDeclaration, SyntaxKind.MethodDeclaration);
+        }
+
+        private static bool ParameterCountIsBetweenWarningAndErrorThreshold(int parameterCount)
+        {
+            return parameterCount > MaximumNumberOfParametersWarning && parameterCount < MaximumNumberOfParametersError;
+        }
+
+        private static void RaiseErrorDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
+        {
+            if (parameterCount == MaximumNumberOfParametersError)
+            {
+                comparisonText = "equal to";
+            }
+
+            var warningMessage =
+                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the method / class.";
+            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, ErrorRule, warningMessage);
+        }
+
+        private static void RaiseWarningDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText, Location declarationLocation)
+        {
+            if (parameterCount == MaximumNumberOfParametersWarning)
+            {
+                comparisonText = "equal to";
+            }
+
+            var warningMessage =
+                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the method / class.";
+
+            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, WarningRule, warningMessage);
         }
 
         private void AnalyzeMethodDeclaration(SyntaxNodeAnalysisContext context)
         {
-            if (context.IsGeneratedCode())
+            if (context.IsAutomaticallyGeneratedCode())
             {
                 return;
             }
@@ -59,40 +100,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
             {
                 RaiseErrorDiagnostic(context, parameterCount, comparisonText, declarationLocation);
             }
-            else if (parameterCount > MaximumNumberOfParametersWarning &&
-                     parameterCount < MaximumNumberOfParametersError)
+            else if (ParameterCountIsBetweenWarningAndErrorThreshold(parameterCount))
             {
                 RaiseWarningDiagnostic(context, parameterCount, comparisonText, declarationLocation);
             }
-        }
-
-        private void RaiseErrorDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText,
-            Location declarationLocation)
-        {
-            if (parameterCount == MaximumNumberOfParametersError)
-            {
-                comparisonText = "equal to";
-            }
-
-            var warningMessage =
-                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersError}. Please refactor the method / class.";
-            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation, ErrorRule,
-                warningMessage);
-        }
-
-        private void RaiseWarningDiagnostic(SyntaxNodeAnalysisContext context, int parameterCount, string comparisonText,
-            Location declarationLocation)
-        {
-            if (parameterCount == MaximumNumberOfParametersWarning)
-            {
-                comparisonText = "equal to";
-            }
-
-            var warningMessage =
-                $"Method has a total of {parameterCount} Parameters which is {comparisonText} the recommended maximum of {MaximumNumberOfParametersWarning}. Please consider refactoring the method / class.";
-
-            DiagnosticsManager.ConstructorParameterDiagnostic(context, declarationLocation,
-                WarningRule, warningMessage);
         }
     }
 }

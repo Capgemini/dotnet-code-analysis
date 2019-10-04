@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -13,14 +14,13 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
 
-
         [TestMethod]
-        public void ForStatementWithBraces_Passes()
+        public void ForStatementWithBracesPasses()
         {
             var test = @"
     using System;
@@ -50,7 +50,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void ForStatementWithoutBraces_Fails()
+        public void ForStatementWithoutBracesFails()
         {
             var expected = new DiagnosticResult
             {
@@ -58,7 +58,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(LoopStatementAnalyzer)}: Please ensure that for statements have corresponding curly braces.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 17, 17)
                     }
             };
@@ -87,8 +88,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test, expected);
         }
-        
-   
+
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -116,9 +116,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-           protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new LoopStatementAnalyzer().Initialize(null)).Message.Equals("An instance of LoopStatementAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
+        protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new LoopStatementAnalyzer();
         }
     }
-} 
+}

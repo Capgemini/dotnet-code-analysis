@@ -179,6 +179,7 @@ namespace ConsoleApplication1
 
             VerifyCSharpFix(original, result, 1);
         }
+
         [TestMethod]
         public void PrependClassDeclarationWithProtectedAccessModifier()
         {

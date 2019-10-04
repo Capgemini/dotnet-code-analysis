@@ -14,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
@@ -42,9 +42,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void MethodWithComplexityLessThan15_Passes()
+        public void MethodWithComplexityLessThan15Passes()
         {
             var test = @"
     using System;
@@ -74,7 +74,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithReturnValueAndComplexityLessThan15_Passes()
+        public void MethodWithReturnValueAndComplexityLessThan15Passes()
         {
             var test = @"
     using System;
@@ -109,13 +109,14 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
                 if (lastDayOfFebruaryForThisYear.Day > 28)
                 {
-
                 }
             }
+
             VerifyCSharpDiagnostic(test);
         }
+
         [TestMethod]
-        public void MethodWithComplexityOf15_Passes()
+        public void MethodWithComplexityOf15Passes()
         {
             var test = @"
     using System;
@@ -179,7 +180,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         }
 
         [TestMethod]
-        public void MethodWithComplexityGreaterThan15_Fails()
+        public void MethodWithComplexityGreaterThan15Fails()
         {
             var expected = new DiagnosticResult
             {
@@ -187,7 +188,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
                 Message = $"{nameof(MethodComplexityAnalyzer)}: The cyclometric complexity of this method method is 17 which is greater than the maximum value of 15. Please consider splitting this method into smaller methods.",
                 Severity = DiagnosticSeverity.Error,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 13, 25)
                     }
             };
@@ -250,10 +252,10 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
     }
 }";
-            
-            VerifyCSharpDiagnostic(test,expected);
+
+            VerifyCSharpDiagnostic(test, expected);
         }
-     
+
         [TestMethod]
         public void IgnoresGneratedSourceCode()
         {
@@ -315,10 +317,16 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
     }
 }";
-            
+
             VerifyCSharpDiagnostic(test);
         }
-      
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new MethodComplexityAnalyzer().Initialize(null)).Message.Equals("An instance of MethodComplexityAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
         {
             return new MethodComplexityAnalyzer();

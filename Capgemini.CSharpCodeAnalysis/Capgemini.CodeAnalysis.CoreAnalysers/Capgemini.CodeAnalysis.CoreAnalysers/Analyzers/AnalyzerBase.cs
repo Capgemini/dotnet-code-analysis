@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// This class provides a domain specific base for all analyzers within this solution
+    /// This class provides a domain specific base for all analyzers within this solution.
     /// <seealso cref="Microsoft.CodeAnalysis.Diagnostics.DiagnosticAnalyzer" />
     /// </summary>
     /// <example>
@@ -33,55 +33,63 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
     public abstract class AnalyzerBase : DiagnosticAnalyzer
     {
         /// <summary>
-        /// Analyzer Message Format
+        /// Analyzer Message Format.
         /// </summary>
         protected static readonly LocalizableString MessageFormat = "XmlCommentsAnalyzer '{0}'";
 
         /// <summary>
-        /// Analyzer CommentsManager
+        /// Gets a new instance of <see cref="CommentsManager"/>.
         /// </summary>
-        protected CommentsManager CommentsManager => new CommentsManager();
+        protected static CommentsManager CommentsManager => new CommentsManager();
 
         /// <summary>
-        /// Analyzer DiagnosticsManager
+        /// Gets a new instance of <see cref="DiagnosticsManager"/>.
         /// </summary>
-        protected DiagnosticsManager DiagnosticsManager => new DiagnosticsManager();
+        protected static DiagnosticsManager DiagnosticsManager => new DiagnosticsManager();
 
         /// <summary>
-        /// Analyzer RegexManager
+        /// Gets a new instance of <see cref="RegexManager"/>.
         /// </summary>
-        protected RegexManager RegexManager => new RegexManager();
+        protected static RegexManager RegexManager => new RegexManager();
 
         /// <summary>
-        /// Cast node to specified type
+        /// Cast node to specified type.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        protected T Cast<T>(SyntaxNode node) where T : class => node as T;
+        /// <typeparam name="T">The target type to cast to.</typeparam>
+        /// <param name="node">An instance of <see cref="SyntaxNode"/> to convert.</param>
+        /// <returns>The result of casting the node to the requested type.</returns>
+        protected static T Cast<T>(SyntaxNode node)
+            where T : class
+        {
+            return node as T;
+        }
 
         /// <summary>
-        /// Determine the visiblity scope of a node
+        /// Determine the visibility scope of a node.
         /// </summary>
-        /// <param name="tokenList"></param>
-        /// <returns></returns>
-        protected bool IsExternallyVisible(SyntaxTokenList tokenList) =>
-            tokenList.Any(SyntaxKind.PublicKeyword) || tokenList.Any(SyntaxKind.InternalKeyword) || tokenList.Any(SyntaxKind.ProtectedKeyword);
+        /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
+        /// <returns><c>true</c> if the node is externally visible, otherwise <c>false</c>.</returns>
+        protected static bool IsExternallyVisible(SyntaxTokenList tokenList)
+        {
+            return tokenList.Any(SyntaxKind.PublicKeyword) || tokenList.Any(SyntaxKind.InternalKeyword) || tokenList.Any(SyntaxKind.ProtectedKeyword);
+        }
 
         /// <summary>
-        /// Determines if Comments are visible externally 
+        /// Determines if Comments are visible externally.
         /// </summary>
-        /// <param name="tokenList"></param>
-        /// <returns></returns>
-        protected bool IsExternallyVisibleComments(SyntaxTokenList tokenList) =>
-            tokenList.Any(SyntaxKind.PublicKeyword);
+        /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
+        /// <returns><c>true</c> if the comments are externally visible, otherwise <c>false</c>.</returns>
+        protected static bool IsExternallyVisibleComments(SyntaxTokenList tokenList)
+        {
+            return tokenList.Any(SyntaxKind.PublicKeyword);
+        }
 
         /// <summary>
-        /// Determines if parent node an Exception
+        /// Determines if parent node an Exception.
         /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        protected bool IsParentAnException(SyntaxNode node)
+        /// <param name="node">An instance of <see cref="SyntaxNode"/> containing the Syntax node to check.</param>
+        /// <returns><c>true</c> if the parent node is an exception, otherwise <c>false</c>.</returns>
+        protected static bool IsParentAnException(SyntaxNode node)
         {
             var result = false;
             var testNode = node;
@@ -92,6 +100,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                     result = true;
                     break;
                 }
+
                 testNode = testNode.Parent;
             }
 
@@ -99,40 +108,48 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
         }
 
         /// <summary>
-        /// Is Private
+        /// Is Private.
         /// </summary>
-        /// <param name="tokenList"></param>
-        /// <returns></returns>
-        protected bool IsPrivate(SyntaxTokenList tokenList) =>
-            tokenList.Any(SyntaxKind.PrivateKeyword);
+        /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
+        /// <returns><c>true</c> if the Syntax Token list contains the private modifier, otherwise <c>false</c>.</returns>
+        protected static bool IsPrivate(SyntaxTokenList tokenList)
+        {
+            return tokenList.Any(SyntaxKind.PrivateKeyword);
+        }
 
         /// <summary>
-        /// Determines if Modifier Contains
+        /// Determines if Modifier Contains.
         /// </summary>
-        /// <param name="tokenList"></param>
-        /// <param name="syntaxKind"></param>
-        /// <returns></returns>
-        protected bool ModifierContains(SyntaxTokenList tokenList, SyntaxKind syntaxKind) =>
-            ModifierContains(tokenList, new List<SyntaxKind> { syntaxKind });
-
-        /// <summary>
-        /// Determines if Modifier Contains
-        /// </summary>
-        /// <param name="tokenList"></param>
-        /// <param name="syntaxKinds"></param>
-        /// <returns></returns>
-        protected bool ModifierContains(SyntaxTokenList tokenList, List<SyntaxKind> syntaxKinds)
+        /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
+        /// <param name="syntaxKinds">An list of instances of <see cref="SyntaxKind"/> to attempt to locate.</param>
+        /// <returns><c>true</c> if the modifier is in the list of Syntax tokens, otherwise <c>false</c>.</returns>
+        protected static bool ModifierContains(SyntaxTokenList tokenList, List<SyntaxKind> syntaxKinds)
         {
             var containsSyntaxKind = false;
-            foreach (var syntaxKind in syntaxKinds)
+            if (null != syntaxKinds)
             {
-                containsSyntaxKind = tokenList.Any(syntaxKind);
-                if (containsSyntaxKind)
+                foreach (var syntaxKind in syntaxKinds)
                 {
-                    break;
+                    containsSyntaxKind = tokenList.Any(syntaxKind);
+                    if (containsSyntaxKind)
+                    {
+                        break;
+                    }
                 }
             }
+
             return containsSyntaxKind;
+        }
+
+        /// <summary>
+        /// Determines if Modifier Contains.
+        /// </summary>
+        /// <param name="tokenList">An instance of <see cref="SyntaxTokenList"/> containing the Syntax token list to check.</param>
+        /// <param name="syntaxKind">An instance of <see cref="SyntaxKind"/> to attempt to locate.</param>
+        /// <returns><c>true</c> if the modifier is in the list of Syntax tokens, otherwise <c>false</c>.</returns>
+        protected static bool ModifierContains(SyntaxTokenList tokenList, SyntaxKind syntaxKind)
+        {
+            return ModifierContains(tokenList, new List<SyntaxKind> { syntaxKind });
         }
     }
 }

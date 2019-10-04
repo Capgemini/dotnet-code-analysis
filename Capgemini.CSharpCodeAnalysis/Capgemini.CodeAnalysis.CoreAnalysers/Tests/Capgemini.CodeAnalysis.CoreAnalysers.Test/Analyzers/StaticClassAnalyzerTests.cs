@@ -1,4 +1,5 @@
-﻿using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
+﻿using System;
+using Capgemini.CodeAnalysis.CoreAnalysers.Analyzers;
 using Capgemini.CodeAnalysis.CoreAnalysers.Test.Constants;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -13,7 +14,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
         [TestMethod]
         public void AnalysisPassesForNoCode()
         {
-            var test = @"";
+            var test = string.Empty;
 
             VerifyCSharpDiagnostic(test);
         }
@@ -41,9 +42,9 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void NonStaticClass_WithStaticMethod_Passes()
+        public void NonStaticClassWithStaticMethodPasses()
         {
             var test = @"
     using System;
@@ -72,17 +73,18 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
 
             VerifyCSharpDiagnostic(test);
         }
-        
+
         [TestMethod]
-        public void StaticClass_Fails()
+        public void StaticClassFails()
         {
             var expected = new DiagnosticResult
             {
                 Id = "CAP0003",
                 Message = $"{nameof(StaticClassAnalyzer)}: Static classes must be avoided unless there is no better option.",
-                Severity = DiagnosticSeverity.Error,
+                Severity = DiagnosticSeverity.Warning,
                 Locations =
-                    new[] {
+                    new[]
+                    {
                         new DiagnosticResultLocation("Test0.cs", 11, 29)
                     }
             };
@@ -106,7 +108,6 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test, expected);
         }
 
-    
         [TestMethod]
         public void IgnoresGeneratedSourceCode()
         {
@@ -129,8 +130,8 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             VerifyCSharpDiagnostic(test);
         }
 
-      [TestMethod]
-        public void StaticClassWithExtensionMethod_Passes()
+        [TestMethod]
+        public void StaticClassWithExtensionMethodPasses()
         {
             var test = @"
     using System;
@@ -151,6 +152,12 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
     }";
 
             VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        public void ThrowArgumentNullExceptionWhenContextNotSupplied()
+        {
+            Assert.ThrowsException<ArgumentNullException>(() => new StaticClassAnalyzer().Initialize(null)).Message.Equals("An instance of StaticClassAnalyzer was not supplied.", StringComparison.Ordinal);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
