@@ -124,7 +124,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 
             // if this method is within an interface then we do not need to process with access qualifier check
             var interfaceDeclaration = declaration.Parent as InterfaceDeclarationSyntax;
-            if (interfaceDeclaration == null && !ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
+            if (declaration.ExplicitInterfaceSpecifier == null && !ModifierContains(declaration.Modifiers, new List<SyntaxKind> { SyntaxKind.PublicKeyword, SyntaxKind.InternalKeyword, SyntaxKind.ProtectedKeyword, SyntaxKind.PrivateKeyword }))
             {
                 DiagnosticsManager.CreateExplicitAccessDiagnostic(context, declaration.Identifier.Text, declaration.Identifier.GetLocation(), Rule);
             }
