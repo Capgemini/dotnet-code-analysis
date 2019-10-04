@@ -11,19 +11,19 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
 {
     /// <summary>
-    /// This analyzer implements the following code review rule: Static classes must be avoided if not required as these make testing more difficult.
+    /// This analyzer implements the following code review rule: Static classes must be avoided if they perform calculations that can vary as this can affect testing.
+    /// <para>If the class it truly suitable for a static class, this rule can safely be suppressed.</para>
     /// </summary>
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class StaticClassAnalyzer : AnalyzerBase
     {
-        private static readonly DiagnosticDescriptor Rule =
-                                                            new DiagnosticDescriptor(
-                                                                    AnalyzerType.StaticClassAnalyzerId.ToDiagnosticId(),
-                                                                    nameof(StaticClassAnalyzer),
-                                                                    $"{nameof(StaticClassAnalyzer)}: {{0}}",
-                                                                    AnalyserCategoryConstants.StaticAnalyzer,
-                                                                    DiagnosticSeverity.Error,
-                                                                    true);
+        private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
+                                                                                    AnalyzerType.StaticClassAnalyzerId.ToDiagnosticId(),
+                                                                                    nameof(StaticClassAnalyzer),
+                                                                                    $"{nameof(StaticClassAnalyzer)}: {{0}}",
+                                                                                    AnalyserCategoryConstants.StaticAnalyzer,
+                                                                                    DiagnosticSeverity.Error,
+                                                                                    true);
 
         /// <summary>
         /// Gets the overridden the Supported Diagnostics that this analyzer is capable of producing.

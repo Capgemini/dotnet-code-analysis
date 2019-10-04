@@ -186,16 +186,16 @@ namespace ConsoleApplication1
     }
 }";
             VerifyCSharpDiagnostic(original, new DiagnosticResult
-                                                                {
-                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                                                                    Severity = DiagnosticSeverity.Error,
-                                                                    Locations =
+            {
+                Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
                                                                                                     new DiagnosticResultLocation[]
                                                                                                     {
                                                                                                         new DiagnosticResultLocation("Test0.cs", 4, 11)
                                                                                                     }
-                                                                });
+            });
         }
 
         [TestMethod]
@@ -209,16 +209,16 @@ namespace ConsoleApplication1
     }
 }";
             VerifyCSharpDiagnostic(original, new DiagnosticResult
-                                                                {
-                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                                                                    Severity = DiagnosticSeverity.Error,
-                                                                    Locations =
+            {
+                Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
                                                                     new DiagnosticResultLocation[]
                                                                     {
                                                                         new DiagnosticResultLocation("Test0.cs", 4, 18)
                                                                     }
-                                                                });
+            });
         }
 
         [TestMethod]
@@ -237,22 +237,45 @@ namespace ConsoleApplication1
 }";
 
             VerifyCSharpDiagnostic(original, new DiagnosticResult
-                                                                {
-                                                                    Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
-                                                                    Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
-                                                                    Severity = DiagnosticSeverity.Error,
-                                                                    Locations =
+            {
+                Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: MyClass must include an access modifier.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
                                                                     new DiagnosticResultLocation[]
                                                                     {
                                                                         new DiagnosticResultLocation("Test0.cs", 7, 11)
                                                                     }
-                                                                });
+            });
         }
 
         [TestMethod]
         public void ThrowArgumentNullExceptionWhenContextNotSupplied()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new ExplicitAccessModifiersAnalyzer().Initialize(null)).Message.Equals("An instance of ExplicitAccessModifiersAnalyzer was not supplied.", StringComparison.Ordinal);
+        }
+
+        [TestMethod]
+        public void IgnoresGeneratedSourceCodeWithSingleLineComment()
+        {
+            var test = CommonConstants.AutoGeneratedCodeHeaderSingleLineComment + @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        public class TypeName
+        {   
+            TypeName()
+            {
+            }
+        }
+    }";
+            VerifyCSharpDiagnostic(test);
         }
 
         protected override DiagnosticAnalyzer GetCSharpDiagnosticAnalyzer()
