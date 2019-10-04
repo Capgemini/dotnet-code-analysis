@@ -22,7 +22,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Analyzers
                                                                                     nameof(StaticClassAnalyzer),
                                                                                     $"{nameof(StaticClassAnalyzer)}: {{0}}",
                                                                                     AnalyserCategoryConstants.StaticAnalyzer,
-                                                                                    DiagnosticSeverity.Error,
+                                                                                    DiagnosticSeverity.Warning,
                                                                                     true);
 
         /// <summary>

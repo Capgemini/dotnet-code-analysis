@@ -81,7 +81,7 @@ namespace Capgemini.CodeAnalysis.CoreAnalysers.Test.Analyzers
             {
                 Id = "CAP0003",
                 Message = $"{nameof(StaticClassAnalyzer)}: Static classes must be avoided unless there is no better option.",
-                Severity = DiagnosticSeverity.Error,
+                Severity = DiagnosticSeverity.Warning,
                 Locations =
                     new[]
                     {
