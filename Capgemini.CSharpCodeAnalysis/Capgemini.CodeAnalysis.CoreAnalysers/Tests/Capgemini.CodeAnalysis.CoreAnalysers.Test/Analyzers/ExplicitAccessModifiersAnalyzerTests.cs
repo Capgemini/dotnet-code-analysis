@@ -250,6 +250,33 @@ namespace ConsoleApplication1
         }
 
         [TestMethod]
+        public void RaiseErrorForMethodWithNoAccessModifierSpecified()
+        {
+            var original = @"
+using System;
+
+namespace ConsoleApplication1
+{
+    public class MyClass
+    {
+        void Method() { }
+    }
+}";
+
+            VerifyCSharpDiagnostic(original, new DiagnosticResult
+            {
+                Id = AnalyzerType.ExplicitAccessModifiersAnalyzerId.ToDiagnosticId(),
+                Message = $"{nameof(ExplicitAccessModifiersAnalyzer)}: Method must include an access modifier.",
+                Severity = DiagnosticSeverity.Error,
+                Locations =
+                                                                    new DiagnosticResultLocation[]
+                                                                    {
+                                                                        new DiagnosticResultLocation("Test0.cs", 8, 14)
+                                                                    }
+            });
+        }
+
+        [TestMethod]
         public void ThrowArgumentNullExceptionWhenContextNotSupplied()
         {
             Assert.ThrowsException<ArgumentNullException>(() => new ExplicitAccessModifiersAnalyzer().Initialize(null)).Message.Equals("An instance of ExplicitAccessModifiersAnalyzer was not supplied.", StringComparison.Ordinal);
@@ -298,6 +325,46 @@ namespace ConsoleApplication1
             }
         }
     }";
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        public void IgnoresInterfaceDeclarations()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        public interface IAsyncCommand
+        {
+            bool CanExecute();
+        }
+}";
+            VerifyCSharpDiagnostic(test);
+        }
+
+        [TestMethod]
+        public void IgnoresPublicInterfaceWithoutAccessModifierOnMethodDeclarations()
+        {
+            var test = @"
+using System.Threading.Tasks;
+using System.Windows.Input;
+
+namespace ConsoleApplication1
+{
+    public interface IAsyncCommand : ICommand
+    {
+        Task ExecuteAsync();
+
+        bool CanExecute();
+    }
+}";
             VerifyCSharpDiagnostic(test);
         }
 

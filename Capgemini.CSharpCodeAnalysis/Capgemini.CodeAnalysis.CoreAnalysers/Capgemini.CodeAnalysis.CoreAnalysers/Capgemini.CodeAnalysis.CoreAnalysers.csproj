@@ -21,7 +21,7 @@ Deprecated analysers covered by StyleCop.Analyzers</PackageReleaseNotes>
     <PackageTags>Capgemini.CodeAnalysis.CoreAnalysers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <Product>Capgemini.CodeAnalysis.CoreAnalysers</Product>
-    <Version>1.0.1</Version>
+    <Version>1.0.5</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
