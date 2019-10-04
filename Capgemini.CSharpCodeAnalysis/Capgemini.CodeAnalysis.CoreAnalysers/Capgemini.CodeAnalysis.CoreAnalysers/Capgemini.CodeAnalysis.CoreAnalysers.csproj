@@ -16,12 +16,13 @@
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Description>Capgemini.CodeAnalysis.CoreAnalysers</Description>
     <PackageReleaseNotes>Updated based on StyleCop.Analyzers changes
-Deprecated analysers covered by StyleCop.Analyzers</PackageReleaseNotes>
+Deprecated analysers covered by StyleCop.Analyzers
+Fix issues in Explicit Access Modifier Analyzer so explicity interface implementation detected correctly</PackageReleaseNotes>
     <Copyright>Copyright</Copyright>
     <PackageTags>Capgemini.CodeAnalysis.CoreAnalysers, analyzers</PackageTags>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <Product>Capgemini.CodeAnalysis.CoreAnalysers</Product>
-    <Version>1.0.5</Version>
+    <Version>1.1.0</Version>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <NeutralLanguage>en-GB</NeutralLanguage>
   </PropertyGroup>
